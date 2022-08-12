@@ -1,0 +1,576 @@
+Plot_Type;Longitude;Latitude;Plot_Code;SSP;Vegetation_Type;VEG;NP2x2;NP4x4;NLI
+Systematic plot;282250;377250;P005;0;Old secondary forest;OSF;17;4;8
+Systematic plot;282747;378262;P017;0;Old secondary forest;OSF;15;8;4
+Systematic plot;282750;378750;P018;0;Old secondary forest;OSF;13;12;9
+Systematic plot;283262;375736;P030;0;Old secondary forest;OSF;9;13;2
+Systematic plot;283250;376750;P032;0;Old secondary forest;OSF;14;7;2
+Systematic plot;283250;378250;P035;0;Old secondary forest;OSF;8;14;2
+Systematic plot;283250;378750;P036;0;Old secondary forest;OSF;13;10;7
+Systematic plot;283760;372241;P047;0;Old secondary forest;OSF;10;10;1
+Systematic plot;283762;372742;P048;0;Old secondary forest;OSF;11;9;0
+Systematic plot;283740;373264;P049;0;Old secondary forest;OSF;11;8;2
+Systematic plot;283750;378250;P059;0;Old secondary forest;OSF;12;10;2
+Systematic plot;283750;379250;P061;0;Old secondary forest;OSF;14;13;3
+Systematic plot;283750;379750;P062;0;Old secondary forest;OSF;9;10;1
+Systematic plot;284263;375737;P080;0;Old secondary forest;OSF;15;14;8
+Systematic plot;284250;376250;P081;0;Old secondary forest;OSF;13;11;5
+Systematic plot;284250;377750;P084;0;Old secondary forest;OSF;13;17;10
+Systematic plot;284250;378750;P086;0;Old secondary forest;OSF;12;13;6
+Systematic plot;284768;372246;P100;0;Old secondary forest;OSF;13;10;7
+Systematic plot;284762;372740;P101;0;Old secondary forest;OSF;20;11;6
+Systematic plot;284760;373238;P102;0;Old secondary forest;OSF;11;7;6
+Systematic plot;284762;374240;P104;0;Old secondary forest;OSF;13;11;4
+Systematic plot;284766;374742;P105;0;Old secondary forest;OSF;12;11;1
+Systematic plot;284748;375248;P106;0;Old secondary forest;OSF;17;11;14
+Systematic plot;284750;376250;P108;0;Old secondary forest;OSF;8;6;8
+Systematic plot;284750;377250;P110;0;Old secondary forest;OSF;15;11;5
+Systematic plot;284750;377750;P111;0;Old secondary forest;OSF;11;13;6
+Systematic plot;284750;378250;P112;0;Old secondary forest;OSF;12;7;4
+Systematic plot;284750;379250;P114;0;Old secondary forest;OSF;18;14;7
+Systematic plot;284750;379750;P115;0;Old secondary forest;OSF;13;11;3
+Systematic plot;285250;376750;P135;0;Old secondary forest;OSF;16;12;4
+Systematic plot;285283;378763;P139;0;Old secondary forest;OSF;11;14;7
+Systematic plot;285250;380250;P142;0;Old secondary forest;OSF;16;4;4
+Systematic plot;285771;374757;P158;0;Old secondary forest;OSF;15;8;3
+Systematic plot;285750;377250;P163;0;Old secondary forest;OSF;8;5;5
+Systematic plot;285750;377750;P164;0;Old secondary forest;OSF;9;6;10
+Systematic plot;285750;378250;P165;0;Old secondary forest;OSF;12;9;7
+Systematic plot;285750;379250;P167;0;Old secondary forest;OSF;18;9;1
+Systematic plot;285750;380750;P170;0;Old secondary forest;OSF;16;5;2
+Systematic plot;286250;377250;P191;0;Old secondary forest;OSF;13;9;8
+Systematic plot;286250;377750;P192;0;Old secondary forest;OSF;14;5;2
+Systematic plot;286250;379250;P195;0;Old secondary forest;OSF;15;14;2
+Systematic plot;286250;379750;P196;0;Old secondary forest;OSF;11;9;6
+Systematic plot;286764;374743;P210;0;Old secondary forest;OSF;11;10;9
+Systematic plot;286750;373750;P214;0;Old secondary forest;OSF;12;8;3
+Systematic plot;286739;375265;P217;0;Old secondary forest;OSF;15;12;4
+Systematic plot;286762;375738;P218;0;Old secondary forest;OSF;8;9;10
+Systematic plot;286757;376747;P220;0;Old secondary forest;OSF;13;15;9
+Systematic plot;286765;377240;P221;0;Old secondary forest;OSF;14;11;11
+Systematic plot;286750;378250;P223;0;Old secondary forest;OSF;6;13;4
+Systematic plot;286750;378750;P224;0;Old secondary forest;OSF;5;8;4
+Systematic plot;286766;379733;P226;0;Old secondary forest;OSF;14;8;11
+Systematic plot;286764;380233;P227;0;Old secondary forest;OSF;11;8;10
+Systematic plot;286760;380743;P228;0;Old secondary forest;OSF;5;8;9
+Systematic plot;287250;373750;P244;0;Old secondary forest;OSF;16;10;4
+Systematic plot;287267;376746;P250;0;Old secondary forest;OSF;13;14;7
+Systematic plot;287272;377741;P252;0;Old secondary forest;OSF;9;13;4
+Systematic plot;287250;378250;P253;0;Old secondary forest;OSF;16;5;3
+Systematic plot;287264;378737;P254;0;Old secondary forest;OSF;9;9;5
+Systematic plot;287769;372238;P274;0;Old secondary forest;OSF;20;12;17
+Systematic plot;287759;379733;P289;0;Old secondary forest;OSF;12;7;15
+Systematic plot;288236;371762;P306;0;Old secondary forest;OSF;16;14;4
+Systematic plot;288246;372245;P307;0;Old secondary forest;OSF;16;10;1
+Systematic plot;288262;373738;P310;0;Old secondary forest;OSF;11;7;4
+Systematic plot;288250;376250;P315;0;Old secondary forest;OSF;14;5;5
+Systematic plot;288250;377250;P317;0;Old secondary forest;OSF;19;8;4
+Systematic plot;288250;377750;P318;0;Old secondary forest;OSF;11;7;4
+Systematic plot;288256;379273;P321;0;Old secondary forest;OSF;12;10;8
+Systematic plot;288753;371746;P339;0;Old secondary forest;OSF;15;11;0
+Systematic plot;288750;373750;P343;0;Old secondary forest;OSF;11;13;5
+Systematic plot;288750;374750;P345;0;Old secondary forest;OSF;13;16;11
+Systematic plot;288762;378738;P353;0;Old secondary forest;OSF;7;13;9
+Systematic plot;288750;379250;P354;0;Old secondary forest;OSF;15;11;5
+Systematic plot;288769;379739;P355;0;Old secondary forest;OSF;11;8;6
+Systematic plot;289257;372236;P372;0;Old secondary forest;OSF;17;12;7
+Systematic plot;289250;375250;P378;0;Old secondary forest;OSF;8;18;3
+Systematic plot;289259;376240;P380;0;Old secondary forest;OSF;12;7;2
+Systematic plot;289263;379244;P386;0;Old secondary forest;OSF;9;13;10
+Systematic plot;289250;379750;P387;0;Old secondary forest;OSF;14;7;6
+Systematic plot;289764;374237;P407;0;Old secondary forest;OSF;17;13;10
+Systematic plot;289750;378750;P416;0;Old secondary forest;OSF;9;18;2
+Systematic plot;289750;379250;P417;0;Old secondary forest;OSF;8;11;2
+Systematic plot;289750;379750;P418;0;Old secondary forest;OSF;1;8;7
+Systematic plot;290250;377750;P446;0;Old secondary forest;OSF;14;12;11
+Systematic plot;290724;370765;P464;0;Old secondary forest;OSF;11;12;4
+Systematic plot;290760;374750;P472;0;Old secondary forest;OSF;13;11;11
+Systematic plot;290752;375253;P473;0;Old secondary forest;OSF;5;8;7
+Systematic plot;290750;378250;P479;0;Old secondary forest;OSF;11;15;4
+Systematic plot;290750;378750;P480;0;Old secondary forest;OSF;12;7;2
+Systematic plot;290750;379250;P481;0;Old secondary forest;OSF;8;9;7
+Systematic plot;290750;380250;P483;0;Old secondary forest;OSF;11;7;7
+Systematic plot;291263;371244;P498;0;Old secondary forest;OSF;15;14;9
+Systematic plot;291250;373250;P502;0;Old secondary forest;OSF;18;11;1
+Systematic plot;291250;373750;P503;0;Old secondary forest;OSF;20;7;5
+Systematic plot;291305;374247;P504;0;Old secondary forest;OSF;13;14;5
+Systematic plot;291247;375235;P506;0;Old secondary forest;OSF;22;15;8
+Systematic plot;291250;378750;P513;0;Old secondary forest;OSF;12;0;9
+Systematic plot;291250;380250;P516;0;Old secondary forest;OSF;3;7;5
+Systematic plot;291250;380750;P517;0;Old secondary forest;OSF;10;12;5
+Systematic plot;291751;371733;P534;0;Old secondary forest;OSF;12;9;5
+Systematic plot;291750;376750;P544;0;Old secondary forest;OSF;18;8;2
+Systematic plot;291750;378750;P548;0;Old secondary forest;OSF;14;10;12
+Systematic plot;291754;379758;P550;0;Old secondary forest;OSF;15;11;6
+Systematic plot;291750;381250;P553;0;Old secondary forest;OSF;14;4;5
+Systematic plot;292234;372763;P571;0;Old secondary forest;OSF;16;17;14
+Systematic plot;292263;374738;P575;0;Old secondary forest;OSF;16;20;7
+Systematic plot;292250;375250;P576;0;Old secondary forest;OSF;17;15;7
+Systematic plot;292250;377250;P580;0;Old secondary forest;OSF;16;12;5
+Systematic plot;292250;377750;P581;0;Old secondary forest;OSF;11;11;1
+Systematic plot;292250;378250;P582;0;Old secondary forest;OSF;18;17;3
+Systematic plot;292250;379250;P584;0;Old secondary forest;OSF;10;13;3
+Systematic plot;292250;379750;P585;0;Old secondary forest;OSF;7;8;7
+Systematic plot;292250;380750;P587;0;Old secondary forest;OSF;8;12;11
+Systematic plot;292250;381750;P589;0;Old secondary forest;OSF;11;13;8
+Systematic plot;292769;371742;P603;0;Old secondary forest;OSF;12;11;5
+Systematic plot;292750;374250;P608;0;Old secondary forest;OSF;13;6;0
+Systematic plot;292750;375750;P611;0;Old secondary forest;OSF;11;9;3
+Systematic plot;292750;376250;P612;0;Old secondary forest;OSF;16;10;1
+Systematic plot;292750;380250;P620;0;Old secondary forest;OSF;13;12;3
+Systematic plot;292750;381750;P623;0;Old secondary forest;OSF;5;14;6
+Systematic plot;293258;373747;P638;0;Old secondary forest;OSF;9;4;5
+Systematic plot;293250;375750;P642;0;Old secondary forest;OSF;13;4;10
+Systematic plot;293250;379750;P650;0;Old secondary forest;OSF;7;15;7
+Systematic plot;293250;380250;P651;0;Old secondary forest;OSF;18;6;8
+Systematic plot;293750;375750;P672;0;Old secondary forest;OSF;10;8;11
+Systematic plot;293765;377240;P675;0;Old secondary forest;OSF;16;11;13
+Systematic plot;293750;378750;P678;0;Old secondary forest;OSF;13;10;4
+Systematic plot;294267;375243;P697;0;Old secondary forest;OSF;15;13;6
+Systematic plot;294258;376737;P700;0;Old secondary forest;OSF;10;12;18
+Systematic plot;294252;377235;P701;0;Old secondary forest;OSF;9;11;10
+Systematic plot;294250;377750;P702;0;Old secondary forest;OSF;15;11;7
+Systematic plot;294250;378250;P703;0;Old secondary forest;OSF;12;7;5
+Systematic plot;294265;380735;P708;0;Old secondary forest;OSF;7;7;15
+Systematic plot;294263;381237;P709;0;Old secondary forest;OSF;10;3;9
+Systematic plot;294262;381738;P710;0;Old secondary forest;OSF;11;8;14
+Systematic plot;294743;380743;P733;0;Old secondary forest;OSF;10;6;14
+Systematic plot;294754;381750;P735;0;Old secondary forest;OSF;11;9;12
+Systematic plot;295762;379239;P779;0;Old secondary forest;OSF;5;3;9
+Systematic plot;295755;379737;P780;0;Old secondary forest;OSF;8;5;1
+Systematic plot;295757;380730;P782;0;Old secondary forest;OSF;10;9;2
+Systematic plot;295767;381240;P783;0;Old secondary forest;OSF;12;14;11
+Systematic plot;296266;376243;P796;0;Old secondary forest;OSF;14;4;1
+Systematic plot;296250;377250;P798;0;Old secondary forest;OSF;11;6;6
+Systematic plot;296250;378750;P801;0;Old secondary forest;OSF;18;11;3
+Systematic plot;282750;377750;P016;0;Young secondary forest;YSF;18;9;5
+Systematic plot;283268;372740;P024;0;Young secondary forest;YSF;12;13;3
+Systematic plot;283265;373240;P025;0;Young secondary forest;YSF;16;8;6
+Systematic plot;283264;374247;P027;0;Young secondary forest;YSF;8;8;6
+Systematic plot;283270;375241;P029;0;Young secondary forest;YSF;13;18;7
+Systematic plot;283269;376245;P031;0;Young secondary forest;YSF;13;11;6
+Systematic plot;283250;377250;P033;0;Young secondary forest;YSF;11;6;7
+Systematic plot;283762;373740;P050;0;Young secondary forest;YSF;17;13;6
+Systematic plot;283764;374243;P051;0;Young secondary forest;YSF;11;8;7
+Systematic plot;283762;374740;P052;0;Young secondary forest;YSF;16;16;4
+Systematic plot;283768;375239;P053;0;Young secondary forest;YSF;17;8;8
+Systematic plot;283765;375735;P054;0;Young secondary forest;YSF;9;14;3
+Systematic plot;283760;376239;P055;0;Young secondary forest;YSF;8;11;11
+Systematic plot;283750;376750;P056;0;Young secondary forest;YSF;13;10;6
+Systematic plot;283750;377250;P057;0;Young secondary forest;YSF;16;10;6
+Systematic plot;283750;378750;P060;0;Young secondary forest;YSF;8;7;4
+Systematic plot;284262;372265;P073;0;Young secondary forest;YSF;9;9;4
+Systematic plot;284260;372737;P074;0;Young secondary forest;YSF;13;9;7
+Systematic plot;284250;373242;P075;0;Young secondary forest;YSF;14;9;7
+Systematic plot;284265;373735;P076;0;Young secondary forest;YSF;17;7;8
+Systematic plot;284265;374736;P078;0;Young secondary forest;YSF;10;9;13
+Systematic plot;284255;375247;P079;0;Young secondary forest;YSF;11;14;2
+Systematic plot;284250;376750;P082;0;Young secondary forest;YSF;18;11;8
+Systematic plot;284250;379250;P087;0;Young secondary forest;YSF;13;16;6
+Systematic plot;284750;378750;P113;0;Young secondary forest;YSF;15;10;3
+Systematic plot;285272;372235;P126;0;Young secondary forest;YSF;4;17;7
+Systematic plot;285263;372738;P127;0;Young secondary forest;YSF;13;14;7
+Systematic plot;285261;373239;P128;0;Young secondary forest;YSF;7;8;2
+Systematic plot;285255;374238;P130;0;Young secondary forest;YSF;10;11;7
+Systematic plot;285260;375240;P132;0;Young secondary forest;YSF;14;15;9
+Systematic plot;285263;376240;P134;0;Young secondary forest;YSF;16;11;7
+Systematic plot;285250;377250;P136;0;Young secondary forest;YSF;13;8;5
+Systematic plot;285250;377750;P137;0;Young secondary forest;YSF;14;8;5
+Systematic plot;285268;378239;P138;0;Young secondary forest;YSF;9;9;2
+Systematic plot;285250;379250;P140;0;Young secondary forest;YSF;8;9;3
+Systematic plot;285767;372233;P153;0;Young secondary forest;YSF;9;14;5
+Systematic plot;285763;372746;P154;0;Young secondary forest;YSF;12;9;6
+Systematic plot;285765;373242;P155;0;Young secondary forest;YSF;18;14;9
+Systematic plot;285765;373739;P156;0;Young secondary forest;YSF;14;17;9
+Systematic plot;285776;374240;P157;0;Young secondary forest;YSF;18;11;6
+Systematic plot;285760;375238;P159;0;Young secondary forest;YSF;19;14;3
+Systematic plot;285762;376238;P161;0;Young secondary forest;YSF;16;4;13
+Systematic plot;285750;376750;P162;0;Young secondary forest;YSF;15;12;3
+Systematic plot;286231;373243;P183;0;Young secondary forest;YSF;8;16;10
+Systematic plot;286250;373750;P184;0;Young secondary forest;YSF;11;9;13
+Systematic plot;286262;374241;P185;0;Young secondary forest;YSF;16;10;7
+Systematic plot;286267;374743;P186;0;Young secondary forest;YSF;8;19;3
+Systematic plot;286262;375240;P187;0;Young secondary forest;YSF;16;9;6
+Systematic plot;286263;375738;P188;0;Young secondary forest;YSF;6;9;7
+Systematic plot;286258;376741;P190;0;Young secondary forest;YSF;10;6;19
+Systematic plot;286250;378750;P194;0;Young secondary forest;YSF;17;10;8
+Systematic plot;286767;372742;P212;0;Young secondary forest;YSF;11;11;8
+Systematic plot;286764;374240;P215;0;Young secondary forest;YSF;18;18;10
+Systematic plot;286773;379239;P225;0;Young secondary forest;YSF;14;12;11
+Systematic plot;287263;372236;P241;0;Young secondary forest;YSF;18;13;6
+Systematic plot;287241;372739;P242;0;Young secondary forest;YSF;8;5;2
+Systematic plot;287269;373238;P243;0;Young secondary forest;YSF;16;15;6
+Systematic plot;287265;374235;P245;0;Young secondary forest;YSF;13;9;4
+Systematic plot;287263;374742;P246;0;Young secondary forest;YSF;15;21;9
+Systematic plot;287273;375243;P247;0;Young secondary forest;YSF;11;8;4
+Systematic plot;287252;375724;P248;0;Young secondary forest;YSF;13;8;8
+Systematic plot;287260;376240;P249;0;Young secondary forest;YSF;13;11;6
+Systematic plot;287261;377237;P251;0;Young secondary forest;YSF;2;8;4
+Systematic plot;287263;379741;P256;0;Young secondary forest;YSF;7;11;2
+Systematic plot;287254;380740;P258;0;Young secondary forest;YSF;9;14;9
+Systematic plot;287763;372746;P275;0;Young secondary forest;YSF;16;8;9
+Systematic plot;287754;373240;P276;0;Young secondary forest;YSF;14;12;17
+Systematic plot;287733;374238;P278;0;Young secondary forest;YSF;14;11;8
+Systematic plot;287767;374735;P279;0;Young secondary forest;YSF;11;12;9
+Systematic plot;287763;375243;P280;0;Young secondary forest;YSF;16;10;4
+Systematic plot;287765;376238;P282;0;Young secondary forest;YSF;14;11;5
+Systematic plot;287763;376733;P283;0;Young secondary forest;YSF;14;11;5
+Systematic plot;287759;377242;P284;0;Young secondary forest;YSF;14;12;2
+Systematic plot;287769;378243;P286;0;Young secondary forest;YSF;14;5;5
+Systematic plot;287751;378737;P287;0;Young secondary forest;YSF;17;15;11
+Systematic plot;287742;379258;P288;0;Young secondary forest;YSF;13;18;5
+Systematic plot;287755;380237;P290;0;Young secondary forest;YSF;4;1;0
+Systematic plot;288262;371232;P305;0;Young secondary forest;YSF;18;8;4
+Systematic plot;288250;372750;P308;0;Young secondary forest;YSF;13;9;7
+Systematic plot;288263;373237;P309;0;Young secondary forest;YSF;19;9;7
+Systematic plot;288263;375240;P313;0;Young secondary forest;YSF;13;15;11
+Systematic plot;288265;375741;P314;0;Young secondary forest;YSF;14;6;5
+Systematic plot;288269;378269;P319;0;Young secondary forest;YSF;14;7;4
+Systematic plot;288263;378741;P320;0;Young secondary forest;YSF;12;7;3
+Systematic plot;288257;379730;P322;0;Young secondary forest;YSF;10;10;5
+Systematic plot;288767;371236;P338;0;Young secondary forest;YSF;13;12;3
+Systematic plot;288765;372739;P341;0;Young secondary forest;YSF;18;7;6
+Systematic plot;288763;373229;P342;0;Young secondary forest;YSF;16;10;4
+Systematic plot;288767;374248;P344;0;Young secondary forest;YSF;13;12;14
+Systematic plot;288766;375240;P346;0;Young secondary forest;YSF;16;5;6
+Systematic plot;288763;375742;P347;0;Young secondary forest;YSF;13;9;13
+Systematic plot;288764;376238;P348;0;Young secondary forest;YSF;19;14;11
+Systematic plot;288760;376740;P349;0;Young secondary forest;YSF;17;18;6
+Systematic plot;288768;377238;P350;0;Young secondary forest;YSF;9;2;6
+Systematic plot;288765;377748;P351;0;Young secondary forest;YSF;10;5;5
+Systematic plot;288763;378237;P352;0;Young secondary forest;YSF;12;14;1
+Systematic plot;288767;380264;P356;0;Young secondary forest;YSF;13;6;6
+Systematic plot;289262;370238;P368;0;Young secondary forest;YSF;20;15;3
+Systematic plot;289273;370735;P369;0;Young secondary forest;YSF;16;10;3
+Systematic plot;289236;371251;P370;0;Young secondary forest;YSF;18;13;4
+Systematic plot;289270;372735;P373;0;Young secondary forest;YSF;11;13;0
+Systematic plot;289250;373245;P374;0;Young secondary forest;YSF;20;15;8
+Systematic plot;289255;374251;P376;0;Young secondary forest;YSF;21;9;11
+Systematic plot;289250;374746;P377;0;Young secondary forest;YSF;14;7;8
+Systematic plot;289262;376737;P381;0;Young secondary forest;YSF;12;17;4
+Systematic plot;289267;378733;P385;0;Young secondary forest;YSF;11;6;11
+Systematic plot;289771;370738;P400;0;Young secondary forest;YSF;17;13;10
+Systematic plot;289760;371241;P401;0;Young secondary forest;YSF;17;16;5
+Systematic plot;289752;371733;P402;0;Young secondary forest;YSF;9;11;9
+Systematic plot;289751;372244;P403;0;Young secondary forest;YSF;18;13;10
+Systematic plot;289737;372764;P404;0;Young secondary forest;YSF;14;7;13
+Systematic plot;289763;374742;P408;0;Young secondary forest;YSF;24;4;9
+Systematic plot;289754;375255;P409;0;Young secondary forest;YSF;16;11;6
+Systematic plot;289768;375742;P410;0;Young secondary forest;YSF;17;8;1
+Systematic plot;289765;376246;P411;0;Young secondary forest;YSF;11;13;8
+Systematic plot;289763;376745;P412;0;Young secondary forest;YSF;13;7;1
+Systematic plot;289771;377736;P414;0;Young secondary forest;YSF;21;8;4
+Systematic plot;289750;378250;P415;0;Young secondary forest;YSF;13;18;4
+Systematic plot;290263;370750;P432;0;Young secondary forest;YSF;11;15;8
+Systematic plot;290267;371237;P433;0;Young secondary forest;YSF;11;7;0
+Systematic plot;290267;371739;P434;0;Young secondary forest;YSF;9;12;8
+Systematic plot;290267;372233;P435;0;Young secondary forest;YSF;18;10;5
+Systematic plot;290235;373762;P438;0;Young secondary forest;YSF;16;15;5
+Systematic plot;290258;374246;P439;0;Young secondary forest;YSF;20;13;9
+Systematic plot;290236;375236;P441;0;Young secondary forest;YSF;17;10;2
+Systematic plot;290250;376750;P444;0;Young secondary forest;YSF;10;10;0
+Systematic plot;290250;378250;P447;0;Young secondary forest;YSF;11;5;2
+Systematic plot;290250;379750;P450;0;Young secondary forest;YSF;7;5;8
+Systematic plot;290772;370267;P463;0;Young secondary forest;YSF;14;11;6
+Systematic plot;290755;371246;P465;0;Young secondary forest;YSF;10;7;5
+Systematic plot;290730;371770;P466;0;Young secondary forest;YSF;11;17;3
+Systematic plot;290765;372244;P467;0;Young secondary forest;YSF;12;6;8
+Systematic plot;290761;372735;P468;0;Young secondary forest;YSF;11;11;16
+Systematic plot;290765;373243;P469;0;Young secondary forest;YSF;13;13;7
+Systematic plot;290750;376250;P475;0;Young secondary forest;YSF;10;15;7
+Systematic plot;290750;376750;P476;0;Young secondary forest;YSF;11;6;3
+Systematic plot;290754;377251;P477;0;Young secondary forest;YSF;16;6;18
+Systematic plot;290768;377735;P478;0;Young secondary forest;YSF;6;3;10
+Systematic plot;290749;379767;P482;0;Young secondary forest;YSF;8;9;4
+Systematic plot;291250;370250;P496;0;Young secondary forest;YSF;15;10;0
+Systematic plot;291261;370737;P497;0;Young secondary forest;YSF;10;18;9
+Systematic plot;291264;372237;P500;0;Young secondary forest;YSF;13;8;4
+Systematic plot;291264;374735;P505;0;Young secondary forest;YSF;22;11;7
+Systematic plot;291260;377233;P510;0;Young secondary forest;YSF;6;11;4
+Systematic plot;291267;377742;P511;0;Young secondary forest;YSF;10;12;13
+Systematic plot;291263;378237;P512;0;Young secondary forest;YSF;19;12;12
+Systematic plot;291250;379750;P515;0;Young secondary forest;YSF;4;9;3
+Systematic plot;291763;370249;P531;0;Young secondary forest;YSF;15;16;7
+Systematic plot;291758;370736;P532;0;Young secondary forest;YSF;14;11;9
+Systematic plot;291750;372250;P535;0;Young secondary forest;YSF;16;12;3
+Systematic plot;291750;372750;P536;0;Young secondary forest;YSF;16;7;3
+Systematic plot;291750;373250;P537;0;Young secondary forest;YSF;18;6;6
+Systematic plot;291750;373750;P538;0;Young secondary forest;YSF;17;8;2
+Systematic plot;291750;374250;P539;0;Young secondary forest;YSF;16;6;5
+Systematic plot;291750;376250;P543;0;Young secondary forest;YSF;15;7;5
+Systematic plot;291750;377250;P545;0;Young secondary forest;YSF;5;8;1
+Systematic plot;291750;378250;P547;0;Young secondary forest;YSF;6;10;2
+Systematic plot;291750;380250;P551;0;Young secondary forest;YSF;15;13;4
+Systematic plot;291750;380750;P552;0;Young secondary forest;YSF;6;13;7
+Systematic plot;292260;371230;P568;0;Young secondary forest;YSF;11;6;4
+Systematic plot;292260;371733;P569;0;Young secondary forest;YSF;12;5;6
+Systematic plot;292267;372244;P570;0;Young secondary forest;YSF;13;6;8
+Systematic plot;292263;374237;P574;0;Young secondary forest;YSF;16;10;4
+Systematic plot;292250;375750;P577;0;Young secondary forest;YSF;10;8;4
+Systematic plot;292250;376250;P578;0;Young secondary forest;YSF;16;9;7
+Systematic plot;292250;378750;P583;0;Young secondary forest;YSF;23;6;5
+Systematic plot;292250;380250;P586;0;Young secondary forest;YSF;15;8;0
+Systematic plot;292770;371236;P602;0;Young secondary forest;YSF;9;8;3
+Systematic plot;292760;372740;P605;0;Young secondary forest;YSF;16;9;6
+Systematic plot;292750;373250;P606;0;Young secondary forest;YSF;8;20;3
+Systematic plot;292763;373733;P607;0;Young secondary forest;YSF;14;10;1
+Systematic plot;292750;374750;P609;0;Young secondary forest;YSF;14;6;9
+Systematic plot;292750;377250;P614;0;Young secondary forest;YSF;16;17;8
+Systematic plot;292750;378250;P616;0;Young secondary forest;YSF;21;11;8
+Systematic plot;292750;378750;P617;0;Young secondary forest;YSF;17;7;5
+Systematic plot;292750;379250;P618;0;Young secondary forest;YSF;9;9;12
+Systematic plot;292750;379750;P619;0;Young secondary forest;YSF;16;13;4
+Systematic plot;292750;380750;P621;0;Young secondary forest;YSF;14;13;5
+Systematic plot;292750;381250;P622;0;Young secondary forest;YSF;10;6;2
+Systematic plot;293263;372237;P635;0;Young secondary forest;YSF;15;11;1
+Systematic plot;293264;372740;P636;0;Young secondary forest;YSF;12;7;10
+Systematic plot;293260;373237;P637;0;Young secondary forest;YSF;17;17;15
+Systematic plot;293263;374233;P639;0;Young secondary forest;YSF;9;8;9
+Systematic plot;293250;374750;P640;0;Young secondary forest;YSF;7;6;5
+Systematic plot;293276;377243;P645;0;Young secondary forest;YSF;12;11;4
+Systematic plot;293250;377729;P646;0;Young secondary forest;YSF;16;12;6
+Systematic plot;293269;378243;P647;0;Young secondary forest;YSF;14;8;3
+Systematic plot;293250;378750;P648;0;Young secondary forest;YSF;9;10;2
+Systematic plot;293763;373237;P667;0;Young secondary forest;YSF;10;9;3
+Systematic plot;293750;374250;P669;0;Young secondary forest;YSF;22;10;4
+Systematic plot;293750;375250;P671;0;Young secondary forest;YSF;13;8;5
+Systematic plot;293764;378246;P677;0;Young secondary forest;YSF;10;8;7
+Systematic plot;293750;379250;P679;0;Young secondary forest;YSF;18;9;2
+Systematic plot;293750;379750;P680;0;Young secondary forest;YSF;6;7;2
+Systematic plot;293750;380750;P682;0;Young secondary forest;YSF;9;11;4
+Systematic plot;294250;374250;P695;0;Young secondary forest;YSF;8;1;2
+Systematic plot;294274;374742;P696;0;Young secondary forest;YSF;15;7;7
+Systematic plot;294268;375750;P698;0;Young secondary forest;YSF;10;9;11
+Systematic plot;294250;379250;P705;0;Young secondary forest;YSF;16;10;1
+Systematic plot;294276;379750;P706;0;Young secondary forest;YSF;12;14;7
+Systematic plot;294262;380246;P707;0;Young secondary forest;YSF;20;8;8
+Systematic plot;294750;373250;P718;0;Young secondary forest;YSF;14;12;13
+Systematic plot;294763;373750;P719;0;Young secondary forest;YSF;14;7;2
+Systematic plot;294750;374250;P720;0;Young secondary forest;YSF;18;7;2
+Systematic plot;294750;374750;P721;0;Young secondary forest;YSF;12;19;6
+Systematic plot;294768;375238;P722;0;Young secondary forest;YSF;16;6;7
+Systematic plot;294750;375750;P723;0;Young secondary forest;YSF;12;8;2
+Systematic plot;294755;376255;P724;0;Young secondary forest;YSF;19;9;6
+Systematic plot;294767;376742;P725;0;Young secondary forest;YSF;14;8;6
+Systematic plot;294768;377239;P726;0;Young secondary forest;YSF;13;12;8
+Systematic plot;294750;377750;P727;0;Young secondary forest;YSF;17;12;4
+Systematic plot;294750;378250;P728;0;Young secondary forest;YSF;12;13;6
+Systematic plot;294750;378750;P729;0;Young secondary forest;YSF;17;18;2
+Systematic plot;294755;379233;P730;0;Young secondary forest;YSF;18;10;8
+Systematic plot;294750;379731;P731;0;Young secondary forest;YSF;13;5;2
+Systematic plot;294765;380238;P732;0;Young secondary forest;YSF;13;7;1
+Systematic plot;294765;381261;P734;0;Young secondary forest;YSF;13;8;13
+Systematic plot;295250;375250;P747;0;Young secondary forest;YSF;7;7;3
+Systematic plot;295266;375736;P748;0;Young secondary forest;YSF;10;7;5
+Systematic plot;295264;377229;P751;0;Young secondary forest;YSF;16;0;1
+Systematic plot;295262;377740;P752;0;Young secondary forest;YSF;12;7;7
+Systematic plot;295277;378233;P753;0;Young secondary forest;YSF;13;10;7
+Systematic plot;295260;378740;P754;0;Young secondary forest;YSF;14;6;7
+Systematic plot;295263;379236;P755;0;Young secondary forest;YSF;11;6;8
+Systematic plot;295260;379748;P756;0;Young secondary forest;YSF;8;9;3
+Systematic plot;295271;380231;P757;0;Young secondary forest;YSF;18;4;4
+Systematic plot;295257;381237;P759;0;Young secondary forest;YSF;15;9;16
+Systematic plot;295263;381731;P760;0;Young secondary forest;YSF;8;4;15
+Systematic plot;295750;374250;P769;0;Young secondary forest;YSF;15;5;1
+Systematic plot;295750;374750;P770;0;Young secondary forest;YSF;13;5;1
+Systematic plot;295757;375237;P771;0;Young secondary forest;YSF;16;9;18
+Systematic plot;295763;376237;P773;0;Young secondary forest;YSF;13;4;5
+Systematic plot;295768;376736;P774;0;Young secondary forest;YSF;19;14;9
+Systematic plot;295735;377263;P775;0;Young secondary forest;YSF;17;10;0
+Systematic plot;295762;377737;P776;0;Young secondary forest;YSF;19;12;23
+Systematic plot;295755;380229;P781;0;Young secondary forest;YSF;13;6;2
+Systematic plot;295760;381738;P784;0;Young secondary forest;YSF;13;9;22
+Systematic plot;296350;375250;P794;0;Young secondary forest;YSF;12;6;1
+Systematic plot;296256;375744;P795;0;Young secondary forest;YSF;16;3;7
+Systematic plot;296267;376732;P797;0;Young secondary forest;YSF;12;6;1
+Systematic plot;296259;377740;P799;0;Young secondary forest;YSF;12;7;18
+Systematic plot;296259;378238;P800;0;Young secondary forest;YSF;15;8;7
+Systematic plot;296261;379741;P803;0;Young secondary forest;YSF;14;8;9
+Systematic plot;296262;380750;P805;0;Young secondary forest;YSF;9;5;19
+Systematic plot;296250;381246;P806;0;Young secondary forest;YSF;2;3;26
+Systematic plot;296767;375733;P816;0;Young secondary forest;YSF;14;7;11
+Systematic plot;296766;376238;P817;0;Young secondary forest;YSF;10;14;8
+Systematic plot;296773;376743;P818;0;Young secondary forest;YSF;10;3;1
+Systematic plot;296769;377227;P819;0;Young secondary forest;YSF;16;13;21
+Systematic plot;296727;377735;P820;0;Young secondary forest;YSF;14;8;4
+Systematic plot;296754;378243;P821;0;Young secondary forest;YSF;20;5;12
+Systematic plot;296760;378739;P822;0;Young secondary forest;YSF;13;11;10
+Systematic plot;296762;381244;P827;0;Young secondary forest;YSF;11;7;8
+Systematic plot;297255;376240;P836;0;Young secondary forest;YSF;5;9;6
+Systematic plot;297261;376736;P837;0;Young secondary forest;YSF;11;11;15
+Systematic plot;282250;377750;P006;0;Swamp;SW;6;0;5
+Systematic plot;282750;377250;P015;0;Swamp;SW;8;3;6
+Systematic plot;283246;377759;P034;0;Swamp;SW;9;5;5
+Systematic plot;284250;378249;P085;0;Swamp;SW;6;5;2
+Systematic plot;284753;373740;P103;0;Swamp;SW;5;1;4
+Systematic plot;285268;373767;P129;0;Swamp;SW;6;10;2
+Systematic plot;285261;374743;P131;0;Swamp;SW;3;1;5
+Systematic plot;285250;379750;P141;0;Swamp;SW;6;2;2
+Systematic plot;285763;375740;P160;0;Swamp;SW;4;0;0
+Systematic plot;285750;379750;P168;0;Swamp;SW;11;10;2
+Systematic plot;286267;372737;P182;0;Swamp;SW;4;1;0
+Systematic plot;286244;378234;P193;0;Swamp;SW;9;8;0
+Systematic plot;286761;376233;P219;0;Swamp;SW;5;3;6
+Systematic plot;287270;380250;P257;0;Swamp;SW;7;3;4
+Systematic plot;287755;375738;P281;0;Swamp;SW;10;4;0
+Systematic plot;287726;377742;P285;0;Swamp;SW;4;9;5
+Systematic plot;288265;374739;P312;0;Swamp;SW;3;5;6
+Systematic plot;288260;376735;P316;0;Swamp;SW;5;5;2
+Systematic plot;289262;373739;P375;0;Swamp;SW;12;0;5
+Systematic plot;289270;377736;P383;0;Swamp;SW;8;0;9
+Systematic plot;289731;373739;P406;0;Swamp;SW;5;2;4
+Systematic plot;290250;377250;P445;0;Swamp;SW;4;3;2
+Systematic plot;290250;380250;P451;0;Swamp;SW;5;6;5
+Systematic plot;290736;374262;P471;0;Swamp;SW;12;6;2
+Systematic plot;291250;372750;P501;0;Swamp;SW;8;0;4
+Systematic plot;291250;375750;P507;0;Swamp;SW;11;11;0
+Systematic plot;291250;376250;P508;0;Swamp;SW;8;5;2
+Systematic plot;291250;376750;P509;0;Swamp;SW;10;2;2
+Systematic plot;291328;379199;P514;0;Swamp;SW;16;8;3
+Systematic plot;291764;371243;P533;0;Swamp;SW;9;2;3
+Systematic plot;291750;377750;P546;0;Swamp;SW;11;7;4
+Systematic plot;291750;379251;P549;0;Swamp;SW;8;10;5
+Systematic plot;292237;373774;P573;0;Swamp;SW;13;5;0
+Systematic plot;292266;376765;P579;0;Swamp;SW;10;3;0
+Systematic plot;292773;372250;P604;0;Swamp;SW;6;8;2
+Systematic plot;292750;375250;P610;0;Swamp;SW;9;11;6
+Systematic plot;292750;376750;P613;0;Swamp;SW;4;0;6
+Systematic plot;292770;377763;P615;0;Swamp;SW;3;1;1
+Systematic plot;293250;375250;P641;0;Swamp;SW;9;5;9
+Systematic plot;293728;372711;P666;0;Swamp;SW;8;3;0
+Systematic plot;293750;373749;P668;0;Swamp;SW;7;6;1
+Systematic plot;293750;374750;P670;0;Swamp;SW;7;6;1
+Systematic plot;293750;380250;P681;0;Swamp;SW;9;2;3
+Systematic plot;294262;373740;P694;0;Swamp;SW;1;1;1
+Systematic plot;294262;376238;P699;0;Swamp;SW;11;8;4
+Systematic plot;295250;374750;P746;0;Swamp;SW;6;8;8
+Systematic plot;295266;376235;P749;0;Swamp;SW;7;8;5
+Systematic plot;295750;375750;P772;0;Swamp;SW;7;1;0
+Systematic plot;295764;378238;P777;0;Swamp;SW;5;0;1
+Systematic plot;295750;378750;P778;0;Swamp;SW;9;2;0
+Systematic plot;296264;380240;P804;0;Swamp;SW;5;6;0
+Systematic plot;296276;381737;P807;0;Swamp;SW;5;0;0
+Systematic plot;282250;378250;P007;0;Riparian forest;RIP;11;13;6
+Systematic plot;283266;372236;P023;0;Riparian forest;RIP;5;4;2
+Systematic plot;283264;373736;P026;0;Riparian forest;RIP;5;7;1
+Systematic plot;283256;374744;P028;0;Riparian forest;RIP;2;3;6
+Systematic plot;283775;377762;P058;0;Riparian forest;RIP;17;15;6
+Systematic plot;284263;374235;P077;0;Riparian forest;RIP;5;6;5
+Systematic plot;284219;377243;P083;0;Riparian forest;RIP;7;9;9
+Systematic plot;284767;375739;P107;0;Riparian forest;RIP;13;7;4
+Systematic plot;284730;376745;P109;0;Riparian forest;RIP;7;7;9
+Systematic plot;285260;375742;P133;0;Riparian forest;RIP;8;11;3
+Systematic plot;286259;372233;P181;0;Riparian forest;RIP;9;3;5
+Systematic plot;286733;372236;P211;0;Riparian forest;RIP;5;4;9
+Systematic plot;287260;379230;P255;0;Riparian forest;RIP;7;7;9
+Systematic plot;287750;373750;P277;0;Riparian forest;RIP;16;17;6
+Systematic plot;288267;374238;P311;0;Riparian forest;RIP;8;3;4
+Systematic plot;288263;380263;P323;0;Riparian forest;RIP;5;10;10
+Systematic plot;289264;375741;P379;0;Riparian forest;RIP;12;11;4
+Systematic plot;289263;377231;P382;0;Riparian forest;RIP;5;6;4
+Systematic plot;289265;378263;P384;0;Riparian forest;RIP;9;9;9
+Systematic plot;289737;377227;P413;0;Riparian forest;RIP;9;3;8
+Systematic plot;290230;370236;P431;0;Riparian forest;RIP;5;9;4
+Systematic plot;290267;372738;P436;0;Riparian forest;RIP;11;6;5
+Systematic plot;290258;373240;P437;0;Riparian forest;RIP;9;7;4
+Systematic plot;290231;374741;P440;0;Riparian forest;RIP;15;10;6
+Systematic plot;290262;376238;P443;0;Riparian forest;RIP;9;11;10
+Systematic plot;290250;378750;P448;0;Riparian forest;RIP;13;5;6
+Systematic plot;290250;379250;P449;0;Riparian forest;RIP;13;5;3
+Systematic plot;291259;371740;P499;0;Riparian forest;RIP;12;12;4
+Systematic plot;291760;374740;P540;0;Riparian forest;RIP;8;13;3
+Systematic plot;291724;375785;P542;0;Riparian forest;RIP;10;10;4
+Systematic plot;292259;373238;P572;0;Riparian forest;RIP;7;8;7
+Systematic plot;293252;376733;P644;0;Riparian forest;RIP;7;0;0
+Systematic plot;293750;376250;P673;0;Riparian forest;RIP;16;16;11
+Systematic plot;293762;377740;P676;0;Riparian forest;RIP;4;3;8
+Systematic plot;295250;374250;P745;0;Riparian forest;RIP;10;7;4
+Systematic plot;295262;376742;P750;0;Riparian forest;RIP;7;12;10
+Systematic plot;295273;380732;P758;0;Riparian forest;RIP;11;10;5
+Systematic plot;296725;380726;P826;0;Riparian forest;RIP;7;5;14
+Systematic plot;296756;381737;P828;0;Riparian forest;RIP;14;8;9
+Sleeping plot;284925;378084;Chim_002;1;Old secondary forest;OSF;12;17;10
+Sleeping plot;296299;375779;Chim_011;1;Old secondary forest;OSF;12;8;4
+Sleeping plot;293300;373710;Chim_014;1;Old secondary forest;OSF;11;9;10
+Sleeping plot;296222;377654;Chim_017;1;Old secondary forest;OSF;16;14;4
+Sleeping plot;295533;377094;Chim_019;1;Old secondary forest;OSF;14;13;11
+Sleeping plot;295621;376984;Chim_020;1;Old secondary forest;OSF;6;5;8
+Sleeping plot;295901;376839;Chim_022;1;Old secondary forest;OSF;11;9;3
+Sleeping plot;291422;372613;Chim_024;1;Old secondary forest;OSF;11;15;3
+Sleeping plot;291389;372456;Chim_025;1;Old secondary forest;OSF;11;14;4
+Sleeping plot;294568;379446;Chim_031;1;Old secondary forest;OSF;15;11;3
+Sleeping plot;294982;379250;Chim_032;1;Old secondary forest;OSF;11;11;5
+Sleeping plot;290688;371565;Chim_036;1;Old secondary forest;OSF;12;8;6
+Sleeping plot;290609;371484;Chim_037;1;Old secondary forest;OSF;15;8;4
+Sleeping plot;290525;371370;Chim_038;1;Old secondary forest;OSF;18;4;4
+Sleeping plot;290878;371854;Chim_045;1;Old secondary forest;OSF;10;14;8
+Sleeping plot;290910;371880;Chim_046;1;Old secondary forest;OSF;13;7;1
+Sleeping plot;290863;371822;Chim_047;1;Old secondary forest;OSF;19;4;4
+Sleeping plot;290807;371752;Chim_048;1;Old secondary forest;OSF;9;9;7
+Sleeping plot;290743;371682;Chim_050;1;Old secondary forest;OSF;12;5;0
+Sleeping plot;291223;372004;Chim_053;1;Old secondary forest;OSF;12;9;2
+Sleeping plot;290736;372172;Chim_054;1;Old secondary forest;OSF;10;6;0
+Sleeping plot;289977;371806;Chim_055;1;Old secondary forest;OSF;10;10;2
+Sleeping plot;283158;377536;Chim_059;1;Old secondary forest;OSF;12;8;9
+Sleeping plot;282106;378212;Chim_060;1;Old secondary forest;OSF;16;7;7
+Sleeping plot;290526;374286;Chim_065;1;Old secondary forest;OSF;19;8;13
+Sleeping plot;283158;377536;Chim_071;1;Old secondary forest;OSF;11;5;8
+Sleeping plot;289907;374537;Chim_074;1;Old secondary forest;OSF;7;1;6
+Sleeping plot;289790;374906;Chim_075;1;Old secondary forest;OSF;5;11;8
+Sleeping plot;289664;374731;Chim_076;1;Old secondary forest;OSF;1;2;2
+Sleeping plot;289453;374356;Chim_077;1;Old secondary forest;OSF;4;4;5
+Sleeping plot;288598;373469;Chim_078;1;Old secondary forest;OSF;10;9;1
+Sleeping plot;288555;373446;Chim_079;1;Old secondary forest;OSF;6;6;5
+Sleeping plot;288483;373687;Chim_080;1;Old secondary forest;OSF;8;9;5
+Sleeping plot;288234;373747;Chim_082;1;Old secondary forest;OSF;1;7;5
+Sleeping plot;288935;374493;Chim_083;1;Old secondary forest;OSF;12;8;4
+Sleeping plot;290336;376001;Chim_084;1;Old secondary forest;OSF;13;10;8
+Sleeping plot;290205;375810;Chim_085;1;Old secondary forest;OSF;14;7;6
+Sleeping plot;290169;375779;Chim_086;1;Old secondary forest;OSF;12;10;2
+Sleeping plot;289153;374722;Chim_087;1;Old secondary forest;OSF;8;5;4
+Sleeping plot;289048;374185;Chim_088;1;Old secondary forest;OSF;12;6;6
+Sleeping plot;291167;374320;Chim_089;1;Old secondary forest;OSF;12;11;7
+Sleeping plot;290346;373477;Chim_092;1;Old secondary forest;OSF;7;5;4
+Sleeping plot;290336;373472;Chim_093;1;Old secondary forest;OSF;12;10;2
+Sleeping plot;289781;372862;Chim_096;1;Old secondary forest;OSF;8;6;4
+Sleeping plot;289263;372320;Chim_099;1;Old secondary forest;OSF;11;10;6
+Sleeping plot;289296;373342;Chim_100;1;Old secondary forest;OSF;9;9;0
+Sleeping plot;290933;374841;Chim_102;1;Old secondary forest;OSF;19;18;7
+Sleeping plot;290684;374580;Chim_103;1;Old secondary forest;OSF;13;11;2
+Sleeping plot;289566;373396;Chim_104;1;Old secondary forest;OSF;13;11;5
+Sleeping plot;289350;373245;Chim_105;1;Old secondary forest;OSF;10;9;2
+Sleeping plot;290256;373900;Chim_107;1;Old secondary forest;OSF;10;8;3
+Sleeping plot;290135;373794;Chim_108;1;Old secondary forest;OSF;10;10;2
+Sleeping plot;289333;373023;Chim_110;1;Old secondary forest;OSF;12;3;3
+Sleeping plot;290886;375072;Chim_112;1;Old secondary forest;OSF;9;7;8
+Sleeping plot;290153;374353;Chim_113;1;Old secondary forest;OSF;14;11;9
+Sleeping plot;289138;373438;Chim_115;1;Old secondary forest;OSF;8;10;4
+Sleeping plot;289260;371756;Chim_117;1;Old secondary forest;OSF;12;13;11
+Sleeping plot;292250;381250;Chim_123;1;Old secondary forest;OSF;13;37;6
+Sleeping plot;284250;379750;Chim_124;1;Old secondary forest;OSF;10;11;4
+Sleeping plot;290780;373741;Chim_126;1;Old secondary forest;OSF;15;9;6
+Sleeping plot;285755;378783;Chim_127;1;Old secondary forest;OSF;18;11;5
+Sleeping plot;295788;375430;Chim_010;1;Young secondary forest;YSF;15;12;15
+Sleeping plot;296590;377215;Chim_018;1;Young secondary forest;YSF;10;11;20
+Sleeping plot;291247;372690;Chim_023;1;Young secondary forest;YSF;18;9;4
+Sleeping plot;290452;375131;Chim_073;1;Young secondary forest;YSF;6;6;5
+Sleeping plot;289861;372940;Chim_095;1;Young secondary forest;YSF;9;10;5
+Sleeping plot;290436;374079;Chim_106;1;Young secondary forest;YSF;15;8;5
+Sleeping plot;289903;374122;Chim_114;1;Young secondary forest;YSF;11;8;1
+Sleeping plot;289758;373250;Chim_120;1;Young secondary forest;YSF;5;6;7
+Sleeping plot;289512;372599;Chim_001;1;Swamp;SW;9;2;5
+Sleeping plot;291238;372703;Chim_026;1;Swamp;SW;8;7;5
+Sleeping plot;292025;372480;Chim_027;1;Swamp;SW;14;14;4
+Sleeping plot;291888;372651;Chim_028;1;Swamp;SW;20;11;4
+Sleeping plot;292702;377675;Chim_035;1;Swamp;SW;9;8;0
+Sleeping plot;290287;372787;Chim_056;1;Swamp;SW;3;1;3
+Sleeping plot;290307;375744;Chim_081;1;Swamp;SW;3;1;2
+Sleeping plot;291020;374160;Chim_090;1;Swamp;SW;6;4;3
+Sleeping plot;291001;374152;Chim_091;1;Swamp;SW;8;2;2
+Sleeping plot;290220;373323;Chim_094;1;Swamp;SW;8;2;2
+Sleeping plot;289471;372552;Chim_097;1;Swamp;SW;5;4;5
+Sleeping plot;291086;375015;Chim_101;1;Swamp;SW;10;11;0
+Sleeping plot;290258;372556;Chim_062;1;Riparian forest;RIP;19;10;4
+Sleeping plot;290277;372559;Chim_063;1;Riparian forest;RIP;18;13;5
+Sleeping plot;282136;378129;Chim_064;1;Riparian forest;RIP;12;11;6
+Sleeping plot;282080;378285;Chim_070;1;Riparian forest;RIP;16;6;6
+Sleeping plot;289368;372452;Chim_098;1;Riparian forest;RIP;10;6;3

@@ -1,0 +1,186 @@
+Nesting_Site_Code;Nest_code;Animal_Species;Plot_Code;Vegetation_Type;VEG;Plant_Code;Tree_Site;Tree_Nest;T_L_R_H;Nest_height;Species_Code;Species;Family;Tree_Height;DBH;Nest_material;Integration;Nest_Type;Nest_Type2
+S_Ch_001;N_Ch_001;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1742;Pl_1742-S_Ch_001;Pl_1742-N_Ch_001;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;19;14.01;Tree;Tree;Top;Height
+S_Ch_001;N_Ch_002;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1742;Pl_1742-S_Ch_001;Pl_1742-N_Ch_002;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;19;14.01;Tree;Tree;Side;Height
+S_Ch_002;N_Ch_003;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1744;Pl_1744-S_Ch_002;Pl_1744-N_Ch_003;Liana;29;Esp_174;Indigofera sp;Fabaceae;NA;6.05;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_002;N_Ch_003;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1746;Pl_1746-S_Ch_002;Pl_1746-N_Ch_003;Tree;29;Esp_097;Desbordesia glaucescens;Irvingiaceae;30;21.97;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_002;N_Ch_004;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1748;Pl_1748-S_Ch_002;Pl_1748-N_Ch_004;Tree;10;Esp_314;Sorindeia grandifolia;Anacardiaceae;12;14.97;Tree;Tree-Tree;Top-Top;Height
+S_Ch_002;N_Ch_004;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1750;Pl_1750-S_Ch_002;Pl_1750-N_Ch_004;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;10;13.38;Tree;Tree-Tree;Top-Top;Height
+S_Ch_003;N_Ch_005;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1759;Pl_1759-S_Ch_003;Pl_1759-N_Ch_005;Tree;18;Esp_163;Heisteria parvifolia;Olacaceae;26;21.02;Tree;Tree;Side;Height
+S_Ch_004;N_Ch_006;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1755;Pl_1755-S_Ch_004;Pl_1755-N_Ch_006;Tree;17;Esp_202;Lepidobotrys staudtii;Lepidobotryaceae;23;23.89;Tree;Tree-Tree;Side-Side;Height
+S_Ch_004;N_Ch_006;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1779;Pl_1779-S_Ch_004;Pl_1779-N_Ch_006;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;37;50.96;Tree;Tree-Tree;Side-Side;Height
+S_Ch_004;N_Ch_007;Chimpanzee;Chim_070;Riparian forest;RIP;Pl_1742;Pl_1742-S_Ch_004;Pl_1742-N_Ch_007;Tree;30;Esp_163;Heisteria parvifolia;Olacaceae;19;14.01;Tree;Tree;Side;Height
+S_Ch_005;N_Ch_008;Chimpanzee;Chim_060;Old secondary forest;OSF;Pl_1545;Pl_1545-S_Ch_005;Pl_1545-N_Ch_008;Tree;20;Esp_362;Uapaca acuminata;Euphorbiaceae;29;18.15;Tree;Tree;Side;Height
+S_Ch_005;N_Ch_009;Chimpanzee;Chim_060;Old secondary forest;OSF;Pl_1539;Pl_1539-S_Ch_005;Pl_1539-N_Ch_009;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;26;18.79;Tree;Tree;Side;Height
+S_Ch_005;N_Ch_010;Chimpanzee;Chim_060;Old secondary forest;OSF;Pl_1539;Pl_1539-S_Ch_005;Pl_1539-N_Ch_010;Tree;24;Esp_163;Heisteria parvifolia;Olacaceae;26;18.79;Tree;Tree;Side;Height
+S_Ch_005;N_Ch_011;Chimpanzee;Chim_060;Old secondary forest;OSF;Pl_1538;Pl_1538-S_Ch_005;Pl_1538-N_Ch_011;Liana;14;Esp_167;Hugonia platysepala;Linaceae;NA;5.13;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_005;N_Ch_011;Chimpanzee;Chim_060;Old secondary forest;OSF;Pl_1539;Pl_1539-S_Ch_005;Pl_1539-N_Ch_011;Tree;14;Esp_163;Heisteria parvifolia;Olacaceae;26;18.79;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_006;N_Ch_012;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1628;Pl_1628-S_Ch_006;Pl_1628-N_Ch_012;Tree;14;Esp_163;Heisteria parvifolia;Olacaceae;14;12.13;Tree;Tree;Top;Height
+S_Ch_006;N_Ch_013;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1616;Pl_1616-S_Ch_006;Pl_1616-N_Ch_013;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;26;28.66;Tree;Tree;Side;Height
+S_Ch_006;N_Ch_014;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1622;Pl_1622-S_Ch_006;Pl_1622-N_Ch_014;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;9;20.06;Tree;Tree;Side;Height
+S_Ch_006;N_Ch_015;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1622;Pl_1622-S_Ch_006;Pl_1622-N_Ch_015;Tree;13;Esp_163;Heisteria parvifolia;Olacaceae;22;20.06;Tree;Tree;Side;Height
+S_Ch_006;N_Ch_016;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1616;Pl_1616-S_Ch_006;Pl_1616-N_Ch_016;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;35;28.66;Tree;Tree;Side;Height
+S_Ch_006;N_Ch_017;Chimpanzee;Chim_064;Riparian forest;RIP;Pl_1616;Pl_1616-S_Ch_006;Pl_1616-N_Ch_017;Tree;32;Esp_163;Heisteria parvifolia;Olacaceae;35;28.66;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_018;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1493;Pl_1493-S_Ch_007;Pl_1493-N_Ch_018;Tree;11;Esp_163;Heisteria parvifolia;Olacaceae;17;17.23;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_019;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1499;Pl_1499-S_Ch_007;Pl_1499-N_Ch_019;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;21;15.92;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_020;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1514;Pl_1514-S_Ch_007;Pl_1514-N_Ch_020;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;26;23.6;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_021;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1514;Pl_1514-S_Ch_007;Pl_1514-N_Ch_021;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;26;23.6;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_022;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1514;Pl_1514-S_Ch_007;Pl_1514-N_Ch_022;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;26;23.6;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_023;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1482;Pl_1482-S_Ch_007;Pl_1482-N_Ch_023;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;22;23.57;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_024;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1479;Pl_1479-S_Ch_007;Pl_1479-N_Ch_024;Liana;12;Esp_250;Neuropeltis acuminata;Convolvulaceae;NA;7.64;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_007;N_Ch_024;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1499;Pl_1499-S_Ch_007;Pl_1499-N_Ch_024;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;21;15.92;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_007;N_Ch_025;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1499;Pl_1499-S_Ch_007;Pl_1499-N_Ch_025;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;21;15.92;Tree;Tree;Side;Height
+S_Ch_007;N_Ch_026;Chimpanzee;Chim_059;Old secondary forest;OSF;Pl_1493;Pl_1493-S_Ch_007;Pl_1493-N_Ch_026;Tree;9;Esp_163;Heisteria parvifolia;Olacaceae;23;17.23;Tree;Tree;Side;Height
+S_Ch_008;N_Ch_027;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1796;Pl_1796-S_Ch_008;Pl_1796-N_Ch_027;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;20;20.06;Tree;Tree;Side;Height
+S_Ch_008;N_Ch_028;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1808;Pl_1808-S_Ch_008;Pl_1808-N_Ch_028;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;24;19.75;Tree;Tree;Side;Height
+S_Ch_008;N_Ch_029;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1784;Pl_1784-S_Ch_008;Pl_1784-N_Ch_029;Tree;12;Esp_363;Uapaca guineensis;Euphorbiaceae;12;11.78;Tree;Tree-Tree;Top-Side;Height
+S_Ch_008;N_Ch_029;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1785;Pl_1785-S_Ch_008;Pl_1785-N_Ch_029;Tree;12;Esp_363;Uapaca guineensis;Euphorbiaceae;14;14.01;Tree;Tree-Tree;Top-Side;Height
+S_Ch_008;N_Ch_030;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1796;Pl_1796-S_Ch_008;Pl_1796-N_Ch_030;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;30;20.06;Tree;Tree;Side;Height
+S_Ch_008;N_Ch_031;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1796;Pl_1796-S_Ch_008;Pl_1796-N_Ch_031;Tree;23;Esp_163;Heisteria parvifolia;Olacaceae;30;20.06;Tree;Tree;Side;Height
+S_Ch_008;N_Ch_032;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1796;Pl_1796-S_Ch_008;Pl_1796-N_Ch_032;Tree;30;Esp_163;Heisteria parvifolia;Olacaceae;30;20.06;Tree;Tree-Tree;Top-Side;Height
+S_Ch_008;N_Ch_032;Chimpanzee;Chim_071;Old secondary forest;OSF;Pl_1808;Pl_1808-S_Ch_008;Pl_1808-N_Ch_032;Tree;30;Esp_163;Heisteria parvifolia;Olacaceae;32;19.75;Tree;Tree-Tree;Top-Side;Height
+S_Ch_018;N_Ch_092;Chimpanzee;Chim_120;Young secondary forest;YSF;Pl_3018;Pl_3018-S_Ch_018;Pl_3018-N_Ch_092;Tree;9;Esp_314;Sorindeia grandifolia;Anacardiaceae;11;15.06;Tree;Tree;Side;Height
+S_Ch_019;N_Ch_093;Chimpanzee;Chim_120;Young secondary forest;YSF;Plsc_01;Plsc_01-S_Ch_019;Plsc_01-N_Ch_093;Tree;5;Esp_103;Anthonotha sp;Caesalpiniaceae;5;8.98;Tree;Tree-Tree;Top-Side;Height
+S_Ch_019;N_Ch_093;Chimpanzee;Chim_120;Young secondary forest;YSF;Pl_3021;Pl_3021-S_Ch_019;Pl_3021-N_Ch_093;Tree;5;Esp_314;Sorindeia grandifolia;Anacardiaceae;11;12.45;Tree;Tree-Tree;Top-Side;Height
+S_Ch_020;N_Ch_094;Chimpanzee;Chim_055;Old secondary forest;OSF;Pl_1400;Pl_1400-S_Ch_020;Pl_1400-N_Ch_094;Tree;7;Esp_363;Uapaca guineensis;Euphorbiaceae;9;13.09;Tree;Tree;Side;Height
+S_Ch_021;N_Ch_095;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1567;Pl_1567-S_Ch_021;Pl_1567-N_Ch_095;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;29;38.22;Tree;Tree;Side;Height
+S_Ch_021;N_Ch_096;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1567;Pl_1567-S_Ch_021;Pl_1567-N_Ch_096;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;29;38.22;Tree;Tree;Side;Height
+S_Ch_021;N_Ch_097;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1567;Pl_1567-S_Ch_021;Pl_1567-N_Ch_097;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;27;38.22;Tree;Tree;Side;Height
+S_Ch_021;N_Ch_098;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1567;Pl_1567-S_Ch_021;Pl_1567-N_Ch_098;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;27;38.22;Tree;Tree;Side;Height
+S_Ch_022;N_Ch_099;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1576;Pl_1576-S_Ch_022;Pl_1576-N_Ch_099;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;32;60.51;Tree;Tree;Side;Height
+S_Ch_022;N_Ch_100;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1576;Pl_1576-S_Ch_022;Pl_1576-N_Ch_100;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;32;60.51;Tree;Tree;Side;Height
+S_Ch_022;N_Ch_101;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1576;Pl_1576-S_Ch_022;Pl_1576-N_Ch_101;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;32;60.51;Tree;Tree;Top;Height
+S_Ch_022;N_Ch_102;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1576;Pl_1576-S_Ch_022;Pl_1576-N_Ch_102;Tree;18;Esp_163;Heisteria parvifolia;Olacaceae;32;60.51;Tree;Tree;Side;Height
+S_Ch_023;N_Ch_103;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1564;Pl_1564-S_Ch_023;Pl_1564-N_Ch_103;Tree;18;Esp_362;Uapaca acuminata;Euphorbiaceae;30;31.21;Tree;Tree;Side;Height
+S_Ch_023;N_Ch_104;Chimpanzee;Chim_062;Riparian forest;RIP;Plsc_02;Plsc_02-S_Ch_023;Plsc_02-N_Ch_104;Tree;8;Esp_217;Maesobotrya sp;Euphorbiaceae;8;7.36;Tree;Tree-Tree;Top-Side;Height
+S_Ch_023;N_Ch_104;Chimpanzee;Chim_062;Riparian forest;RIP;Pl_1573;Pl_1573-S_Ch_023;Pl_1573-N_Ch_104;Tree;8;Esp_368;Uvariastrum pierreanum;Annonaceae;9;12.1;Tree;Tree-Tree;Top-Side;Height
+S_Ch_024;N_Ch_105;Chimpanzee;Chim_063;Riparian forest;RIP;Pl_1580;Pl_1580-S_Ch_024;Pl_1580-N_Ch_105;Tree;14;Esp_254;Omphalocarpum elatum;Sapotaceae;20;25.48;Tree;Tree;Side;Height
+S_Ch_024;N_Ch_106;Chimpanzee;Chim_063;Riparian forest;RIP;Pl_1580;Pl_1580-S_Ch_024;Pl_1580-N_Ch_106;Tree;16;Esp_254;Omphalocarpum elatum;Sapotaceae;20;25.48;Tree;Tree;Side;Height
+S_Ch_024;N_Ch_107;Chimpanzee;Chim_063;Riparian forest;RIP;Pl_1585;Pl_1585-S_Ch_024;Pl_1585-N_Ch_107;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;28;44.27;Tree;Tree;Side;Height
+S_Ch_024;N_Ch_108;Chimpanzee;Chim_063;Riparian forest;RIP;Pl_1589;Pl_1589-S_Ch_024;Pl_1589-N_Ch_108;Tree;22;Esp_163;Heisteria parvifolia;Olacaceae;33;48.73;Tree;Tree;Side;Height
+S_Ch_025;N_Ch_109;Chimpanzee;Chim_056;Swamp;SW;Pl_1427;Pl_1427-S_Ch_025;Pl_1427-N_Ch_109;Tree;25;Esp_366;Uapaca vanhoutei;Euphorbiaceae;30;47.77;Tree;Tree;Side;Height
+S_Ch_025;N_Ch_110;Chimpanzee;Chim_056;Swamp;SW;Pl_1427;Pl_1427-S_Ch_025;Pl_1427-N_Ch_110;Tree;24;Esp_366;Uapaca vanhoutei;Euphorbiaceae;30;47.77;Tree;Tree;Side;Height
+S_Ch_025;N_Ch_111;Chimpanzee;Chim_056;Swamp;SW;Pl_1426;Pl_1426-S_Ch_025;Pl_1426-N_Ch_111;Tree;23;Esp_366;Uapaca vanhoutei;Euphorbiaceae;28;20.38;Tree;Tree;Side;Height
+S_Ch_025;N_Ch_112;Chimpanzee;Chim_056;Swamp;SW;Pl_1428;Pl_1428-S_Ch_025;Pl_1428-N_Ch_112;Tree;28;Esp_354;Trichilia gilgiana;Meliaceae;30;85.03;Tree;Tree;Side;Height
+S_Ch_026;N_Ch_113;Chimpanzee;Chim_056;Swamp;SW;Pl_1424;Pl_1424-S_Ch_026;Pl_1424-N_Ch_113;Tree;15;Esp_097;Desbordesia glaucescens;Irvingiaceae;20;12.83;Tree;Tree;Side;Height
+S_Ch_026;N_Ch_114;Chimpanzee;Chim_056;Swamp;SW;Pl_1425;Pl_1425-S_Ch_026;Pl_1425-N_Ch_114;Tree;18;Esp_366;Uapaca vanhoutei;Euphorbiaceae;22;15.41;Tree;Tree;Side;Height
+S_Ch_026;N_Ch_115;Chimpanzee;Chim_056;Swamp;SW;Pl_1429;Pl_1429-S_Ch_026;Pl_1429-N_Ch_115;Tree;29;Esp_366;Uapaca vanhoutei;Euphorbiaceae;30;46.18;Tree;Tree;Top;Height
+S_Ch_026;N_Ch_116;Chimpanzee;Chim_056;Swamp;SW;NA;NA-S_Ch_026;NA-N_Ch_116;Herb;0;Esp_232;Megaphrynium velutinum;Marantaceae;NA;NA;Herb;NA;Ground;Ground
+S_Ch_030;N_Ch_124;Chimpanzee;Chim_038;Old secondary forest;OSF;Pl_0958;Pl_0958-S_Ch_030;Pl_0958-N_Ch_124;Tree;9;Esp_163;Heisteria parvifolia;Olacaceae;23;34.39;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_125;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1629;Pl_1629-S_Ch_031;Pl_1629-N_Ch_125;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;33;39.81;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_126;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1634;Pl_1634-S_Ch_031;Pl_1634-N_Ch_126;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;25;28.66;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_127;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1639;Pl_1639-S_Ch_031;Pl_1639-N_Ch_127;Tree;22;Esp_304;Santiria trimera;Burseraceae;26;23.89;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_128;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1642;Pl_1642-S_Ch_031;Pl_1642-N_Ch_128;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;24;27.71;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_129;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1650;Pl_1650-S_Ch_031;Pl_1650-N_Ch_129;Tree;14;Esp_254;Omphalocarpum elatum;Sapotaceae;22;33.76;Tree;Tree;Side;Height
+S_Ch_031;N_Ch_130;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1650;Pl_1650-S_Ch_031;Pl_1650-N_Ch_130;Tree;16;Esp_254;Omphalocarpum elatum;Sapotaceae;22;33.76;Tree;Tree;Side;Height
+S_Ch_032;N_Ch_131;Chimpanzee;Chim_065;Old secondary forest;OSF;Plsc_03;Plsc_03-S_Ch_032;Plsc_03-N_Ch_131;Tree;14;Esp_032;Antidesma lacinata;Euphorbiaceae;14;9.94;Tree;Tree;Side;Height
+S_Ch_032;N_Ch_132;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1637;Pl_1637-S_Ch_032;Pl_1637-N_Ch_132;Tree;18;Esp_163;Heisteria parvifolia;Olacaceae;18;33.44;Tree;Tree;Side;Height
+S_Ch_032;N_Ch_133;Chimpanzee;Chim_065;Old secondary forest;OSF;Pl_1637;Pl_1637-S_Ch_032;Pl_1637-N_Ch_133;Tree;21;Esp_163;Heisteria parvifolia;Olacaceae;21;33.44;Tree;Tree;Side;Height
+S_Ch_033;N_Ch_134;Chimpanzee;Chim_037;Old secondary forest;OSF;Pl_0920;Pl_0920-S_Ch_033;Pl_0920-N_Ch_134;Tree;13;Esp_163;Heisteria parvifolia;Olacaceae;30;30.89;Tree;Tree;Side;Height
+S_Ch_033;N_Ch_135;Chimpanzee;Chim_037;Old secondary forest;OSF;Pl_0928;Pl_0928-S_Ch_033;Pl_0928-N_Ch_135;Tree;11;Esp_363;Uapaca guineensis;Euphorbiaceae;11;21.66;Tree;Tree;Top;Height
+S_Ch_034;N_Ch_136;Chimpanzee;Chim_036;Old secondary forest;OSF;Pl_0889;Pl_0889-S_Ch_034;Pl_0889-N_Ch_136;Tree;11;Esp_163;Heisteria parvifolia;Olacaceae;30;36.94;Tree;Tree;Side;Height
+S_Ch_034;N_Ch_137;Chimpanzee;Chim_036;Old secondary forest;OSF;Pl_0889;Pl_0889-S_Ch_034;Pl_0889-N_Ch_137;Tree;9;Esp_163;Heisteria parvifolia;Olacaceae;30;36.94;Tree;Tree;Side;Height
+S_Ch_034;N_Ch_138;Chimpanzee;Chim_036;Old secondary forest;OSF;Pl_0897;Pl_0897-S_Ch_034;Pl_0897-N_Ch_138;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;29;32.48;Tree;Tree;Side;Height
+S_Ch_035;N_Ch_139;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1396;Pl_1396-S_Ch_035;Pl_1396-N_Ch_139;Tree;7;Esp_314;Sorindeia grandifolia;Anacardiaceae;18;28.66;Tree;Tree;Side;Height
+S_Ch_035;N_Ch_140;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1396;Pl_1396-S_Ch_035;Pl_1396-N_Ch_140;Tree;8;Esp_314;Sorindeia grandifolia;Anacardiaceae;18;28.66;Tree;Tree;Side;Height
+S_Ch_035;N_Ch_141;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1393;Pl_1393-S_Ch_035;Pl_1393-N_Ch_141;Tree;9;Esp_202;Lepidobotrys staudtii;Lepidobotryaceae;17;26.46;Tree;Tree;Side;Height
+S_Ch_036;N_Ch_142;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1393;Pl_1393-S_Ch_036;Pl_1393-N_Ch_142;Tree;7;Esp_202;Lepidobotrys staudtii;Lepidobotryaceae;17;26.46;Tree;Tree;Top;Height
+S_Ch_036;N_Ch_143;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1372;Pl_1372-S_Ch_036;Pl_1372-N_Ch_143;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;28;49.36;Tree;Tree;Side;Height
+S_Ch_036;N_Ch_144;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1379;Pl_1379-S_Ch_036;Pl_1379-N_Ch_144;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;22;23.38;Tree;Tree;Side;Height
+S_Ch_036;N_Ch_145;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1374;Pl_1374-S_Ch_036;Pl_1374-N_Ch_145;Tree;15;Esp_362;Uapaca acuminata;Euphorbiaceae;36;45.86;Tree;Tree-Tree;Top-Side;Height
+S_Ch_036;N_Ch_145;Chimpanzee;Chim_054;Old secondary forest;OSF;Pl_1375;Pl_1375-S_Ch_036;Pl_1375-N_Ch_145;Tree;15;Esp_278;Polyalthia suaveolens;Annonaceae;15;17.26;Tree;Tree-Tree;Top-Side;Height
+S_Ch_037;N_Ch_146;Chimpanzee;Chim_050;Old secondary forest;OSF;Pl_1312;Pl_1312-S_Ch_037;Pl_1312-N_Ch_146;Tree;14;Esp_363;Uapaca guineensis;Euphorbiaceae;14;14.33;Tree;Tree;Top;Height
+S_Ch_037;N_Ch_147;Chimpanzee;Chim_050;Old secondary forest;OSF;Pl_1312;Pl_1312-S_Ch_037;Pl_1312-N_Ch_147;Tree;11;Esp_363;Uapaca guineensis;Euphorbiaceae;14;14.33;Tree;Tree;Side;Height
+S_Ch_037;N_Ch_148;Chimpanzee;Chim_050;Old secondary forest;OSF;Pl_1312;Pl_1312-S_Ch_037;Pl_1312-N_Ch_148;Tree;5;Esp_363;Uapaca guineensis;Euphorbiaceae;14;14.33;Tree;Tree;Side;Height
+S_Ch_039;N_Ch_151;Chimpanzee;Chim_126;Old secondary forest;OSF;Pl_3184;Pl_3184-S_Ch_039;Pl_3184-N_Ch_151;Tree;27;Esp_163;Heisteria parvifolia;Olacaceae;30;49.68;Tree;Tree;Side;Height
+S_Ch_040;N_Ch_152;Chimpanzee;Chim_048;Old secondary forest;OSF;Pl_1273;Pl_1273-S_Ch_040;Pl_1273-N_Ch_152;Tree;9;Esp_278;Polyalthia suaveolens;Annonaceae;9;14.55;Tree;Tree;Top;Height
+S_Ch_040;N_Ch_153;Chimpanzee;Chim_048;Old secondary forest;OSF;Pl_1303;Pl_1303-S_Ch_040;Pl_1303-N_Ch_153;Tree;7;Esp_314;Sorindeia grandifolia;Anacardiaceae;16;11.78;Tree;Tree;Side;Height
+S_Ch_040;N_Ch_154;Chimpanzee;Chim_048;Old secondary forest;OSF;Pl_1303;Pl_1303-S_Ch_040;Pl_1303-N_Ch_154;Tree;9;Esp_314;Sorindeia grandifolia;Anacardiaceae;16;11.78;Tree;Tree;Side;Height
+S_Ch_041;N_Ch_155;Chimpanzee;Chim_047;Old secondary forest;OSF;Pl_1252;Pl_1252-S_Ch_041;Pl_1252-N_Ch_155;Tree;21;Esp_362;Uapaca acuminata;Euphorbiaceae;40;62.1;Tree;Tree;Side;Height
+S_Ch_041;N_Ch_156;Chimpanzee;Chim_047;Old secondary forest;OSF;Pl_1254;Pl_1254-S_Ch_041;Pl_1254-N_Ch_156;Tree;10;Esp_362;Uapaca acuminata;Euphorbiaceae;33;25.16;Tree;Tree;Side;Height
+S_Ch_041;N_Ch_157;Chimpanzee;Chim_047;Old secondary forest;OSF;Pl_1262;Pl_1262-S_Ch_041;Pl_1262-N_Ch_157;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;10;39.49;Tree;Tree;Top;Height
+S_Ch_042;N_Ch_158;Chimpanzee;Chim_045;Old secondary forest;OSF;Pl_1220;Pl_1220-S_Ch_042;Pl_1220-N_Ch_158;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;23;35.99;Tree;Tree;Side;Height
+S_Ch_042;N_Ch_159;Chimpanzee;Chim_045;Old secondary forest;OSF;Pl_1213;Pl_1213-S_Ch_042;Pl_1213-N_Ch_159;Liana;12;Esp_235;Millettia barteri;Fabaceae;NA;14.27;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_042;N_Ch_159;Chimpanzee;Chim_045;Old secondary forest;OSF;Pl_1212;Pl_1212-S_Ch_042;Pl_1212-N_Ch_159;Tree;12;Esp_314;Sorindeia grandifolia;Anacardiaceae;24;30.25;Mixed;Tree-Liana;Side-Liana;Height
+S_Ch_042;N_Ch_160;Chimpanzee;Chim_045;Old secondary forest;OSF;Pl_1201;Pl_1201-S_Ch_042;Pl_1201-N_Ch_160;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;21;24.68;Tree;Tree;Side;Height
+S_Ch_043;N_Ch_161;Chimpanzee;Chim_046;Old secondary forest;OSF;Pl_1230;Pl_1230-S_Ch_043;Pl_1230-N_Ch_161;Tree;9;Esp_314;Sorindeia grandifolia;Anacardiaceae;9;12.8;Tree;Tree-Tree;Top-Side;Height
+S_Ch_043;N_Ch_161;Chimpanzee;Chim_046;Old secondary forest;OSF;Pl_1231;Pl_1231-S_Ch_043;Pl_1231-N_Ch_161;Tree;9;Esp_314;Sorindeia grandifolia;Anacardiaceae;10;15.13;Tree;Tree-Tree;Top-Side;Height
+S_Ch_044;N_Ch_162;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1365;Pl_1365-S_Ch_044;Pl_1365-N_Ch_162;Tree;13;Esp_163;Heisteria parvifolia;Olacaceae;22;32.17;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_163;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1365;Pl_1365-S_Ch_044;Pl_1365-N_Ch_163;Tree;4;Esp_163;Heisteria parvifolia;Olacaceae;22;32.17;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_164;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1370;Pl_1370-S_Ch_044;Pl_1370-N_Ch_164;Tree;6;Esp_163;Heisteria parvifolia;Olacaceae;32;45.54;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_165;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1370;Pl_1370-S_Ch_044;Pl_1370-N_Ch_165;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;32;45.54;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_166;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1360;Pl_1360-S_Ch_044;Pl_1360-N_Ch_166;Tree;9;Esp_163;Heisteria parvifolia;Olacaceae;28;34.46;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_167;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1360;Pl_1360-S_Ch_044;Pl_1360-N_Ch_167;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;28;34.46;Tree;Tree;Side;Height
+S_Ch_044;N_Ch_168;Chimpanzee;Chim_053;Old secondary forest;OSF;Pl_1360;Pl_1360-S_Ch_044;Pl_1360-N_Ch_168;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;28;34.46;Tree;Tree;Side;Height
+S_Ch_045;N_Ch_169;Chimpanzee;Chim_026;Swamp;SW;Pl_0645;Pl_0645-S_Ch_045;Pl_0645-N_Ch_169;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;29;23.25;Tree;Tree;Side;Height
+S_Ch_045;N_Ch_170;Chimpanzee;Chim_026;Swamp;SW;Pl_0648;Pl_0648-S_Ch_045;Pl_0648-N_Ch_170;Tree;15;Esp_304;Santiria trimera;Burseraceae;24;25.8;Tree;Tree;Side;Height
+S_Ch_045;N_Ch_171;Chimpanzee;Chim_026;Swamp;SW;Pl_0627;Pl_0627-S_Ch_045;Pl_0627-N_Ch_171;Tree;34;Esp_366;Uapaca vanhoutei;Euphorbiaceae;40;64.33;Tree;Tree;Top;Height
+S_Ch_046;N_Ch_172;Chimpanzee;Chim_023;Young secondary forest;YSF;Pl_0576;Pl_0576-S_Ch_046;Pl_0576-N_Ch_172;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;30;58.28;Tree;Tree;Side;Height
+S_Ch_046;N_Ch_173;Chimpanzee;Chim_023;Young secondary forest;YSF;Pl_0576;Pl_0576-S_Ch_046;Pl_0576-N_Ch_173;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;30;58.28;Tree;Tree;Side;Height
+S_Ch_046;N_Ch_174;Chimpanzee;Chim_023;Young secondary forest;YSF;Pl_0554;Pl_0554-S_Ch_046;Pl_0554-N_Ch_174;Tree;13;Esp_163;Heisteria parvifolia;Olacaceae;22;28.98;Tree;Tree;Side;Height
+S_Ch_047;N_Ch_175;Chimpanzee;Chim_025;Old secondary forest;OSF;Pl_0619;Pl_0619-S_Ch_047;Pl_0619-N_Ch_175;Tree;14;Esp_163;Heisteria parvifolia;Olacaceae;19;35.67;Tree;Tree;Side;Height
+S_Ch_047;N_Ch_176;Chimpanzee;Chim_025;Old secondary forest;OSF;Pl_0619;Pl_0619-S_Ch_047;Pl_0619-N_Ch_176;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;19;35.67;Tree;Tree;Side;Height
+S_Ch_048;N_Ch_177;Chimpanzee;Chim_024;Old secondary forest;OSF;Pl_0578;Pl_0578-S_Ch_048;Pl_0578-N_Ch_177;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;10;22.93;Tree;Tree;Side;Height
+S_Ch_048;N_Ch_178;Chimpanzee;Chim_024;Old secondary forest;OSF;Pl_0578;Pl_0578-S_Ch_048;Pl_0578-N_Ch_178;Tree;6;Esp_163;Heisteria parvifolia;Olacaceae;10;22.93;Tree;Tree;Side;Height
+S_Ch_049;N_Ch_179;Chimpanzee;Chim_028;Swamp;SW;Pl_0707;Pl_0707-S_Ch_049;Pl_0707-N_Ch_179;Tree;33;Esp_176;Irvingia gabonensis;Irvingiaceae;35;46.5;Tree;Tree;Top;Height
+S_Ch_050;N_Ch_180;Chimpanzee;Chim_027;Swamp;SW;Pl_0651;Pl_0651-S_Ch_050;Pl_0651-N_Ch_180;Tree;30;Esp_163;Heisteria parvifolia;Olacaceae;36;43.63;Tree;Tree;Side;Height
+S_Ch_050;N_Ch_181;Chimpanzee;Chim_027;Swamp;SW;Pl_0651;Pl_0651-S_Ch_050;Pl_0651-N_Ch_181;Tree;27;Esp_163;Heisteria parvifolia;Olacaceae;36;43.63;Tree;Tree;Side;Height
+S_Ch_051;N_Ch_182;Chimpanzee;Chim_123;Old secondary forest;OSF;Pl_3117;Pl_3117-S_Ch_051;Pl_3117-N_Ch_182;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;30;21.66;Tree;Tree;Side;Height
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Herb;0;Esp_009;Aframomum sp2;Zingiberaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Herb;0;Esp_042;Asplenium sp;Aspleniaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Herb;0;Esp_089;Costus afer;Costaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Herb;0;Esp_161;Halopegia azurea;Marantaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Herb;0;Esp_225;Marantochloa purpurea;Marantaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_052;N_Ch_183;Chimpanzee;Chim_035;Swamp;SW;NA;NA-S_Ch_052;NA-N_Ch_183;Tree;0;Esp_129;Eremomastax speciosa;Acanthaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_062;N_Ch_216;Chimpanzee;Chim_031;Old secondary forest;OSF;Pl_0764;Pl_0764-S_Ch_062;Pl_0764-N_Ch_216;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;45;62.1;Tree;Tree;Side;Height
+S_Ch_062;N_Ch_217;Chimpanzee;Chim_031;Old secondary forest;OSF;Pl_0777;Pl_0777-S_Ch_062;Pl_0777-N_Ch_217;Tree;15;Esp_202;Lepidobotrys staudtii;Lepidobotryaceae;17;33.12;Tree;Tree;Side;Height
+S_Ch_069;N_Ch_231;Chimpanzee;Chim_032;Old secondary forest;OSF;Pl_0784;Pl_0784-S_Ch_069;Pl_0784-N_Ch_231;Tree;21;Esp_327;Strombosiopsis tetranda;Olacaceae;21;37.26;Tree;Tree;Top;Height
+S_Ch_071;N_Ch_239;Chimpanzee;Chim_117;Old secondary forest;OSF;Plsc_04;Plsc_04-S_Ch_071;Plsc_04-N_Ch_239;Tree;5;Esp_251;Olax latifolia;Olacaceae;5;9.62;Tree;Tree-Tree;Side-Side;Height
+S_Ch_071;N_Ch_239;Chimpanzee;Chim_117;Old secondary forest;OSF;Pl_2933;Pl_2933-S_Ch_071;Pl_2933-N_Ch_239;Tree;5;Esp_202;Lepidobotrys staudtii;Lepidobotryaceae;29;43.95;Tree;Tree-Tree;Side-Side;Height
+S_Ch_074;N_Ch_243;Chimpanzee;Chim_001;Swamp;SW;NA;NA-S_Ch_074;NA-N_Ch_243;Herb;0;Esp_006;Aframomum arundinaceum;Zingiberaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_074;N_Ch_243;Chimpanzee;Chim_001;Swamp;SW;NA;NA-S_Ch_074;NA-N_Ch_243;Herb;0;Esp_161;Halopegia azurea;Marantaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_074;N_Ch_243;Chimpanzee;Chim_001;Swamp;SW;NA;NA-S_Ch_074;NA-N_Ch_243;Herb;0;Esp_232;Megaphrynium velutinum;Marantaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_074;N_Ch_243;Chimpanzee;Chim_001;Swamp;SW;NA;NA-S_Ch_074;NA-N_Ch_243;Herb;0;Esp_247;Nephthytis poissoni;Araceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_074;N_Ch_243;Chimpanzee;Chim_001;Swamp;SW;NA;NA-S_Ch_074;NA-N_Ch_243;Liana;0;Esp_194;Landolphia violacea;Apocynaceae;NA;NA;Mixed;NA;Ground;Ground
+S_Ch_076;N_Ch_245;Chimpanzee;Chim_014;Old secondary forest;OSF;Pl_0345;Pl_0345-S_Ch_076;Pl_0345-N_Ch_245;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;20;27.52;Tree;Tree;Top;Height
+S_Ch_076;N_Ch_246;Chimpanzee;Chim_014;Old secondary forest;OSF;Pl_0346;Pl_0346-S_Ch_076;Pl_0346-N_Ch_246;Tree;17;Esp_278;Polyalthia suaveolens;Annonaceae;17;13.69;Tree;Tree;Top;Height
+S_Ch_076;N_Ch_247;Chimpanzee;Chim_014;Old secondary forest;OSF;Pl_0347;Pl_0347-S_Ch_076;Pl_0347-N_Ch_247;Tree;13;Esp_163;Heisteria parvifolia;Olacaceae;30;50.32;Tree;Tree;Side;Height
+S_Ch_076;N_Ch_248;Chimpanzee;Chim_014;Old secondary forest;OSF;Pl_0372;Pl_0372-S_Ch_076;Pl_0372-N_Ch_248;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;37;37.58;Tree;Tree;Side;Height
+S_Ch_079;N_Ch_269;Chimpanzee;Chim_010;Young secondary forest;YSF;Pl_0224;Pl_0224-S_Ch_079;Pl_0224-N_Ch_269;Tree;39;Esp_163;Heisteria parvifolia;Olacaceae;39;44.59;Tree;Tree;Top;Height
+S_Ch_079;N_Ch_270;Chimpanzee;Chim_010;Young secondary forest;YSF;Pl_0224;Pl_0224-S_Ch_079;Pl_0224-N_Ch_270;Tree;25;Esp_163;Heisteria parvifolia;Olacaceae;39;44.59;Tree;Tree;Side;Height
+S_Ch_079;N_Ch_271;Chimpanzee;Chim_010;Young secondary forest;YSF;Pl_0224;Pl_0224-S_Ch_079;Pl_0224-N_Ch_271;Tree;23;Esp_163;Heisteria parvifolia;Olacaceae;39;44.59;Tree;Tree;Side;Height
+S_Ch_084;N_Ch_296;Chimpanzee;Chim_011;Old secondary forest;OSF;Pl_0261;Pl_0261-S_Ch_084;Pl_0261-N_Ch_296;Tree;24;Esp_163;Heisteria parvifolia;Olacaceae;35;44.59;Tree;Tree;Side;Height
+S_Ch_086;N_Ch_299;Chimpanzee;Chim_022;Old secondary forest;OSF;Pl_0551;Pl_0551-S_Ch_086;Pl_0551-N_Ch_299;Tree;17;Esp_267;Pausinystalia lane-poolei;Rubiaceae;19;16.66;Tree;Tree;Side;Height
+S_Ch_086;N_Ch_300;Chimpanzee;Chim_022;Old secondary forest;OSF;Pl_0553;Pl_0553-S_Ch_086;Pl_0553-N_Ch_300;Tree;18;Esp_180;Klainedoxa gabonensis;Irvingiaceae;23;19.55;Tree;Tree;Side;Height
+S_Ch_086;N_Ch_301;Chimpanzee;Chim_022;Old secondary forest;OSF;Pl_0537;Pl_0537-S_Ch_086;Pl_0537-N_Ch_301;Tree;19;Esp_277;Plagiostyles africana;Euphorbiaceae;25;41.08;Tree;Tree;Side;Height
+S_Ch_089;N_Ch_312;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_312;Tree;33;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Top;Height
+S_Ch_089;N_Ch_313;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_313;Tree;23;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Side;Height
+S_Ch_089;N_Ch_314;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_314;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Side;Height
+S_Ch_089;N_Ch_315;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_315;Tree;12;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Side;Height
+S_Ch_089;N_Ch_316;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_316;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Side;Height
+S_Ch_089;N_Ch_317;Chimpanzee;Chim_020;Old secondary forest;OSF;Pl_0490;Pl_0490-S_Ch_089;Pl_0490-N_Ch_317;Tree;17;Esp_163;Heisteria parvifolia;Olacaceae;33;35.03;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_319;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0469;Pl_0469-S_Ch_091;Pl_0469-N_Ch_319;Tree;22;Esp_163;Heisteria parvifolia;Olacaceae;34;42.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_320;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0469;Pl_0469-S_Ch_091;Pl_0469-N_Ch_320;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;34;42.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_321;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0469;Pl_0469-S_Ch_091;Pl_0469-N_Ch_321;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;34;42.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_322;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0469;Pl_0469-S_Ch_091;Pl_0469-N_Ch_322;Tree;6;Esp_163;Heisteria parvifolia;Olacaceae;34;42.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_323;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0470;Pl_0470-S_Ch_091;Pl_0470-N_Ch_323;Tree;22;Esp_163;Heisteria parvifolia;Olacaceae;40;49.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_324;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0470;Pl_0470-S_Ch_091;Pl_0470-N_Ch_324;Tree;10;Esp_163;Heisteria parvifolia;Olacaceae;40;49.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_325;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0470;Pl_0470-S_Ch_091;Pl_0470-N_Ch_325;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;40;49.04;Tree;Tree;Side;Height
+S_Ch_091;N_Ch_326;Chimpanzee;Chim_019;Old secondary forest;OSF;Pl_0470;Pl_0470-S_Ch_091;Pl_0470-N_Ch_326;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;40;49.04;Tree;Tree;Side;Height
+S_Ch_092;N_Ch_327;Chimpanzee;Chim_018;Young secondary forest;YSF;Pl_0426;Pl_0426-S_Ch_092;Pl_0426-N_Ch_327;Tree;32;Esp_163;Heisteria parvifolia;Olacaceae;32;52.55;Tree;Tree;Top;Height
+S_Ch_093;N_Ch_328;Chimpanzee;Chim_017;Old secondary forest;OSF;Pl_0401;Pl_0401-S_Ch_093;Pl_0401-N_Ch_328;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;33;52.87;Tree;Tree;Side;Height
+S_Ch_093;N_Ch_329;Chimpanzee;Chim_017;Old secondary forest;OSF;Pl_0401;Pl_0401-S_Ch_093;Pl_0401-N_Ch_329;Tree;11;Esp_163;Heisteria parvifolia;Olacaceae;39;52.87;Tree;Tree;Side;Height
+S_Ch_093;N_Ch_330;Chimpanzee;Chim_017;Old secondary forest;OSF;Pl_0401;Pl_0401-S_Ch_093;Pl_0401-N_Ch_330;Tree;21;Esp_163;Heisteria parvifolia;Olacaceae;39;52.87;Tree;Tree;Side;Height
+S_Ch_093;N_Ch_331;Chimpanzee;Chim_017;Old secondary forest;OSF;Pl_0401;Pl_0401-S_Ch_093;Pl_0401-N_Ch_331;Tree;33;Esp_163;Heisteria parvifolia;Olacaceae;33;52.87;Tree;Tree;Top;Height
+S_Ch_094;N_Ch_332;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0058;Pl_0058-S_Ch_094;Pl_0058-N_Ch_332;Tree;7;Esp_163;Heisteria parvifolia;Olacaceae;33;24.33;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_333;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0058;Pl_0058-S_Ch_094;Pl_0058-N_Ch_333;Tree;9;Esp_163;Heisteria parvifolia;Olacaceae;33;24.33;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_334;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0058;Pl_0058-S_Ch_094;Pl_0058-N_Ch_334;Tree;8;Esp_163;Heisteria parvifolia;Olacaceae;33;24.33;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_335;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0053;Pl_0053-S_Ch_094;Pl_0053-N_Ch_335;Tree;33;Esp_375;Vitex rivularis;Verbenaceae;43;69.43;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_336;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0045;Pl_0045-S_Ch_094;Pl_0045-N_Ch_336;Tree;34;Esp_267;Pausinystalia lane-poolei;Rubiaceae;40;32.87;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_337;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0082;Pl_0082-S_Ch_094;Pl_0082-N_Ch_337;Tree;16;Esp_163;Heisteria parvifolia;Olacaceae;16;20.57;Tree;Tree;Side;Height
+S_Ch_094;N_Ch_338;Chimpanzee;Chim_002;Old secondary forest;OSF;Pl_0047;Pl_0047-S_Ch_094;Pl_0047-N_Ch_338;Tree;15;Esp_163;Heisteria parvifolia;Olacaceae;39;53.82;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_344;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_344;Tree;20;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_345;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_345;Tree;22;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_346;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_346;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_347;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_347;Tree;18;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_348;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_348;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
+S_Ch_097;N_Ch_349;Chimpanzee;Chim_127;Old secondary forest;OSF;Pl_3219;Pl_3219-S_Ch_097;Pl_3219-N_Ch_349;Tree;19;Esp_163;Heisteria parvifolia;Olacaceae;28;41.08;Tree;Tree;Side;Height
