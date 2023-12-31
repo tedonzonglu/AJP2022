@@ -1,0 +1,1912 @@
+---
+title: "**R codes for: The influence of vegetation structure on sleeping site selection by chimpanzees (*Pan troglodytes troglodytes*)**"
+author:
+- name: "Luc Roscelin Dongmo **Tédonzong** "
+  affiliation: Centre for Research and Conservation (CRC), Royal Zoological Society of Antwerp (RZSA), Antwerp, Belgium
+  email: tedonzongluc@gmail.com
+package: |
+output:
+  BiocStyle::html_document
+abstract: |
+  Sleep is an important aspect of great ape life; these animals build sleeping platforms every night. In a community of chimpanzees, each subgroup selects a sleeping site where each individual builds a sleeping platform, mostly on a tree. Previous studies have measured the heights of sleeping platforms and sleeping trees to test the predation avoidance and thermoregulation hypotheses of sleeping site selection. However, it remains unclear how components of vegetation structure (vertical and horizontal) together determine the selection of sleeping sites by chimpanzees. Using botanical inventories around sleeping sites in a tropical rainforest of Cameroon, we found that chimpanzees preferentially sleep in trees measuring 40–50 cm in diameter. Regarding height, on average, sleeping trees measured 26 m and sleeping platforms were built at 16 m. To build sleeping platforms, chimpanzees preferred four tree species, which represent less than 3% of tree species in the study area. We demonstrate that the variation in abundance of tree species and the vertical and horizontal structure of the vegetation drive chimpanzee sleeping site selection. It was previously thought that preference for vegetation types was the driver of sleeping site selection in chimpanzees. However, results from this study indicate that the importance of vegetation types in sleeping site selection depends on their botanical characteristics including the variation in tree size, the abundance of all trees, the abundance of sleeping trees, and the occurrence of preferred sleeping tree species, which predict sleeping site selection. The height and diameter of trees are considered by chimpanzees when selecting a particular tree for sleeping and when selecting a site with a specific vertical structure. In addition to tree height, the abundance of smaller neighboring trees may also play a role in the chimpanzee antipredation strategy. Our results demonstrate that chimpanzees consider several vegetation parameters to establish sleeping sites.
+  
+  ***
+  **Keywords:** antipredation, Central chimpanzee, chimpanzee sleeping patterns, logistic regression, resource selection function (RSF), vegetation structure
+  
+  ***  
+
+    Article published in American Journal of Primatology. Citation: **Tédonzong, L. R. D., Ndju’u, M. M., Tchamba, M., Angwafo, T. E., Lens, L., Tagg, N. & Willie, J.** (2023). The influence of vegetation structure on sleeping site selection by chimpanzees (*Pan troglodytes troglodytes*) in a tropical rainforest of Cameroon. *American Journal of Primatology*: https://doi.org/10.1002/ajp.23505
+    
+  ***
+  The data used in this research (including the shapefiles), can be found at: **Tédonzong, L. R. D.** (2023). Data and R codes for: The influence of vegetation structure on sleeping site selection by chimpanzees (*Pan troglodytes troglodytes*). https://doi.org/10.7910/DVN/XAIGFL
+  
+  ***
+    
+vignette: |
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+>
+> "It always seems impossible until it's done."
+>
+>---Nelson Mandela
+>
+
+
+![A chimpanzee in a nest (Photo McGrew, from: McGrew, W.C (2021). Sheltering Chimpanzees. *Primates* **62**, 445–455. https://doi.org/10.1007/s10329-021-00903-z)](https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs10329-021-00903-z/MediaObjects/10329_2021_903_Fig1_HTML.jpg?as=webp)
+
+
+# Introduction
+
+The codes presented here were used to produce the results in the article
+published in American Journal of Primatology
+
+## Loading packages
+
+The codes bellow will load the required packages used for
+the analyses. The function `ipak` is set to install the packages if they are not
+yet installed and then load them.
+To know which package was used for a particular function, simply press `F2` on
+that function and the details will open in a new windows.
+
+
+```{r Install, echo=TRUE, message=FALSE, warning=FALSE}
+package_list=c('dendextend','ggdendro','ggplot2','ggpubr','ggthemes',
+               'indicspecies','MuMIn','plyr','dplyr','png','questionr',
+               'adehabitatHS', 'knitr','aod','car','cluster',
+               'corrr','cowplot','DescTools','factoextra','fpc',
+               'interactions','openxlsx','reshape2','rsq',
+               'vegan','ggrepel','here','ggstar','pivottabler',
+               'optpart','collapse', 'tmap','tmaptools','sf','ggmap',
+               'rcartocolor', 'cowplot','grid','ggspatial','ggsn')
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+ipak(package_list)
+
+```
+
+# Creating the map of the study area
+
+```{r StudyArea}
+Africa_sf <- st_read("C:/Harvard_Dataverse/African_Continent.shp")
+Botany_sf <- st_read("C:/Harvard_Dataverse/BotanicalPlots_All_Types.shp")
+Dja_sf <- st_read("C:/Harvard_Dataverse/Dja_river2.shp")
+Grid_sf <- st_read("C:/Harvard_Dataverse/Grid_1000x1000.shp")
+CMR_sf <- st_read("C:/Harvard_Dataverse/CMR_Outline_2011_dd.shp")
+
+## Extent of Cameroon in Africa
+CMR_sf_32633 = st_transform(CMR_sf, crs = 32633)
+
+ggm1 = ggplot() + 
+  geom_sf(data = Africa_sf, fill = "white", color = "gray70") + 
+  geom_sf(data = CMR_sf, fill = "gray70", color = "gray70") +
+  theme_void()
+
+
+## Extent of study area in Cameroon
+Grid_sf_bb = st_as_sfc(st_bbox(Grid_sf))
+Grid_sf_bb2 = st_buffer(Grid_sf_bb, dist = 1000)
+ggm2 = ggplot() + 
+  geom_sf(data = CMR_sf_32633, fill = "white", color = "gray70") + 
+  geom_sf(data = Grid_sf_bb2, fill = NA, color = "blue", size = 1.1) +
+  theme_void()
+
+
+## Map of the study area
+# the function 'coord_sf' is used to limit the extent of our main map to the 
+# range of the frame in the inset map
+Colors_used <- c("#E58606","#5D69B1","#52BCA3","#99C945","#24796C","#ED645A","#CC3A8E","#A5AA99")
+Shapes_used <- c(7,9,6,1,24,23,22,21)
+Botany_sf$Type2=ifelse(Botany_sf$PlotType=="Nesting plot","Sleeping plot", "Systematic plot")
+Botany_sf$Variable=paste0(Botany_sf$Type2,", ",Botany_sf$Habitat11)
+
+ggm3 = ggplot() + 
+  geom_sf(data = Grid_sf, fill = "#F5F5DC") +
+  geom_sf(data = Botany_sf, aes(shape=Variable, fill=Variable)) +
+  theme_bw() +
+  theme(legend.position = c(0.5, 0.9),
+        legend.direction = "horizontal",
+        legend.key.width = unit(10, "mm"),
+        plot.background = element_rect(fill = NA),
+        legend.background = element_rect(fill = NA)) +
+  scale_shape_manual(values = Shapes_used) +
+  scale_color_manual(values = Colors_used)+
+  guides(shape=guide_legend(nrow=4, byrow=FALSE))+
+  theme(legend.title=element_blank())+labs(x = NULL, y = NULL)+
+  coord_sf(xlim = c(st_bbox(Grid_sf_bb2)[c(1)]-3500,
+                    st_bbox(Grid_sf_bb2)[c(3)]),
+           ylim = c(st_bbox(Grid_sf_bb2)[c(2)]-1500,
+                    st_bbox(Grid_sf_bb2)[c(4)])+3000)+
+  scalebar(Grid_sf, dist = 2, dist_unit = "km",
+           transform = FALSE, model = "WGS84",
+           location="topleft")+
+  annotation_north_arrow(which_north = "true")
+
+
+
+
+## Joining the maps
+Study_Area_map = ggdraw() +
+  draw_plot(ggm3) +
+  draw_plot(ggm1, x = 0.05, y = 0.65, width = 0.27, height = 0.27)+
+  draw_plot(ggm2, x = 0.001, y = 0.3, width = 0.35, height = 0.35)
+
+
+
+
+setwd("C:/Harvard_Dataverse/Results")
+## Plots for clusters
+tiff(file = "Study_Area_map.tif", width = 20, height = 15, units = "cm", pointsize = 10,
+     bg = "white", res = 300)
+Study_Area_map
+dev.off()
+
+
+HAb_dir=setwd("C:/Harvard_Dataverse/Results")
+
+ggsave("Study_Area_map.pdf",Study_Area_map,  path = HAb_dir,
+       scale = 1, width = 20, height = 15, units = "cm",
+       dpi = 600)
+
+ggsave("Study_Area_map.eps",Study_Area_map,  path = HAb_dir,
+       scale = 1, width = 20, height = 15, units = "cm",
+       dpi = 600)
+
+
+
+```
+
+```{r StudyArea2, fig.cap="Location of the study area. OSF, old secondary forest; YSF, young secondary forest; SW, swamp; RIP, riparian forest", echo=FALSE}
+Study_Area_map
+```
+
+
+# Data preparation
+The excel file `Botany-Systematic and sleeping plots.xlsx` contains all the data
+used for the analyses to obtain the results presented in the manuscript.
+```{r Data}
+# Importing the database
+
+## Loading the table nest survey
+Nest_Survey <- read.csv("C:/Harvard_Dataverse/Nest_Survey.csv", sep=";")
+
+## Filtering the nest survey for trees species only
+
+Nest_Survey_tree=Nest_Survey[Nest_Survey$Nest_Type2=="Height"&Nest_Survey$T_L_R_H=="Tree",]
+
+## Filtering the nest survey for the individual tree codes
+Nesting_Trees=data.frame(unique(cbind(Nest_Survey_tree$Plot_Code,Nest_Survey_tree$Plant_Code,
+                                      Nest_Survey_tree$T_L_R_H,Nest_Survey_tree$VEG,
+                                      Nest_Survey_tree$Species,
+                                      Nest_Survey_tree$Family)))
+colnames(Nesting_Trees)=c("Plot_Code","Plant_Code","T_L_R_H","Vegetation_Type","Species","Family")
+
+## Loading the list of plots containing some variables (NLI, NP2x2, NP4x4, SSP, VEG) and their geographical coordinates
+PlotDescription2x2and4x4 <- read.csv("C:/Harvard_Dataverse/PlotDescription2x2and4x4.csv", sep=";")
+Plot_Description=PlotDescription2x2and4x4
+
+
+
+## Loading the principal botanical database that contains all the inventory data
+Botany_all_types_trees <- read.csv("C:/Harvard_Dataverse/Botany_all_types_trees.csv", sep=";")
+Botany_tree_Syst=Botany_all_types_trees[Botany_all_types_trees$Plot_Type=="Systematic",] # Systematic plots
+Botany_tree_Sleep=Botany_all_types_trees[Botany_all_types_trees$Plot_Type=="Sleeping",] # Sleeping plots
+
+## Creating the list of tree species
+Species_list1=data.frame(unique(cbind(Botany_all_types_trees$Species_Code,Botany_all_types_trees$Species,Botany_all_types_trees$Family)))
+colnames(Species_list1)=c("Species_Code","Species", "Family")
+## Adding "Vitex rivularis". This tree species was used by chimps but not in the systematic plots
+Vitex=c("Esp_375",	"Vitex rivularis", "Lamiaceae")
+Species_list=rbind(Species_list1,Vitex)
+
+## Nesting tree species list
+
+Nesting_species_list=data.frame(unique(cbind(Nest_Survey_tree$Species_Code,Nest_Survey_tree$Species,Nest_Survey_tree$Family)))
+colnames(Nesting_species_list)=c("Species_Code","Species", "Family")
+## List od systematic plots
+Systematic_plot_list=data.frame(unique(cbind(Botany_tree_Syst$Plot_Code,Botany_tree_Syst$Vegetation_Type)))
+colnames(Systematic_plot_list)=c("Plot_Code","Vegetation_Type")
+
+## List of sleeping plots with vegetation types
+Nesting_plot_list=data.frame(unique(cbind(Botany_tree_Sleep$Plot_Code,Botany_tree_Sleep$Vegetation_Type)))
+colnames(Nesting_plot_list)=c("Plot_Code","Vegetation_Type")
+```
+
+
+# Chimpanzee sleeping summary
+```{r AverageHeight}
+Nest_Survey_tree2=Nest_Survey[Nest_Survey$T_L_R_H=="Tree"&Nest_Survey$Nest_height>0,]
+
+NestingTreesSummary2 <- ddply(.data = Nest_Survey_tree2, 
+                     .variables = .(Animal_Species), .fun = summarize, 
+                  Average_TreeHeight = round(mean(Tree_Height), digit=3), # This calculates the average tree height
+                  SD_Height = round(sd(Tree_Height), digit=3),
+                  Average_DBH  = round(mean(DBH), digit=3), # This calculates the average DBH
+                  SD_DBH  = round(sd(DBH), digit=3),
+                  Average_NestHeight  = round(mean(Nest_height ), digit=3),
+                  SD_NestHeight  = round(sd(Nest_height ), digit=3)) # Average nest height
+NestingTreesSummary2
+
+tree_height=NestingTreesSummary2[,c(2,3)];colnames(tree_height)=c("Average","SD")
+DBH=NestingTreesSummary2[,c(4,5)];colnames(DBH)=c("Average","SD")
+NestHeight=NestingTreesSummary2[,c(6,7)];colnames(NestHeight)=c("Average","SD")
+NestingTreesSummary1=rbind(tree_height,DBH,NestHeight)
+NestingTreesSummary1$Characteristics=c("Tree height (m)", "Tree DBH (cm)","Sleeping height (m)")
+NestingTreesSummary=NestingTreesSummary1[,c(3,1,2)]
+
+knitr::kable(NestingTreesSummary,
+             caption = "Summary of characteristics of chimpanzee sleeping trees")
+
+
+Nesting_Integration=data.frame(unique(cbind(Nest_Survey_tree2$Nest_code,Nest_Survey_tree2$Animal_Species,
+                                             Nest_Survey_tree2$Vegetation_Type ,Nest_Survey_tree2$Integration)))
+colnames(Nesting_Integration)=c("Nest_code","Animal_Species","Vegetation_Type","Integration")
+
+Nesting_Integration_freq1=ddply(Nesting_Integration,~Integration,summarise,Frequency=length(unique(Nest_code)))
+
+
+Prob_Int_Tree=((Nesting_Integration_freq1[3,2])/sum(Nesting_Integration_freq1$Frequency))*100
+Prob_Int_Liana=((Nesting_Integration_freq1[2,2])/sum(Nesting_Integration_freq1$Frequency))*100
+Prob_Int_Simple=((Nesting_Integration_freq1[1,2])/sum(Nesting_Integration_freq1$Frequency))*100
+
+Prob_Int_Tree_paste=paste0("The percentage of integrated sleeping platforms involving two trees is ", 
+                          Prob_Int_Tree, "% (",Nesting_Integration_freq1[3,2],")")
+Prob_Int_Liana_paste=paste0("The percentage of integrated sleeping platforms involving a tree and a liana is ", 
+                           Prob_Int_Liana, "% (",Nesting_Integration_freq1[2,2],")")
+Prob_Int_Simple_paste=paste0("The percentage of sleeping platforms involving only one tree is ", 
+                            Prob_Int_Simple, "% (",Nesting_Integration_freq1[1,2],")")
+
+Prob=rbind(Prob_Int_Simple_paste,
+           Prob_Int_Liana_paste,
+           Prob_Int_Tree_paste)
+
+
+knitr::kable(unname(Prob),
+             caption = "Percentage of integrated sleeping platforms involving only trees")
+```
+
+## Number of nest per tree
+```{r AverageHeight2}
+## Number of nest per tree
+Nesting_Nest_perTree1=ddply(Nest_Survey_tree2,~Plant_Code,summarise,NestperTree=length(unique(Nest_code)))
+
+Nesting_Nest_perTree2=merge(x=Nesting_Nest_perTree1 , y=Nesting_Trees, by="Plant_Code", all.x=TRUE)
+
+Chimp_VEG_tree <- list(c("OSF","RIP"), c("OSF","SW"),c("OSF","YSF"),
+                   c("RIP", "SW"), c("RIP","YSF"), c("SW","YSF")) 
+## Comparison of MAT
+
+NestperTree_gg <- ggviolin(Nesting_Nest_perTree2,x ="Vegetation_Type", 
+                           y = "NestperTree",fill = "Vegetation_Type",
+                              palette = c("#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Number of stems", x="Vegetation type") +
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 7.5)+
+  stat_compare_means(comparisons = Chimp_VEG_tree, label.y = c(5,5.5,6,3.5,4,4.5), label = "p.signif")
+
+
+## Testing for the significant difference in the number of nests per tree
+```
+
+
+# Tree preference for nest building
+The codes bellow calculate the Manly indexes for each tree species used by
+chimpanzees to build their nests. To create the data table for this analysis,
+for each species and for each habitat type, we calculated the number of time
+the tree species was used to build nest and we created a column for the
+availability of the species, that is the abundance of that species in each
+habitat type. The analysis was done considering all the tree species at once,
+so that the tree species that were not used for nest building in a particular
+habitat receive a score of 0 for that habitat. For this analysis, `Av`
+indicates the availability and `Chimp` indicates the use for chimpanzee.
+
+## Data preparation
+```{r Data preparation (preference)}
+
+# Data per habitat
+Botany_tree_Syst_OSF=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="OSF",]
+Botany_tree_Syst_YSF=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="YSF",]
+Botany_tree_Syst_SW=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="SW",]
+Botany_tree_Syst_RIP=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="RIP",]
+
+Botany_tree_Syst_avail_glob=ddply(Botany_tree_Syst,~Species,summarise,Avail_All=length(unique(Plant_Code)))
+Botany_tree_Syst_avail_OSF=ddply(Botany_tree_Syst_OSF,~Species,summarise,Avail_OSF=length(unique(Plant_Code)))
+Botany_tree_Syst_avail_YSF=ddply(Botany_tree_Syst_YSF,~Species,summarise,Avail_YSF=length(unique(Plant_Code)))
+Botany_tree_Syst_avail_SW=ddply(Botany_tree_Syst_SW,~Species,summarise,Avail_SW=length(unique(Plant_Code)))
+Botany_tree_Syst_avail_RIP=ddply(Botany_tree_Syst_RIP,~Species,summarise,Avail_RIP=length(unique(Plant_Code)))
+
+library(plyr)
+# Extracting information on nests built on trees, at height.
+Nest_Survey_tree1=Nest_Survey[Nest_Survey$Nest_Type2=="Height",]
+Nest_Survey_tree=Nest_Survey_tree1[Nest_Survey_tree1$T_L_R_H=="Tree",]
+
+## Calculating use per habitat
+Nest_Survey_tree_OSF=Nest_Survey_tree[Nest_Survey_tree$VEG=="OSF",]
+Nest_Survey_tree_YSF=Nest_Survey_tree[Nest_Survey_tree$VEG=="YSF",]
+Nest_Survey_tree_SW=Nest_Survey_tree[Nest_Survey_tree$VEG=="SW",]
+Nest_Survey_tree_RIP=Nest_Survey_tree[Nest_Survey_tree$VEG=="RIP",]
+
+# Number of tree species per plot
+Nbre_Trees_species_per_plot_glob=ddply(Botany_all_types_trees,~Plot_Code,summarise,Tree_species_use=length(unique(Species)))
+
+# Number of trees per plot
+Nbre_Trees_per_plot_glob=ddply(Botany_all_types_trees,~Plot_Code,summarise,Tree_species_use=length(unique(Plant_Code)))
+
+# determining the frequency of use. "Tree_Nest" is a code combining the tree code and the nest code
+Nest_Survey_tree_use_glob=ddply(Nest_Survey_tree,~Species,summarise,Chimp_All=length(unique(Tree_Nest)))
+Nest_Survey_tree_use_OSF=ddply(Nest_Survey_tree_OSF,~Species,summarise,Chimp_OSF=length(unique(Tree_Nest)))
+Nest_Survey_tree_use_YSF=ddply(Nest_Survey_tree_YSF,~Species,summarise,Chimp_YSF=length(unique(Tree_Nest)))
+Nest_Survey_tree_use_SW=ddply(Nest_Survey_tree_SW,~Species,summarise,Chimp_SW=length(unique(Tree_Nest)))
+Nest_Survey_tree_use_RIP=ddply(Nest_Survey_tree_RIP,~Species,summarise,Chimp_RIP=length(unique(Tree_Nest)))
+
+# Creating the use availability tables for global and for each habitats.
+Chimp_tree_use_avail_glob=merge(x=Botany_tree_Syst_avail_glob , y=Nest_Survey_tree_use_glob, by="Species", all=TRUE)
+Chimp_tree_use_avail_OSF=merge(x=Botany_tree_Syst_avail_OSF , y=Nest_Survey_tree_use_OSF, by="Species", all=TRUE)
+Chimp_tree_use_avail_YSF=merge(x=Botany_tree_Syst_avail_YSF , y=Nest_Survey_tree_use_YSF, by="Species", all=TRUE)
+Chimp_tree_use_avail_SW=merge(x=Botany_tree_Syst_avail_SW , y=Nest_Survey_tree_use_SW, by="Species", all=TRUE)
+Chimp_tree_use_avail_RIP=merge(x=Botany_tree_Syst_avail_RIP , y=Nest_Survey_tree_use_RIP, by="Species", all=TRUE)
+
+# Changing "NA" values into "O"
+Chimp_tree_use_avail_glob[is.na(Chimp_tree_use_avail_glob)]=0
+Chimp_tree_use_avail_OSF[is.na(Chimp_tree_use_avail_OSF)]=0
+Chimp_tree_use_avail_YSF[is.na(Chimp_tree_use_avail_YSF)]=0
+Chimp_tree_use_avail_SW[is.na(Chimp_tree_use_avail_SW)]=0
+Chimp_tree_use_avail_RIP[is.na(Chimp_tree_use_avail_RIP)]=0
+
+
+```
+
+
+## Computation of preferences
+```{r Computation of preferences}
+df_All=Chimp_tree_use_avail_glob[Chimp_tree_use_avail_glob$Avail_All>0,]#Remove species with null availability
+df_OSF=Chimp_tree_use_avail_OSF[Chimp_tree_use_avail_OSF$Avail_OSF>0,]#Remove species with null availability
+df_YSF=Chimp_tree_use_avail_YSF[Chimp_tree_use_avail_YSF$Avail_YSF>0,]#Remove species with null availability
+df_SW=Chimp_tree_use_avail_SW[Chimp_tree_use_avail_SW$Avail_SW>0,]#Remove species with null availability
+df_RIP=Chimp_tree_use_avail_RIP[Chimp_tree_use_avail_RIP$Avail_RIP>0,]#Remove species with null availability
+
+Avail_All=df_All$Avail_All;names(Avail_All)=df_All$Species
+Avail_OSF=df_OSF$Avail_OSF;names(Avail_OSF)=df_OSF$Species
+Avail_YSF=df_YSF$Avail_YSF;names(Avail_YSF)=df_YSF$Species
+Avail_SW=df_SW$Avail_SW;names(Avail_SW)=df_SW$Species
+Avail_RIP=df_RIP$Avail_RIP;names(Avail_RIP)=df_RIP$Species
+
+Chimp_All=df_All$Chimp_All;names(Chimp_All)=df_All$Species
+Chimp_OSF=df_OSF$Chimp_OSF;names(Chimp_OSF)=df_OSF$Species
+Chimp_YSF=df_YSF$Chimp_YSF;names(Chimp_YSF)=df_YSF$Species
+Chimp_SW=df_SW$Chimp_SW;names(Chimp_SW)=df_SW$Species
+Chimp_RIP=df_RIP$Chimp_RIP;names(Chimp_RIP)=df_RIP$Species
+Avail_All_prop=df_All$Avail_All_prop
+Chimp_All_prop=df_All$Chimp_All_prop
+## Computation of wi (preference)
+```
+
+### Global
+```{r Computation of preferences global}
+wi_Chimp_All <- widesI(Chimp_All,Avail_All,alpha = 0.05); 
+wi_Chimp_All_df=cbind(data.frame(wi_Chimp_All$wi),
+                      data.frame(wi_Chimp_All$se.wi),
+                      data.frame(wi_Chimp_All$chisquwi)); 
+colnames(wi_Chimp_All_df)=c("wi", "se.wi", "testwi","p"); 
+wi_Chimp_All_df$Species=rownames(wi_Chimp_All_df); 
+wi_Chimp_All_df$Animal="Chimpanzee"
+wi_Chimp_All$Khi2P
+
+wi_Chimp_All_df$se.wix2=wi_Chimp_All_df$se.wi*2
+wi_Chimp_All_df$wi_Lower=wi_Chimp_All_df$wi-wi_Chimp_All_df$se.wix2
+wi_Chimp_All_df$wi_High=wi_Chimp_All_df$wi+wi_Chimp_All_df$se.wix2
+wi_Chimp_All_df$Preference_global=ifelse((wi_Chimp_All_df$wi-wi_Chimp_All_df$se.wix2)>1,
+                              "Preferred",ifelse((wi_Chimp_All_df$wi+wi_Chimp_All_df$se.wix2)<1,"Avoided",
+                                                ifelse(wi_Chimp_All_df$wi-wi_Chimp_All_df$se.wix2==1,"Neutral",
+                                                       ifelse(wi_Chimp_All_df$wi+wi_Chimp_All_df$se.wix2==1,"Neutral","Neutral"))))
+```
+
+
+```{r Computationpreferencesglobal1}
+knitr::kable(wi_Chimp_All_df[wi_Chimp_All_df$wi>0,-c(5,6)],
+             caption = "Global tree species preferences for nest building")
+```
+
+
+### Old Secondary forests
+```{r Computation of preferences OSF}
+wi_Chimp_OSF <- widesI(Chimp_OSF,Avail_OSF,alpha = 0.05); 
+wi_Chimp_OSF_df=cbind(data.frame(wi_Chimp_OSF$wi),
+                      data.frame(wi_Chimp_OSF$se.wi),
+                      data.frame(wi_Chimp_OSF$chisquwi)); 
+colnames(wi_Chimp_OSF_df)=c("wi", "se.wi", "testwi","p"); 
+wi_Chimp_OSF_df$Species=rownames(wi_Chimp_OSF_df); 
+wi_Chimp_OSF_df$Animal="Chimpanzee"
+
+wi_Chimp_OSF_df$se.wix2=wi_Chimp_OSF_df$se.wi*2
+wi_Chimp_OSF_df$wi_Lower=wi_Chimp_OSF_df$wi-wi_Chimp_OSF_df$se.wix2
+wi_Chimp_OSF_df$wi_High=wi_Chimp_OSF_df$wi+wi_Chimp_OSF_df$se.wix2
+wi_Chimp_OSF_df$Preference_OSF=ifelse((wi_Chimp_OSF_df$wi-wi_Chimp_OSF_df$se.wix2)>1,
+                              "Preferred",ifelse((wi_Chimp_OSF_df$wi+wi_Chimp_OSF_df$se.wix2)<1,"Avoided",
+                                                ifelse(wi_Chimp_OSF_df$wi-wi_Chimp_OSF_df$se.wix2==1,"Neutral",
+                                                       ifelse(wi_Chimp_OSF_df$wi+wi_Chimp_OSF_df$se.wix2==1,"Neutral","Neutral"))))
+```
+
+
+```{r ComputationpreferencesOSF1}
+knitr::kable(wi_Chimp_OSF_df[wi_Chimp_OSF_df$wi>0,-c(5,6)], caption = "Tree species preferences for nest building in OSF")
+```
+
+
+### Young secondary forests
+```{r Computation of preferences YSF}
+wi_Chimp_YSF <- widesI(Chimp_YSF,Avail_YSF,alpha = 0.05); 
+wi_Chimp_YSF_df=cbind(data.frame(wi_Chimp_YSF$wi),
+                      data.frame(wi_Chimp_YSF$se.wi),
+                      data.frame(wi_Chimp_YSF$chisquwi)); 
+colnames(wi_Chimp_YSF_df)=c("wi", "se.wi", "testwi","p"); 
+wi_Chimp_YSF_df$Species=rownames(wi_Chimp_YSF_df); 
+wi_Chimp_YSF_df$Animal="Chimpanzee"
+
+wi_Chimp_YSF_df$se.wix2=wi_Chimp_YSF_df$se.wi*2
+wi_Chimp_YSF_df$wi_Lower=wi_Chimp_YSF_df$wi-wi_Chimp_YSF_df$se.wix2
+wi_Chimp_YSF_df$wi_High=wi_Chimp_YSF_df$wi+wi_Chimp_YSF_df$se.wix2
+wi_Chimp_YSF_df$Preference_YSF=ifelse((wi_Chimp_YSF_df$wi-wi_Chimp_YSF_df$se.wix2)>1,
+                              "Preferred",ifelse((wi_Chimp_YSF_df$wi+wi_Chimp_YSF_df$se.wix2)<1,"Avoided",
+                                                ifelse(wi_Chimp_YSF_df$wi-wi_Chimp_YSF_df$se.wix2==1,"Neutral",
+                                                       ifelse(wi_Chimp_YSF_df$wi+wi_Chimp_YSF_df$se.wix2==1,"Neutral","Neutral"))))
+```
+
+
+```{r ComputationpreferencesYSF1}
+knitr::kable(wi_Chimp_YSF_df[wi_Chimp_YSF_df$wi>0,-c(5,6)], caption = "Tree species preferences for nest building in YSF")
+```
+
+### Swamps
+```{r Computation of preferences SW}
+wi_Chimp_SW <- widesI(Chimp_SW,Avail_SW,alpha = 0.05); 
+wi_Chimp_SW_df=cbind(data.frame(wi_Chimp_SW$wi),
+                      data.frame(wi_Chimp_SW$se.wi),
+                      data.frame(wi_Chimp_SW$chisquwi)); 
+colnames(wi_Chimp_SW_df)=c("wi", "se.wi", "testwi","p"); 
+wi_Chimp_SW_df$Species=rownames(wi_Chimp_SW_df); 
+wi_Chimp_SW_df$Animal="Chimpanzee"
+
+wi_Chimp_SW_df$se.wix2=wi_Chimp_SW_df$se.wi*2
+wi_Chimp_SW_df$wi_Lower=wi_Chimp_SW_df$wi-wi_Chimp_SW_df$se.wix2
+wi_Chimp_SW_df$wi_High=wi_Chimp_SW_df$wi+wi_Chimp_SW_df$se.wix2
+wi_Chimp_SW_df$Preference_SW=ifelse((wi_Chimp_SW_df$wi-wi_Chimp_SW_df$se.wix2)>1,
+                              "Preferred",ifelse((wi_Chimp_SW_df$wi+wi_Chimp_SW_df$se.wix2)<1,"Avoided",
+                                                ifelse(wi_Chimp_SW_df$wi-wi_Chimp_SW_df$se.wix2==1,"Neutral",
+                                                       ifelse(wi_Chimp_SW_df$wi+wi_Chimp_SW_df$se.wix2==1,"Neutral","Neutral"))))
+```
+
+
+```{r ComputationpreferencesSW1}
+knitr::kable(wi_Chimp_SW_df[wi_Chimp_SW_df$wi>0,-c(5,6)], caption = "Tree species preferences for nest building in SW")
+```
+
+### Riparian forests
+```{r Computation of preferences RIP}
+### Riparian forests
+wi_Chimp_RIP <- widesI(Chimp_RIP,Avail_RIP,alpha = 0.05); 
+wi_Chimp_RIP_df=cbind(data.frame(wi_Chimp_RIP$wi),
+                      data.frame(wi_Chimp_RIP$se.wi),
+                      data.frame(wi_Chimp_RIP$chisquwi)); 
+colnames(wi_Chimp_RIP_df)=c("wi", "se.wi", "testwi","p"); 
+wi_Chimp_RIP_df$Species=rownames(wi_Chimp_RIP_df); 
+wi_Chimp_RIP_df$Animal="Chimpanzee"
+
+wi_Chimp_RIP_df$se.wix2=wi_Chimp_RIP_df$se.wi*2
+wi_Chimp_RIP_df$wi_Lower=wi_Chimp_RIP_df$wi-wi_Chimp_RIP_df$se.wix2
+wi_Chimp_RIP_df$wi_High=wi_Chimp_RIP_df$wi+wi_Chimp_RIP_df$se.wix2
+wi_Chimp_RIP_df$Preference_RIP=ifelse((wi_Chimp_RIP_df$wi-wi_Chimp_RIP_df$se.wix2)>1,
+                              "Preferred",ifelse((wi_Chimp_RIP_df$wi+wi_Chimp_RIP_df$se.wix2)<1,"Avoided",
+                                                ifelse(wi_Chimp_RIP_df$wi-wi_Chimp_RIP_df$se.wix2==1,"Neutral",
+                                                       ifelse(wi_Chimp_RIP_df$wi+wi_Chimp_RIP_df$se.wix2==1,"Neutral","Neutral"))))
+```
+
+
+```{r ComputationpreferencesRIP1}
+knitr::kable(wi_Chimp_RIP_df[wi_Chimp_RIP_df$wi>0,-c(5,6)], caption = "Tree species preferences for nest building in RIP")
+```
+
+## Sleeping tree selection summary
+```{r Preference summary}
+# determining the frequency of use. "Tree_Nest" is a code combing the tree and the nest code
+Chimp_Tree_Use_freq1=ddply(Nest_Survey_tree,~Species,summarise,Frequency=length(unique(Tree_Nest)))
+Chimp_Tree_Use_freq=Chimp_Tree_Use_freq1[order(-Chimp_Tree_Use_freq1$Frequency),]
+Chimp_Tree_Use_freq$Percentage=round((Chimp_Tree_Use_freq$Frequency/sum(Chimp_Tree_Use_freq$Frequency))*100, digit=2)
+
+Chimp_tree_use_avail_glob2=Chimp_tree_use_avail_glob[Chimp_tree_use_avail_glob$Chimp_All>0,-3]
+wi_Chimp_All_df2=wi_Chimp_All_df[wi_Chimp_All_df$wi>0,c("Species","Preference_global")]
+wi_Chimp_OSF_df2=wi_Chimp_OSF_df[wi_Chimp_OSF_df$wi>0,c("Species","Preference_OSF")]
+wi_Chimp_YSF_df2=wi_Chimp_YSF_df[wi_Chimp_YSF_df$wi>0,c("Species","Preference_YSF")]
+wi_Chimp_SW_df2=wi_Chimp_SW_df[wi_Chimp_SW_df$wi>0,c("Species","Preference_SW")]
+wi_Chimp_RIP_df2=wi_Chimp_RIP_df[wi_Chimp_RIP_df$wi>0,c("Species","Preference_RIP")]
+
+
+## Preparing the data to produce the `table 3` in the manuscript.
+Chimp_Tree_Use_avail_freq=merge(x=Chimp_tree_use_avail_glob2 , y=Chimp_Tree_Use_freq, by="Species", all=TRUE)
+Chimp_Tree_Use_summary5=merge(x=Chimp_Tree_Use_avail_freq , y=wi_Chimp_All_df2, by="Species", all=TRUE)
+Chimp_Tree_Use_summary4=merge(x=Chimp_Tree_Use_summary5 , y=wi_Chimp_OSF_df2, by="Species", all=TRUE)
+Chimp_Tree_Use_summary3=merge(x=Chimp_Tree_Use_summary4 , y=wi_Chimp_YSF_df2, by="Species", all=TRUE)
+Chimp_Tree_Use_summary2=merge(x=Chimp_Tree_Use_summary3 , y=wi_Chimp_SW_df2, by="Species", all=TRUE)
+Chimp_Tree_Use_summary1=merge(x=Chimp_Tree_Use_summary2 , y=wi_Chimp_RIP_df2, by="Species", all=TRUE)
+
+Chimp_Tree_Use_summary2=Chimp_Tree_Use_summary1[order(-Chimp_Tree_Use_summary1$Frequency),]
+Chimp_Tree_Use_summary=Chimp_Tree_Use_summary2[,c(1,2,3,4,5,6,9,8,7)]
+colnames(Chimp_Tree_Use_summary)=c("Species","Availability","Use","Percentage","Preference_global",
+                                   "Preference_OSF","Preference_RIP","Preference_SW","Preference_YSF")
+rownames(Chimp_Tree_Use_summary)=NULL
+
+
+setwd("C:/Harvard_Dataverse/Results")
+Chimp_Tree_Use_summary_list <- list("Chimp_Tree_Use_summary" = Chimp_Tree_Use_summary)
+write.xlsx(Chimp_Tree_Use_summary_list, file = "Chimp_Tree_Use_summary.xlsx")
+
+
+```
+
+
+```{r Preferencesummary2}
+
+
+knitr::kable(Chimp_Tree_Use_summary, caption = "Tree species used by chimpanzees to build sleeping platforms, along with their frequency, their preference and their indicator values in each habitat they were found. The tree species preferences are presented first globally and for each vegetation type")
+
+
+```
+# Cluster analysis
+## Data preparation
+Lets recall the table of systematic plots created before `Botany_tree_Syst`, and create the different data sets that will be used to run the cluster analysis. For each habitat, we should first create a table with the number of occurrences of each tree species per habitat, and then `reshape` the table to have species as column names and plots as observations.For this purpose, the function `acast` from the package `reshape2` will be used to mutate the variable `Species`.
+
+```{r Cluster analysis1}
+library(pivottabler)
+Botany_tree_Syst_OSF2=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="OSF",]
+Botany_tree_Syst_YSF2=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="YSF",]
+Botany_tree_Syst_SW2=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="SW",]
+Botany_tree_Syst_RIP2=Botany_tree_Syst[Botany_tree_Syst$Vegetation_Type=="RIP",]
+
+Botany_plot_list=unique(Botany_tree_Syst$Plot_Code,Botany_tree_Syst$Vegetation_Type)
+
+## Old secondary forests
+Botany_tree_Syst_OSF1=Botany_tree_Syst_OSF2[,c("Plot_Code","Species_Code")]
+Botany_tree_Syst_OSF1$num=1
+Botany_tree_Syst_OSF=data.frame(acast(Botany_tree_Syst_OSF1, Plot_Code  ~ Species_Code , sum))
+OSF_tree=Botany_tree_Syst_OSF
+
+## Young secondary forest
+Botany_tree_Syst_YSF1=Botany_tree_Syst_YSF2[,c("Plot_Code","Species_Code")]
+Botany_tree_Syst_YSF1$num=1
+Botany_tree_Syst_YSF=data.frame(acast(Botany_tree_Syst_YSF1, Plot_Code  ~ Species_Code , sum))
+YSF_tree=Botany_tree_Syst_YSF
+
+## Swamps
+Botany_tree_Syst_SW1=Botany_tree_Syst_SW2[,c("Plot_Code","Species_Code")]
+Botany_tree_Syst_SW1$num=1
+Botany_tree_Syst_SW=data.frame(acast(Botany_tree_Syst_SW1, Plot_Code  ~ Species_Code , sum))
+SW_tree=Botany_tree_Syst_SW
+
+## Riparian forest
+Botany_tree_Syst_RIP1=Botany_tree_Syst_RIP2[,c("Plot_Code","Species_Code")]
+Botany_tree_Syst_RIP1$num=1
+Botany_tree_Syst_RIP=data.frame(acast(Botany_tree_Syst_RIP1, Plot_Code  ~ Species_Code , sum))
+RIP_tree=Botany_tree_Syst_RIP
+
+## Nesting plots
+
+Botany_tree_Sleep_clus1=Botany_tree_Sleep[,c("Plot_Code","Species_Code","Vegetation_Type")]
+Botany_tree_Sleep_clus1$num=1
+Botany_tree_Syst_clus=data.frame(acast(Botany_tree_Sleep_clus1, Plot_Code  ~ Species_Code , sum))
+Botany_tree_Syst_clus$Plot_Code=rownames(Botany_tree_Syst_clus)
+Botany_tree_Syst_clus1=merge(x=Botany_tree_Syst_clus , y=Nesting_plot_list, by="Plot_Code", all=TRUE)
+rownames(Botany_tree_Syst_clus1)=Botany_tree_Syst_clus1$Plot_Code
+Chimp_tree_clus=Botany_tree_Syst_clus1[,-c(1,dim(Botany_tree_Syst_clus1)[2])]
+Chimp_tree_group=Botany_tree_Syst_clus1[,c("Vegetation_Type")]
+
+
+## Systematic plots
+Bot_Syst1=rbind(Botany_tree_Syst_OSF1,Botany_tree_Syst_RIP1,
+               Botany_tree_Syst_SW1,Botany_tree_Syst_YSF1)
+dim(Bot_Syst1)
+Bot_Syst1$VEG=c(rep("OSF",dim(Botany_tree_Syst_OSF1)[1]),rep("RIP",dim(Botany_tree_Syst_RIP1)[1]),
+                    rep("SW",dim(Botany_tree_Syst_SW1)[1]),rep("YSF",dim(Botany_tree_Syst_YSF1)[1]))
+
+Bot_Syst=data.frame(acast(Bot_Syst1[,c(1,2,3)], Plot_Code  ~ Species_Code , sum))
+Bot_Syst_plots=data.frame(rownames(Bot_Syst))
+Bot_Syst_tree=Bot_Syst
+Bot_syst_group=Bot_Syst1$VEG
+
+#########################
+```
+
+## Vegetation distances and clusters
+```{r Cluster analysis2}
+## Vegetation distances
+OSF_dist <- vegdist(OSF_tree, method="bray")
+YSF_dist <- vegdist(YSF_tree, method="bray")
+SW_dist <- vegdist(SW_tree, method="bray")
+RIP_dist <- vegdist(RIP_tree, method="bray")
+
+#########################################################
+## Cluster analysis
+
+OSF_cluster_fb <- flexbeta(OSF_dist,beta=-0.25)
+YSF_cluster_fb <- flexbeta(YSF_dist,beta=-0.25)
+SW_cluster_fb <- flexbeta(SW_dist,beta=-0.25)
+RIP_cluster_fb <- flexbeta(RIP_dist,beta=-0.25)
+
+
+# cluster analysis with agnes
+
+OSF_cluster_agnes <- agnes(OSF_dist,method='flexible',par.method=0.625)
+YSF_cluster_agnes <- agnes(YSF_dist,method='flexible',par.method=0.625)
+SW_cluster_agnes <- agnes(SW_dist,method='flexible',par.method=0.625)
+RIP_cluster_agnes <- agnes(RIP_dist,method='flexible',par.method=0.625)
+```
+
+
+## Plotting dendrograms
+The package`factoextra` will be essential here for the visualization of dendrograms
+```{r Cluster analysis3, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+## Plot dendrograms using the package "factoextra"
+
+OSF_dend_fa=fviz_dend(OSF_cluster_agnes, k = 4, horiz = FALSE, rect = TRUE, rect_fill = TRUE, label_cols = "uchicago",
+  rect_border = "uchicago",main = "", k_colors = "jco",show_labels = FALSE,
+  cex = 0.1, labels_track_height=-0.05, lower_rect=-0.05)+ theme(plot.title = element_blank())+
+  theme( axis.line = element_line(colour = "darkblue", size = 1, linetype = "solid"))
+YSF_dend_fa=fviz_dend(YSF_cluster_agnes, k = 8, horiz = FALSE, rect = TRUE, rect_fill = TRUE, label_cols = "uchicago",
+                     rect_border = "uchicago",main = "", k_colors = "jco",show_labels = FALSE,
+                     cex = 0.1, labels_track_height=-0.05, lower_rect=-0.05)+ theme(plot.title = element_blank())+
+  theme( axis.line = element_line(colour = "darkblue", size = 1, linetype = "solid"))
+RIP_dend_fa=fviz_dend(RIP_cluster_agnes, k = 3, horiz = FALSE, rect = TRUE, rect_fill = TRUE, label_cols = "uchicago",
+                     rect_border = "uchicago",main = "", k_colors = "jco",show_labels = FALSE,
+                     cex = 0.1, labels_track_height=-0.05, lower_rect=-0.05)+ theme(plot.title = element_blank())+
+  labs(x = "Botanical plots", y = "Height")+theme( axis.line = element_line(colour = "darkblue", size = 1, linetype = "solid"))
+SW_dend_fa=fviz_dend(SW_cluster_agnes, k = 4, horiz = FALSE, rect = TRUE, rect_fill = TRUE, label_cols = "uchicago",
+                     rect_border = "uchicago",main = "", k_colors = "jco",show_labels = FALSE,
+                     cex = 0.1, labels_track_height=-0.05, lower_rect=-0.05)+ theme(plot.title = element_blank())+
+  theme( axis.line = element_line(colour = "darkblue", size = 1, linetype = "solid"))
+
+
+library(ggpubr)
+Habitat_dend_all_fa <- ggarrange(OSF_dend_fa,YSF_dend_fa, SW_dend_fa, RIP_dend_fa,  
+                              heights = c(1,1,1,1),labels = c("OSF", "YSF", "SW", "RIP"),
+                              ncol = 1, nrow = 4,
+                              font.label = list(size = 9, color = "black", face = "bold",family = NULL))
+
+
+# 
+setwd("C:/Harvard_Dataverse/Results")
+tiff(file = "Habitat_dend_all_2_fa3.tif", width = 16, height = 20, units = "cm", pointsize = 10,
+     bg = "white", res = 300)
+Habitat_dend_all_fa
+dev.off()
+
+
+HAb_dir=setwd("C:/Harvard_Dataverse/Results")
+
+ggsave("Habitat_dend_all_2_fa3.pdf",Habitat_dend_all_fa,  path = HAb_dir,
+       scale = 1, width = 16, height = 20, units = "cm",
+       dpi = 600)
+
+ggsave("Habitat_dend_all_2_fa3.eps",Habitat_dend_all_fa,  path = HAb_dir,
+       scale = 1, width = 16, height = 20, units = "cm",
+       dpi = 600)
+
+########################################################################
+
+```
+
+
+```{r plotCluster, fig.cap="Dendrogram showing the different clusters for each habitat through the different colours. OSF old secondary forest, YSF young secondary forest, SW swamp, RIP riparian forest. The height of the dendrogram represents the distance between clusters and shows the order at which the clusters were joined.", echo=FALSE}
+Habitat_dend_all_fa
+```
+
+# Indicator value analysis
+## Creating cluster data
+```{r Creating cluster data, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+#### Number of clusters
+
+
+OSF_cutree4=cutree(OSF_cluster_fb, k = 4, h = NULL)
+YSF_cutree8=cutree(YSF_cluster_fb, k = 8, h = NULL)
+SW_cutree4=cutree(SW_cluster_fb, k = 4, h = NULL)
+RIP_cutree=cutree(RIP_cluster_fb, k = 3, h = NULL)
+
+OSF_cutree4_df=as.data.frame(OSF_cutree4)
+YSF_cutree8_df=as.data.frame(YSF_cutree8)
+SW_cutree4_df=as.data.frame(SW_cutree4)
+RIP_cutree_df=as.data.frame(RIP_cutree)
+
+OSF_cutree4_df$Plot_Code=rownames(OSF_cutree4_df);OSF_cutree4_df$Habitat=("OSF");OSF_cutree4_df$Clusters_Hab=paste("Clus_",OSF_cutree4_df$Habitat,"",OSF_cutree4_df$OSF_cutree4, sep="");colnames(OSF_cutree4_df)=c("cutree", "Plot_Code", "Habitat", "Clusters_Hab2")
+
+YSF_cutree8_df$Plot_Code=rownames(YSF_cutree8_df);YSF_cutree8_df$Habitat=("YSF");YSF_cutree8_df$Clusters_Hab=paste("Clus_",YSF_cutree8_df$Habitat,"",YSF_cutree8_df$YSF_cutree8, sep="");colnames(YSF_cutree8_df)=c("cutree", "Plot_Code", "Habitat", "Clusters_Hab2")
+
+SW_cutree4_df$Plot_Code=rownames(SW_cutree4_df);SW_cutree4_df$Habitat=("SW");SW_cutree4_df$Clusters_Hab=paste("Clus_",SW_cutree4_df$Habitat,"",SW_cutree4_df$SW_cutree4, sep="");colnames(SW_cutree4_df)=c("cutree", "Plot_Code", "Habitat", "Clusters_Hab2")
+
+RIP_cutree_df$Plot_Code=rownames(RIP_cutree_df);RIP_cutree_df$Habitat=("RIP");RIP_cutree_df$Clusters_Hab=paste("Clus_",RIP_cutree_df$Habitat,"",RIP_cutree_df$RIP_cutree, sep="");colnames(RIP_cutree_df)=c("cutree", "Plot_Code", "Habitat", "Clusters_Hab2")
+
+
+Parcelles_SN_Clusters2=rbind(OSF_cutree4_df,YSF_cutree8_df,SW_cutree4_df,RIP_cutree_df)
+
+# ## write a list of data.frames to individual worksheets using list names as worksheet names
+# 
+# List_Hab <- list("OSF_cutree4_df" = OSF_cutree4_df, "YSF_cutree8_df" = YSF_cutree8_df,
+#           "RIP_cutree_df" = RIP_cutree_df, "SW_cutree4_df" = SW_cutree4_df, 
+#           "Parcelles_SN_Clusters2"=Parcelles_SN_Clusters2)
+# write.xlsx(List_Hab, file = "Parcelles_SN_Clusters4-2(new March).xlsx")
+
+```
+
+
+## Indicator value analysis
+```{r Indicator value analysis, message=FALSE, warning=FALSE, paged.print=FALSE}
+##Indicator species analysis
+####################################################################
+library("indicspecies")
+
+
+OSF_cutree4_df$Clusters_Hab=paste(OSF_cutree4_df$Habitat,OSF_cutree4_df$cutree, sep="")
+YSF_cutree8_df$Clusters_Hab=paste(YSF_cutree8_df$Habitat,YSF_cutree8_df$cutree, sep="")
+RIP_cutree_df$Clusters_Hab=paste(RIP_cutree_df$Habitat,RIP_cutree_df$cutree, sep="")
+SW_cutree4_df$Clusters_Hab=paste(SW_cutree4_df$Habitat,SW_cutree4_df$cutree, sep="")
+
+OSF_grp4=OSF_cutree4_df$Clusters_Hab
+YSF_grp8=YSF_cutree8_df$Clusters_Hab
+SW_grp4=SW_cutree4_df$Clusters_Hab
+RIP_grp=RIP_cutree_df$Clusters_Hab
+
+Bot_Syst_tree=Bot_Syst
+Bot_syst_group2=Systematic_plot_list[order(Systematic_plot_list$Plot_Code),]
+Bot_syst_group=Bot_syst_group2$Vegetation_Type
+
+#############################
+
+set.seed(2018);OSF_inv4 = multipatt(OSF_tree, OSF_grp4, func = "r.g", duleg=TRUE, control = how(nperm=9999))
+set.seed(999111111);YSF_inv8 = multipatt(YSF_tree, YSF_grp8, func = "r.g", duleg=TRUE, control = how(nperm=999))
+
+set.seed(50);SW_inv4 = multipatt(SW_tree, SW_grp4, func = "r.g", duleg=TRUE, control = how(nperm=9999))
+
+set.seed(50);RIP_inv = multipatt(RIP_tree, RIP_grp, func = "r.g", duleg=TRUE, control = how(nperm=9999))
+
+set.seed(50);Chimp_inv=multipatt(Chimp_tree_clus, Chimp_tree_group, func = "r.g", duleg=TRUE, control = how(nperm=9999))
+
+set.seed(50);Bot_Syst_inv=multipatt(Bot_Syst_tree, Bot_syst_group, func = "r.g", duleg=TRUE, control = how(nperm=9999))
+
+
+OSF_inv4_table2=cbind(OSF_inv4$str,OSF_inv4$sign);OSF_inv4_table=OSF_inv4_table2[,c("index","stat","p.value")]; OSF_inv4_table$Species_Code=rownames(OSF_inv4_table);OSF_inv4_table$Habitat="OSF";OSF_inv4_table$Cluster=paste(OSF_inv4_table$Habitat,"",OSF_inv4_table$index, sep="")
+YSF_inv8_table2=cbind(YSF_inv8$str,YSF_inv8$sign);YSF_inv8_table=YSF_inv8_table2[,c("index","stat","p.value")]; YSF_inv8_table$Species_Code=rownames(YSF_inv8_table);YSF_inv8_table$Habitat="YSF";YSF_inv8_table$Cluster=paste(YSF_inv8_table$Habitat,"",YSF_inv8_table$index, sep="")
+
+
+SW_inv4_table2=cbind(SW_inv4$str,SW_inv4$sign);SW_inv4_table=SW_inv4_table2[,c("index","stat","p.value")]; SW_inv4_table$Species_Code=rownames(SW_inv4_table);SW_inv4_table$Habitat="SW";SW_inv4_table$Cluster=paste(SW_inv4_table$Habitat,"",SW_inv4_table$index, sep="")
+
+RIP_inv_table2=cbind(RIP_inv$str,RIP_inv$sign);RIP_inv_table=RIP_inv_table2[,c("index","stat","p.value")]; RIP_inv_table$Species_Code=rownames(RIP_inv_table);RIP_inv_table$Habitat="RIP";RIP_inv_table$Cluster=paste(RIP_inv_table$Habitat,"",RIP_inv_table$index, sep="")
+
+Chimp_inv_table2=cbind(Chimp_inv$str,Chimp_inv$sign);Chimp_inv_table=Chimp_inv_table2[,c("index","stat","p.value")]; Chimp_inv_table$Species_Code=rownames(Chimp_inv_table);Chimp_inv_table$Habitat="Sleeping";Chimp_inv_table$Cluster=paste(Chimp_inv_table$Habitat,"",Chimp_inv_table$index, sep="")
+
+Bot_Syst_inv_table2=cbind(Bot_Syst_inv$str,Bot_Syst_inv$sign);Bot_Syst_inv_table=Bot_Syst_inv_table2[,c("index","stat","p.value")]; Bot_Syst_inv_table$Species_Code=rownames(Bot_Syst_inv_table);Bot_Syst_inv_table$Habitat="Systematic";Bot_Syst_inv_table$Cluster=paste(Bot_Syst_inv_table$Habitat,"",Bot_Syst_inv_table$index, sep="")
+
+Chimp_inv_table2$Type="Sleeping"
+Chimp_inv_table2$Species_Code=rownames(Chimp_inv_table2)
+Bot_Syst_inv_table2$Type="Systematic"
+Bot_Syst_inv_table2$Species_Code=rownames(Bot_Syst_inv_table2)
+
+Inv_Syst_Sleep2=rbind(Chimp_inv_table2, Bot_Syst_inv_table2)
+rownames(Inv_Syst_Sleep2)=NULL
+
+
+```
+
+
+```{r Indicator value analysis2, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Nesting_species_list=data.frame(unique(cbind(Nest_Survey_tree$Species_Code,Nest_Survey_tree$Species,Nest_Survey_tree$Family)))
+Nesting_species_list2=Nesting_species_list
+colnames(Nesting_species_list2)=c("Species_Code","Species2", "Family2")
+
+Nesting_species_list2$Chimp="Yes"
+Species_list_join=merge(x=data.frame(Species_list) , y=(Nesting_species_list2[,c(1,4)]),
+                        by=c("Species_Code"), all.x=TRUE)
+Species_list_join[is.na(Species_list_join)]="No"
+
+Inv_Syst_Sleep_join=merge(x=Inv_Syst_Sleep2, y =Species_list_join,
+                           by=c("Species_Code"), all.x=TRUE)
+Inv_Syst_Sleep_join_Chimp1=Inv_Syst_Sleep_join[Inv_Syst_Sleep_join$Chimp=="Yes",]
+
+Inv_Syst_Sleep_join_Chimp2=Inv_Syst_Sleep_join_Chimp1[order(Inv_Syst_Sleep_join_Chimp1$Species),
+                                                     c("Species","Family","Type",
+                                                       "OSF","RIP","SW","YSF","index","stat","p.value")]
+
+Inv_Syst_Sleep_join_Chimp2$Vegetation=ifelse(Inv_Syst_Sleep_join_Chimp2$index==1,"OSF",
+                                              ifelse(Inv_Syst_Sleep_join_Chimp2$index==2,"RIP",
+                                                     ifelse(Inv_Syst_Sleep_join_Chimp2$index==3,
+                                                            "SW","YSF")))
+
+Inv_Syst_Sleep_join_Chimp3=cbind(Inv_Syst_Sleep_join_Chimp2[,c(1,2,3,8,11)],
+                                round(Inv_Syst_Sleep_join_Chimp2[,c(4,5,6,7,9,10)],digit=3))
+
+Inv_Syst_Sleep_join_Chimp3$Max=paste0(Inv_Syst_Sleep_join_Chimp3$stat," (",
+                                     Inv_Syst_Sleep_join_Chimp3$Vegetation,")")
+
+
+Inv_Syst_Sleep_join_Chimp3$Significance=ifelse(Inv_Syst_Sleep_join_Chimp3$p.value<0.001,"***",
+                                              ifelse(Inv_Syst_Sleep_join_Chimp3$p.value<0.01,"**",
+                                                     ifelse(Inv_Syst_Sleep_join_Chimp3$p.value<0.05,
+                                                            "*","NS")))
+
+
+Inv_Syst_Sleep_join_Chimp=Inv_Syst_Sleep_join_Chimp3[,c("Species","Family","Type",
+                                                        "OSF","RIP","SW","YSF","Max",
+                                                        "p.value","Significance")]
+
+Bot_Syst_inv_table$Type="Systematic plots"
+IVAL_All3=data.frame(rbind(OSF_inv4_table,YSF_inv8_table,SW_inv4_table,RIP_inv_table));IVAL_All3$Type="Systematic plots"
+Chimp_inv_table$Type="Sleeping plots"
+IVAL_All2=rbind(IVAL_All3,Chimp_inv_table, Bot_Syst_inv_table)
+IVAL_All2$Signif=ifelse(IVAL_All2$p.value<0.05,"Significant","Non significant")
+
+IVAL_All2$Clusters_Hab2=paste(IVAL_All2$Habitat,"_",IVAL_All2$index,sep="")
+colnames(IVAL_All2)=c("cutree", "stat", "p.value","Species_Code", "Habitat","Clusters_Hab","Type","Signif","Clusters_Hab2")
+IVAL_All2_Signif=IVAL_All2[IVAL_All2$p.value<0.05,]
+
+
+
+
+IVAL_All=merge(x=IVAL_All2 , y=Species_list_join, by=c("Species_Code"), all.x=TRUE)
+IVAL_All_Chimp=IVAL_All[IVAL_All$Chimp=="Yes",]
+IVAL_All_Signif_All=IVAL_All[IVAL_All$p.value<0.05,]
+
+
+
+List_Hab <- list("OSF_inv4_table" = OSF_inv4_table, "YSF_inv8_table" = YSF_inv8_table, 
+                 "SW_inv4_table" = SW_inv4_table, "RIP_inv_table" = RIP_inv_table, 
+                 "IVAL_All2"=IVAL_All2, "IVAL_All2_Signif"=IVAL_All2_Signif,
+                 "IVAL_All"=IVAL_All, "IVAL_All_Signif_All"=IVAL_All_Signif_All,
+                 "IVAL_All_Chimp"=IVAL_All_Chimp, "Inv_Syst_Sleep_join_Chimp"=Inv_Syst_Sleep_join_Chimp)
+
+List_Hab2 <- list("OSF_inv4_table2" = OSF_inv4_table2, "YSF_inv8_table2" = YSF_inv8_table2,
+                  "SW_inv4_table2" = SW_inv4_table2, "RIP_inv_table2" = RIP_inv_table2,
+                  "Chimp_inv_table2"=Chimp_inv_table2,"IVAL_All2"=IVAL_All2,
+                  "IVAL_All2_Signif"=IVAL_All2_Signif)
+
+write.xlsx(List_Hab, file = "Indicator_value_analysis_Sans_Nids_new2.xlsx")
+write.xlsx(List_Hab2, file = "Indicator_value_analysis_Sans_Nids2_new2.xlsx")
+
+
+```
+
+## Presenting the indicator value results for tree species used by chimpanzees
+
+```{r Indicator value results}
+IVAL_All_Chimp$Signif2=ifelse(IVAL_All_Chimp$Signif=="Significant","*","")
+IVAL_All_Chimp$Signif3=ifelse(IVAL_All_Chimp$Signif=="Significant",1,0)
+IVAL_All_Chimp_sys=IVAL_All_Chimp[IVAL_All_Chimp$Type=="Systematic plots",
+                                  c("Clusters_Hab","Species","Family")]
+IVAL_All_Chimp_sleep=IVAL_All_Chimp[IVAL_All_Chimp$Type=="Sleeping plots",
+                                    c("Clusters_Hab","Species","Family")]
+
+## Systematic plots
+IVAL_All_Chimp_Syt=IVAL_All_Chimp[IVAL_All_Chimp$Type=="Systematic plots",]
+IVAL_All_Chimp_Syt$Indic=IVAL_All_Chimp_Syt$cutree*IVAL_All_Chimp_Syt$Signif3
+IVAL_All_Chimp_Syt_cast1=IVAL_All_Chimp_Syt[,c("Habitat","Species","Indic")]
+
+IVAL_All_Chimp_Syt_cast=acast(IVAL_All_Chimp_Syt_cast1,Species  ~ Habitat , sum)
+
+## Sleeping plots
+IVAL_All_Chimp$Indic=IVAL_All_Chimp$cutree*IVAL_All_Chimp$Signif3
+IVAL_All_Chimp_cast1=IVAL_All_Chimp[,c("Habitat","Species","Indic")]
+
+IVAL_All_Chimp_Syt_cast=data.frame(acast(IVAL_All_Chimp_cast1,Species  ~ Habitat , sum))
+
+
+IVAL_All_Chimp_Syt_cast$Species=rownames(IVAL_All_Chimp_Syt_cast)
+IVAL_All_Chimp_Syt_cast2=IVAL_All_Chimp_Syt_cast[,c("Species","Sleeping","OSF","RIP","SW","YSF")]
+
+setwd("C:/Harvard_Dataverse/Results")
+IVAL_All_Chimp_Syt_cast_list <- list("IVAL_All_Chimp_Syt_cast2" = IVAL_All_Chimp_Syt_cast2)
+write.xlsx(IVAL_All_Chimp_Syt_cast_list, file = "IVAL_All_Chimp_Syt_cast2.xlsx")
+
+
+
+
+```
+
+
+```{r Indicatorvalueresults22}
+knitr::kable(IVAL_All_Chimp_Syt_cast[,c("Sleeping","OSF", "RIP",  "SW", "YSF", "Species")], format = "markdown",
+             caption="Comparisons between the different vegetation types and the different vegetation physiognomies of the same vegetation type")
+```
+
+
+```{r Indicatorvalueresults221}
+
+knitr::kable(Inv_Syst_Sleep_join_Chimp, format = "markdown",
+             caption="Comparisons of the indicator values of sleeping tree species between sleeping plots and systematic plots")
+
+```
+
+# Multivariate comparisons
+## Data preparation
+```{r Multivariate comparisons1}
+
+################################################################################
+
+Botany_all_types_trees_clus=merge(x=Botany_all_types_trees[,c("Plot_Type","Plot_Code","Vegetation_Type","Species_Code")] , 
+                                  y=Parcelles_SN_Clusters2[,c("Clusters_Hab2","Plot_Code")], by=c("Plot_Code"), all.x=TRUE)
+Botany_all_types_trees_clus[is.na(Botany_all_types_trees_clus)]="Chimp"
+Botany_all_types_trees_clus$Num=1
+
+## Use the habitat vector to split the dataframe and rename each subset with the elements of the vector
+Botany_all_types_trees_clus_split <- split(Botany_all_types_trees_clus, Botany_all_types_trees_clus$Vegetation_Type)
+names_hab=paste("Veg_",names(Botany_all_types_trees_clus_split),sep="")
+
+for (i in 1:length(Botany_all_types_trees_clus_split)) {
+  assign(names_hab[i], Botany_all_types_trees_clus_split[[i]])
+}
+
+## Splitting inside the vegetation types.
+
+Veg_OSF_clus1=unique(Veg_OSF$Clusters_Hab2);Veg_OSF_clus2=sort(Veg_OSF_clus1);Veg_OSF_clus=Veg_OSF_clus2[-1]
+Veg_YSF_clus1=unique(Veg_YSF$Clusters_Hab2);Veg_YSF_clus2=sort(Veg_YSF_clus1);Veg_YSF_clus=Veg_YSF_clus2[-1]
+
+Veg_SW_clus1=unique(Veg_SW$Clusters_Hab2);Veg_SW_clus2=sort(Veg_SW_clus1);Veg_SW_clus=Veg_SW_clus2[-1]
+
+Veg_RIP_clus1=unique(Veg_RIP$Clusters_Hab2);Veg_RIP_clus2=sort(Veg_RIP_clus1);Veg_RIP_clus=Veg_RIP_clus2[-1]
+
+## OSF
+for(i in Veg_OSF_clus){
+  assign(paste(i,"_data",sep=""), rbind(Veg_OSF[Veg_OSF$Clusters_Hab2=="Chimp",],Veg_OSF[Veg_OSF$Clusters_Hab2==i,]))
+  assign(paste(i,"_Veg",sep=""), data.frame(cbind(c((rep("Chimp",length(c(unique(Veg_OSF[Veg_OSF$Clusters_Hab2=="Chimp",c("Plot_Code")]))))),
+                                                    rep(i,length(unique(Veg_OSF[Veg_OSF$Clusters_Hab2==i,c("Plot_Code")])))),i)))
+  assign(paste(i,"_sp", sep=""), 
+         data.frame(acast(rbind(Veg_OSF[Veg_OSF$Clusters_Hab2=="Chimp",c("Plot_Code", "Species_Code", "Num")],
+                                Veg_OSF[Veg_OSF$Clusters_Hab2==i,c("Plot_Code", "Species_Code", "Num")]), 
+                          Plot_Code  ~ Species_Code , sum)))
+}
+
+
+## YSF
+for(i in Veg_YSF_clus){
+  assign(paste(i,"_data",sep=""), rbind(Veg_YSF[Veg_YSF$Clusters_Hab2=="Chimp",],Veg_YSF[Veg_YSF$Clusters_Hab2==i,]))
+  assign(paste(i,"_Veg",sep=""), data.frame(cbind(c((rep("Chimp",length(c(unique(Veg_YSF[Veg_YSF$Clusters_Hab2=="Chimp",c("Plot_Code")]))))),
+                                                    rep(i,length(unique(Veg_YSF[Veg_YSF$Clusters_Hab2==i,c("Plot_Code")])))),i)))
+  assign(paste(i,"_sp", sep=""), 
+         data.frame(acast(rbind(Veg_YSF[Veg_YSF$Clusters_Hab2=="Chimp",c("Plot_Code", "Species_Code", "Num")],
+                                Veg_YSF[Veg_YSF$Clusters_Hab2==i,c("Plot_Code", "Species_Code", "Num")]), 
+                          Plot_Code  ~ Species_Code , sum)))
+}
+## RIP 
+for(i in Veg_RIP_clus){
+  assign(paste(i,"_data",sep=""), rbind(Veg_RIP[Veg_RIP$Clusters_Hab2=="Chimp",],Veg_RIP[Veg_RIP$Clusters_Hab2==i,]))
+  assign(paste(i,"_Veg",sep=""), data.frame(cbind(c((rep("Chimp",length(c(unique(Veg_RIP[Veg_RIP$Clusters_Hab2=="Chimp",c("Plot_Code")]))))),
+                                                    rep(i,length(unique(Veg_RIP[Veg_RIP$Clusters_Hab2==i,c("Plot_Code")])))),i)))
+  assign(paste(i,"_sp", sep=""), 
+         data.frame(acast(rbind(Veg_RIP[Veg_RIP$Clusters_Hab2=="Chimp",c("Plot_Code", "Species_Code", "Num")],
+                                Veg_RIP[Veg_RIP$Clusters_Hab2==i,c("Plot_Code", "Species_Code", "Num")]), 
+                          Plot_Code  ~ Species_Code , sum)))
+}
+
+## SW
+for(i in Veg_SW_clus){
+  assign(paste(i,"_data",sep=""), rbind(Veg_SW[Veg_SW$Clusters_Hab2=="Chimp",],Veg_SW[Veg_SW$Clusters_Hab2==i,]))
+  assign(paste(i,"_Veg",sep=""), data.frame(cbind(c((rep("Chimp",length(c(unique(Veg_SW[Veg_SW$Clusters_Hab2=="Chimp",c("Plot_Code")]))))),
+                                      rep(i,length(unique(Veg_SW[Veg_SW$Clusters_Hab2==i,c("Plot_Code")])))),i)))
+  assign(paste(i,"_sp", sep=""), 
+         data.frame(acast(rbind(Veg_SW[Veg_SW$Clusters_Hab2=="Chimp",c("Plot_Code", "Species_Code", "Num")],
+                                Veg_SW[Veg_SW$Clusters_Hab2==i,c("Plot_Code", "Species_Code", "Num")]), 
+                          Plot_Code  ~ Species_Code , sum)))
+}
+
+```
+
+## Computations
+```{r Multivariate comparisons2}
+# Vegetation distances
+## OSF
+Clus_OSF1_sp_bray <- vegdist(Clus_OSF1_sp, method="bray")
+Clus_OSF2_sp_bray <- vegdist(Clus_OSF2_sp, method="bray")
+Clus_OSF3_sp_bray <- vegdist(Clus_OSF3_sp, method="bray")
+Clus_OSF4_sp_bray <- vegdist(Clus_OSF4_sp, method="bray")
+
+## YSF
+Clus_YSF1_sp_bray <- vegdist(Clus_YSF1_sp, method="bray")
+Clus_YSF2_sp_bray <- vegdist(Clus_YSF2_sp, method="bray")
+Clus_YSF3_sp_bray <- vegdist(Clus_YSF3_sp, method="bray")
+Clus_YSF4_sp_bray <- vegdist(Clus_YSF4_sp, method="bray")
+Clus_YSF5_sp_bray <- vegdist(Clus_YSF5_sp, method="bray")
+Clus_YSF6_sp_bray <- vegdist(Clus_YSF6_sp, method="bray")
+Clus_YSF7_sp_bray <- vegdist(Clus_YSF7_sp, method="bray")
+Clus_YSF8_sp_bray <- vegdist(Clus_YSF8_sp, method="bray")
+
+
+## RIP
+Clus_RIP1_sp_bray <- vegdist(Clus_RIP1_sp, method="bray")
+Clus_RIP2_sp_bray <- vegdist(Clus_RIP2_sp, method="bray")
+Clus_RIP3_sp_bray <- vegdist(Clus_RIP3_sp, method="bray")
+
+## SW
+Clus_SW1_sp_bray <- vegdist(Clus_SW1_sp, method="bray")
+Clus_SW2_sp_bray <- vegdist(Clus_SW2_sp, method="bray")
+Clus_SW3_sp_bray <- vegdist(Clus_SW3_sp, method="bray")
+Clus_SW4_sp_bray <- vegdist(Clus_SW4_sp, method="bray")
+
+# Adonis
+## OSF
+set.seed(2018);Clus_OSF1_Adonis<-adonis2(Clus_OSF1_sp_bray ~ V1, data=Clus_OSF1_Veg, permutations=10000)
+set.seed(2018);Clus_OSF2_Adonis<-adonis2(Clus_OSF2_sp_bray ~ V1, data=Clus_OSF2_Veg, permutations=10000)
+set.seed(2018);Clus_OSF3_Adonis<-adonis2(Clus_OSF3_sp_bray ~ V1, data=Clus_OSF3_Veg, permutations=10000)
+set.seed(2018);Clus_OSF4_Adonis<-adonis2(Clus_OSF4_sp_bray ~ V1, data=Clus_OSF4_Veg, permutations=10000)
+
+## YSF
+set.seed(2018);Clus_YSF1_Adonis<-adonis2(Clus_YSF1_sp_bray ~ V1, data=Clus_YSF1_Veg, permutations=10000)
+set.seed(2018);Clus_YSF2_Adonis<-adonis2(Clus_YSF2_sp_bray ~ V1, data=Clus_YSF2_Veg, permutations=10000)
+set.seed(2018);Clus_YSF3_Adonis<-adonis2(Clus_YSF3_sp_bray ~ V1, data=Clus_YSF3_Veg, permutations=10000)
+set.seed(2018);Clus_YSF4_Adonis<-adonis2(Clus_YSF4_sp_bray ~ V1, data=Clus_YSF4_Veg, permutations=10000)
+set.seed(2018);Clus_YSF5_Adonis<-adonis2(Clus_YSF5_sp_bray ~ V1, data=Clus_YSF5_Veg, permutations=10000)
+set.seed(2018);Clus_YSF6_Adonis<-adonis2(Clus_YSF6_sp_bray ~ V1, data=Clus_YSF6_Veg, permutations=10000)
+set.seed(2018);Clus_YSF7_Adonis<-adonis2(Clus_YSF7_sp_bray ~ V1, data=Clus_YSF7_Veg, permutations=10000)
+set.seed(2018);Clus_YSF8_Adonis<-adonis2(Clus_YSF8_sp_bray ~ V1, data=Clus_YSF8_Veg, permutations=10000)
+
+## SW
+set.seed(2018);Clus_SW1_Adonis<-adonis2(Clus_SW1_sp_bray ~ V1, data=Clus_SW1_Veg, permutations=10000)
+set.seed(2018);Clus_SW2_Adonis<-adonis2(Clus_SW2_sp_bray ~ V1, data=Clus_SW2_Veg, permutations=10000)
+set.seed(2018);Clus_SW3_Adonis<-adonis2(Clus_SW3_sp_bray ~ V1, data=Clus_SW3_Veg, permutations=10000)
+set.seed(2018);Clus_SW4_Adonis<-adonis2(Clus_SW4_sp_bray ~ V1, data=Clus_SW4_Veg, permutations=10000)
+
+## RIP
+set.seed(2018);Clus_RIP1_Adonis<-adonis2(Clus_RIP1_sp_bray ~ V1, data=Clus_RIP1_Veg, permutations=10000)
+set.seed(2018);Clus_RIP2_Adonis<-adonis2(Clus_RIP2_sp_bray ~ V1, data=Clus_RIP2_Veg, permutations=10000)
+set.seed(2018);Clus_RIP3_Adonis<-adonis2(Clus_RIP3_sp_bray ~ V1, data=Clus_RIP3_Veg, permutations=10000)
+
+Adonis_table1=rbind(Clus_OSF1_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_OSF2_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_OSF3_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_OSF4_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF1_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF2_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF3_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF4_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF5_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF6_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF7_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_YSF8_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_RIP1_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_RIP2_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_RIP3_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_SW1_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_SW2_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_SW3_Adonis[1, c("Df","F","Pr(>F)")],
+                   Clus_SW4_Adonis[1, c("Df","F","Pr(>F)")])
+
+Adonis_table2=round(Adonis_table1,3)
+rownames(Adonis_table2)=c("OSF1","OSF2","OSF3","OSF4","YSF1","YSF2","YSF3","YSF4","YSF5","YSF6",
+                          "YSF7","YSF8","RIP1","RIP2","RIP3","SW1","SW2","SW3","SW4")
+Adonis_table=data.frame(Adonis_table2)
+Adonis_table$Signif=ifelse(Adonis_table$Pr..F.<0.001,"***",ifelse(Adonis_table$Pr..F.<0.01,"**",
+                           ifelse(Adonis_table$Pr..F.<0.05,"*","NS")))
+```
+
+
+```{r Multivariatecomparisons3}
+
+knitr::kable(Adonis_table, format = "markdown",
+             caption="Comparisons between the different vegetation types ans the different vegetation physiognomies of the same vegetation type")
+
+```
+
+
+
+# Modelling nesting site selection (Logistic regression)
+
+
+## Data sets
+
+Here we recall the results of tree species preference to include in the database to create the different variables that will be used in the `Logistic regression`
+
+```{r GLM_data1}
+wi_Chimp_All_df3=wi_Chimp_All_df2;colnames(wi_Chimp_All_df3)=c("Species","Preference_Global");wi_Chimp_All_df3$Habitat="Global"
+
+
+wi_Chimp_OSF_df3=wi_Chimp_OSF_df2;colnames(wi_Chimp_OSF_df3)=c("Species","Preference_Hab");wi_Chimp_OSF_df3$Habitat="OSF"
+wi_Chimp_YSF_df3=wi_Chimp_YSF_df2;colnames(wi_Chimp_YSF_df3)=c("Species","Preference_Hab");wi_Chimp_YSF_df3$Habitat="YSF"
+wi_Chimp_SW_df3=wi_Chimp_SW_df2;colnames(wi_Chimp_SW_df3)=c("Species","Preference_Hab");wi_Chimp_SW_df3$Habitat="SW"
+wi_Chimp_RIP_df3=wi_Chimp_RIP_df2;colnames(wi_Chimp_RIP_df3)=c("Species","Preference_Hab");wi_Chimp_RIP_df3$Habitat="RIP"
+
+## Lets rbind the tables for the four habitat types, and then create a unique variable that will be used to join the preference table with the 
+
+wi_Chimp_rbind_habitat=rbind(wi_Chimp_OSF_df3,wi_Chimp_YSF_df3,wi_Chimp_SW_df3,wi_Chimp_RIP_df3)
+
+## Habitats
+wi_Species_hab_list=merge(x=wi_Chimp_rbind_habitat , y=Species_list, by=c("Species"), all.x=TRUE)
+wi_Species_hab_list$concat=paste(wi_Species_hab_list$Habitat,wi_Species_hab_list$Species_Code,sep="_")
+
+wi_Species_hab_list_Neutral=wi_Species_hab_list[wi_Species_hab_list$Preference_Hab=="Neutral",];
+wi_Species_hab_list_Neutral$Pref_HN1=wi_Species_hab_list_Neutral$Preference_Hab
+wi_Species_hab_list_Neutral$Pref_HN=ifelse(wi_Species_hab_list_Neutral$Pref_HN1=="Neutral",1,0)
+
+wi_Species_hab_list_Selected=wi_Species_hab_list[wi_Species_hab_list$Preference_Hab=="Preferred",];
+wi_Species_hab_list_Selected$Pref_HS1=wi_Species_hab_list_Selected$Preference_Hab
+wi_Species_hab_list_Selected$Pref_HS=ifelse(wi_Species_hab_list_Selected$Pref_HS1=="Preferred",1,0)
+## Global
+wi_Chimp_Global_Neutral=wi_Chimp_All_df3[wi_Chimp_All_df3$Preference_Global=="Neutral",];
+wi_Chimp_Global_Neutral$Pref_GN1=wi_Chimp_Global_Neutral$Preference_Global
+wi_Chimp_Global_Neutral$Pref_GN=ifelse(wi_Chimp_Global_Neutral$Pref_GN1=="Neutral",1,0)
+
+wi_Chimp_Global_Selected=wi_Chimp_All_df3[wi_Chimp_All_df3$Preference_Global=="Preferred",];
+wi_Chimp_Global_Selected$Pref_GS1= wi_Chimp_Global_Selected$Preference_Global
+wi_Chimp_Global_Selected$Pref_GS=ifelse(wi_Chimp_Global_Selected$Pref_GS1=="Preferred",1,0)
+
+
+Botany_all_types_trees$concat=paste(Botany_all_types_trees$Vegetation_Type,Botany_all_types_trees$Species_Code,sep="_")
+Botany_all_types_trees_HN=merge(x=Botany_all_types_trees , y=wi_Species_hab_list_Neutral[,c("Pref_HN","concat")], by=c("concat"), all.x=TRUE)
+Botany_all_types_trees_HS=merge(x=Botany_all_types_trees_HN , y=wi_Species_hab_list_Selected[,c("Pref_HS","concat")], by=c("concat"), all.x=TRUE)
+
+Botany_all_types_trees_GN=merge(x=Botany_all_types_trees_HS , y=wi_Chimp_Global_Neutral[,c("Pref_GN","Species")], by=c("Species"), all.x=TRUE)
+
+Botany_all_types_trees_GS=merge(x=Botany_all_types_trees_GN , y=wi_Chimp_Global_Selected[,c("Pref_GS","Species")], by=c("Species"), all.x=TRUE)
+
+Botany_all_types_trees_GS[is.na(Botany_all_types_trees_GS)]=0
+
+
+
+```
+
+## Computing variables
+
+Here the function `ddply` from the package `plyr` will be used to calculate the average `DBH` and `height`, grouped by `plot code`. The other functions such as `aggregate` from the package `stats` and `collap` from the package `collapse` provide the same result. But with the first function (`ddply`), it is possible to specify different aggregation functions (such as `max`, `min`, `mean`, `sum`) for different variables, while with the two others, only one function may be selected for all variables. See commented Example codes.
+```{r GLM_data2}
+
+
+Botany_all_types_trees_GS$Tree_Height=as.numeric(Botany_all_types_trees_GS$Tree_Height)
+Botany_all_types_trees_GS$DBH=as.numeric(Botany_all_types_trees_GS$DBH)
+
+GLM_Numeric <- ddply(.data = Botany_all_types_trees_GS, .variables = .(Plot_Code), .fun = summarize, 
+                  AHA = round(mean(Tree_Height), digit=3), # This calculates the average height
+                  ADA = round(mean(DBH), digit=3), # This calculates the average DBH
+                  NFT = sum(PreferredAndFallback), # This calculates the count of fruiting trees
+                  NAT = sum(NAT), NNV = sum(Pref_HN), NPV = sum(Pref_HS),
+                  NNG = sum(Pref_GN), NPG = sum(Pref_GS))
+
+
+# Example1=aggregate(Botany_all_types_trees_GS[,c("Tree_Height","DBH")],
+#                                          by=list(Botany_all_types_trees_GS$Plot_Code),FUN=function(x)
+#                                            {round(mean(x), digit=3)})
+
+# Example2=collap(Botany_all_types_trees_GS, Tree_Height + DBH ~ Plot_Code, fmean)
+
+
+## The plots containing some variables (NLI, NP2x2, NP4x4, SSP, VEG)
+
+Plot_Description=PlotDescription2x2and4x4
+GLM_data_tree_1=merge(x=Plot_Description , y=GLM_Numeric, by=c("Plot_Code"), all.x=TRUE)
+
+
+GLM_data_tree_1$VEG=factor(GLM_data_tree_1$VEG)
+
+
+```
+
+
+
+```{r GLM_data}
+options(scipen = 1, digits = 3) #set to two decimal 
+
+
+
+## Selecting the columns used in the analysis
+Chimp_GLM_Data=GLM_data_tree_1[,c("SSP", "VEG", "NP2x2", "NP4x4", 
+                                  "NLI", "AHA", "ADA", "NFT", "NAT", 
+                                  "NNV", "NPV", "NNG", "NPG")]
+  
+
+
+List_Chimp_GLM_Data <- list("GLM_data_tree_1" = GLM_data_tree_1,"Chimp_GLM_Data"=Chimp_GLM_Data)
+
+
+
+write.xlsx(List_Chimp_GLM_Data, file = "GLM_data_tree_1.xlsx")
+```
+
+
+```{r GLMdata21}
+knitr::kable(Chimp_GLM_Data[c(1:6),], format = "markdown",
+             caption="Presentation of the data used for the modeling")
+```
+
+## Correlation between variables
+The pearson correlation was considered
+```{r GLM_Correlation}
+options(scipen = 1, digits = 2) #set to two decimal 
+Chimp_GLM_Data_Corr_Pears <- correlate(Chimp_GLM_Data[,-c(1:2)],method="pearson", quiet = TRUE)
+Chimp_GLM_Data_Corr_Pears_df1=as.data.frame(Chimp_GLM_Data_Corr_Pears)
+Chimp_GLM_Data_Corr_Pears_df2=round(Chimp_GLM_Data_Corr_Pears_df1[,-1],digits=3)
+Chimp_GLM_Data_Corr_Pears_df=cbind(Chimp_GLM_Data_Corr_Pears_df1$term,Chimp_GLM_Data_Corr_Pears_df2)
+colnames(Chimp_GLM_Data_Corr_Pears_df)=c("Term","NP2x2","NP4x4", "NLI","AHA","ADA",
+                                         "NFT","NAT","NNV","NPV","NNG","NPG")
+
+# ## Saving correlation results in an excel file, pearson in different sheets
+List_Chimp_GLM_Data_Corr <- list("Chimp_GLM_Data_Corr_Pears_df2"=Chimp_GLM_Data_Corr_Pears_df)
+setwd("C:/Harvard_Dataverse/Results")
+write.xlsx(List_Chimp_GLM_Data_Corr, file = "Chimp_GLM_Data_Corr_df.xlsx")
+
+```
+
+
+```{r GLMCorrelation2}
+## Printing correlation results
+library(knitr)
+knitr::kable(Chimp_GLM_Data_Corr_Pears_df, format = "markdown",
+             caption = "Results of Pearson correlation between variables")
+
+```
+Here we can see that the correlation between `AHA` and `ADA` was greater than 0.7 (0.72). Then the variable `ADA` was excluded.
+
+## Coorelation between the DBH and the height of trees
+```{r CorrelationADAAHA}
+#######################
+
+Botany_all_types_trees_Pears <- correlate(Botany_all_types_trees[,c("Tree_Height","DBH" )],method="pearson", quiet = TRUE)
+cor.test(Botany_all_types_trees$Tree_Height,Botany_all_types_trees$DBH, 
+         method = "pearson", alternative = "greater")
+knitr::kable(Botany_all_types_trees_Pears, format = "markdown",
+             caption = "Results of Pearson correlation between the height and the DBH of trees")
+(Botany_all_types_trees_Pears$DBH[1])
+```
+
+
+## Constructing models
+```{r GLM_model_construction}
+options(scipen = 1, digits = 2) #set to two decimal 
+## Convert habitat variable into factors
+Chimp_GLM_Data$VEG=factor(Chimp_GLM_Data$VEG)
+CGData=Chimp_GLM_Data
+
+## Constructing models
+
+NP11=Chimp2_logit_all_wtHab <- glm(SSP ~ NAT+AHA+NNV+NPV+NNG+NPG+NLI+NP2x2+NP4x4+NFT,
+                             data=CGData,family="binomial")
+NP10=Chimp2_logit_all_wHab <- glm(SSP ~ NAT+AHA+NNV+NPV+NNG+NPG+NLI+NP2x2+NP4x4+NFT+VEG,
+                                  data=CGData,family="binomial")
+NP09=Chimp2_logit_sig1_wHab <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG,
+                                  data=CGData,family="binomial")
+NP08=Chimp2_logit_sig2_wHab <- glm(SSP ~ NAT+AHA+NPV+NPG+VEG,
+                                   data=CGData,family="binomial")
+# Create first level of interactions with NAT, AHA, NPV and NPG
+NP07=Chimp2_logit_sig1_wHab_NAT <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NAT,
+                                   data=CGData,family="binomial")
+NP06=Chimp2_logit_sig1_wHab_AHA <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:AHA,
+                                       data=CGData,family="binomial")
+NP05=Chimp2_logit_sig1_wHab_NPV <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NPV,
+                                       data=CGData,family="binomial")
+NP04=Chimp2_logit_sig1_wHab_NPG <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NPG,
+                                       data=CGData,family="binomial")
+# Create second level of interactions with NAT and with either AHA, NPV and NPG
+NP03=Chimp2_logit_sig1_wHab_NAT_AHA <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NAT+VEG:AHA,
+                                       data=CGData,family="binomial")
+NP02=Chimp2_logit_sig1_wHab_NAT_NPV <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NAT+VEG:NPV,
+                                           data=CGData,family="binomial")
+NP01=Chimp2_logit_sig1_wHab_NAT_NPG <- glm(SSP ~ NAT+AHA+NNV+NPV+NPG+VEG+VEG:NAT+VEG:NPG,
+                                           data=CGData,family="binomial")
+## Creating the summary of all models
+NP11_sum=c("NP11",NP11$call,NP11$family$family,NP11$family$link,
+           NP11$aic,NP11$method,NP11$converged,(rsq=rsq(NP11,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP11,adj=FALSE,type=c('n'))),NP11$df.residual,NP11$df.null,
+           NP11$null.deviance,NP11$deviance)
+NP10_sum=c("NP10",NP10$call,NP10$family$family,NP10$family$link,
+           NP10$aic,NP10$method,NP10$converged,(rsq=rsq(NP10,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP10,adj=FALSE,type=c('n'))),NP10$df.residual,NP10$df.null,
+           NP10$null.deviance,NP10$deviance)
+NP09_sum=c("NP09",NP09$call,NP09$family$family,NP09$family$link,
+           NP09$aic,NP09$method,NP09$converged,(rsq=rsq(NP09,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP09,adj=FALSE,type=c('n'))),NP09$df.residual,NP09$df.null,
+           NP09$null.deviance,NP09$deviance)
+NP08_sum=c("NP08",NP08$call,NP08$family$family,NP08$family$link,
+           NP08$aic,NP08$method,NP08$converged,(rsq=rsq(NP08,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP08,adj=FALSE,type=c('n'))),NP08$df.residual,NP08$df.null,
+           NP08$null.deviance,NP08$deviance)
+NP07_sum=c("NP07",NP07$call,NP07$family$family,NP07$family$link,
+           NP07$aic,NP07$method,NP07$converged,(rsq=rsq(NP07,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP07,adj=FALSE,type=c('n'))),NP07$df.residual,NP07$df.null,
+           NP07$null.deviance,NP07$deviance)
+NP06_sum=c("NP06",NP06$call,NP06$family$family,NP06$family$link,
+           NP06$aic,NP06$method,NP06$converged,(rsq=rsq(NP06,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP06,adj=FALSE,type=c('n'))),NP06$df.residual,NP06$df.null,
+           NP06$null.deviance,NP06$deviance)
+NP05_sum=c("NP05",NP05$call,NP05$family$family,NP05$family$link,
+           NP05$aic,NP05$method,NP05$converged,(rsq=rsq(NP05,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP05,adj=FALSE,type=c('n'))),NP05$df.residual,NP05$df.null,
+           NP05$null.deviance,NP05$deviance)
+NP04_sum=c("NP04",NP04$call,NP04$family$family,NP04$family$link,
+           NP04$aic,NP04$method,NP04$converged,(rsq=rsq(NP04,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP04,adj=FALSE,type=c('n'))),NP04$df.residual,NP04$df.null,
+           NP04$null.deviance,NP04$deviance)
+NP03_sum=c("NP03",NP03$call,NP03$family$family,NP03$family$link,
+           NP03$aic,NP03$method,NP03$converged,(rsq=rsq(NP03,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP03,adj=FALSE,type=c('n'))),NP03$df.residual,NP03$df.null,
+           NP03$null.deviance,NP03$deviance)
+NP02_sum=c("NP02",NP02$call,NP02$family$family,NP02$family$link,
+           NP02$aic,NP02$method,NP02$converged,(rsq=rsq(NP02,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP02,adj=FALSE,type=c('n'))),NP02$df.residual,NP02$df.null,
+           NP02$null.deviance,NP02$deviance)
+NP01_sum=c("NP01",NP01$call,NP01$family$family,NP01$family$link,
+           NP01$aic,NP01$method,NP01$converged,(rsq=rsq(NP01,adj=FALSE,type=c('lr'))),
+           (rsq=rsq(NP01,adj=FALSE,type=c('n'))),NP01$df.residual,NP01$df.null,
+           NP01$null.deviance,NP01$deviance)
+
+
+## Creating a dataframe for the summary table of all models
+GLM_Summary_Dataframe=data.frame(rbind(NP11_sum,NP10_sum,NP09_sum,NP08_sum,NP07_sum, 
+                                        NP06_sum, NP05_sum, NP04_sum, NP03_sum,
+                                       NP02_sum,NP01_sum))
+colnames(GLM_Summary_Dataframe)=c("Model","Call","family","link","AIC","method","converged",
+                                  "RsqrLR","RsqrNag_Cragg.Uhler","df.residual","df.null",
+                                  "null.deviance","deviance")
+rownames(GLM_Summary_Dataframe)=NULL
+
+
+
+```
+
+### Printing the GLM results: Model expressions
+```{r GLMPrinting1}
+options(scipen = 1, digits = 2) #set to two decimal 
+knitr::kable(GLM_Summary_Dataframe[,c(1,2)], format = "markdown",
+             caption="Presentation of candidate models of the effects of variables on chimpanzee sleeping site selection")
+```
+
+### Printing the GLM results: Model summaries
+```{r GLMPrinting3}
+options(scipen = 1, digits = 2) #set to two decimal 
+knitr::kable(GLM_Summary_Dataframe[,-c(2)], format = "markdown",
+             caption="Summary of cadidate models of the effects of variables on chimpanzee sleeping site selection")
+```
+
+```{r}
+best_model = GLM_Summary_Dataframe[GLM_Summary_Dataframe$AIC==min(unlist(GLM_Summary_Dataframe$AIC)),c(1,2)]
+```
+
+### Choosing the best model
+We considered the best model as the model with the smallest `AIC`
+```{r GLMBestmodel}
+options(scipen = 1, digits = 2) #set to two decimal 
+
+knitr::kable(best_model, format = "markdown", caption="Best model call")
+
+```
+
+The best model is `NP07`.
+
+## Determining the confidence intervals of the coefficients, and Odd ratios
+To run these codes, the best model should manually be assigned to `Best`.
+```{r Coefficients, message=FALSE, warning=FALSE}
+options(scipen = 1, digits = 2) #set to two decimal 
+## Creating the different data frames for the summary table for the log and odd ratio
+
+Best=NP07
+
+Best_confit_log=(as.data.frame((cbind(LogOdds = coef(Best), confint(Best)))))
+Best_confit_Odds=(as.data.frame(exp(cbind(OddRatio = coef(Best), 
+                                               confint(Best)))))
+Best_summ=summary(Best)
+Best_coef=data_frame(Best_summ$coefficients)
+Best_pval1=Best_coef$`Best_summ$coefficients`[,c(2,4)]
+Best_pval=(data_frame(Best_pval1))
+rownames(Best_pval)=NULL
+
+## Combining the data frames into one
+
+Best_confit_All1=cbind(Best_confit_Odds,Best_confit_log,Best_pval$Best_pval1)
+Best_confit_All1$Names=rownames(Best_confit_All1)
+colnames(Best_confit_All1)=c("OddRatio","OR2.5","OR97.5","LogOdds","LogOR2.5","LogOR97.5","SE","p value" ,"Names")
+rownames(Best_confit_All1)=NULL
+
+## Changing the order of columns
+Best_confit_All=Best_confit_All1[,c("Names","OddRatio","OR2.5","OR97.5","LogOdds","LogOR2.5","LogOR97.5","SE","p value")]
+
+## Importing data into an excel file.
+List_GLM_Results_confit <- list("Best_confit_All"= Best_confit_All)
+write.xlsx(List_GLM_Results_confit, file = paste0("NP01","_Best_confit_All.xlsx"))
+
+Best_confit_All2=round(Best_confit_All[,-1],digits=3)
+Best_confit_All1=cbind(Best_confit_All$Names,Best_confit_All2)
+```
+
+## Printing the coefficient table
+
+```{r Coefficients2, message=FALSE, warning=FALSE}
+options(scipen = 1, digits = 2) #set to two decimal 
+## Printing the coefficient table
+knitr::kable(Best_confit_All1, format = "markdown",
+             caption="Summary table of the best model for factors influencing chimpanzee sleeping site selection")
+
+```
+
+## Overall effects of habitat and the interactions
+
+```{r GLM_Habitat_effect}
+options(scipen = 1, digits = 2) #set to two decimal 
+## Note: 40 represents the magnitude of the data in NAT
+Chimp_GLM_Data_NAT <- with(Chimp_GLM_Data, data.frame(NAT = rep(seq(from = 0, to = 40, length.out = 200),4), 
+                                                      AHA = mean(AHA), NNV = mean(NNV),
+                                                      NPV = mean(NPV),
+                                                      NPG = mean(NPG),
+                                                      VEG = factor(rep(c("OSF","RIP","SW","YSF"), each = 200))))
+
+Chimp_GLM_Data_AHA <- with(Chimp_GLM_Data, data.frame(AHA = rep(seq(from = 8, to = 40, length.out = 200),4), 
+                                                      NAT = mean(NAT), NNV = mean(NNV),
+                                                      NPV = mean(NPV),
+                                                      NPG = mean(NPG),
+                                                      VEG = factor(rep(c("OSF","RIP","SW","YSF"), each = 200))))
+
+Chimp_GLM_Data_NPG <- with(Chimp_GLM_Data, data.frame(NPG = rep(seq(from = 0, to = 6, length.out = 200),4), 
+                                                      AHA = mean(AHA), NAT = mean(NAT),
+                                                      NPV = mean(NPV),
+                                                      NNV = mean(NNV),
+                                                      VEG = factor(rep(c("OSF","RIP","SW","YSF"), each = 200))))
+
+Chimp_GLM_Data_NPV <- with(Chimp_GLM_Data, data.frame(NPV = rep(seq(from = 0, to = 8, length.out = 200),4), 
+                                                      AHA = mean(AHA), NNV = mean(NNV),
+                                                      NAT = mean(NAT),
+                                                      NPG = mean(NPG),
+                                                      VEG = factor(rep(c("OSF","RIP","SW","YSF"), each = 200))))
+```
+
+
+```{r GLMHabitateffect1}
+knitr::kable(Chimp_GLM_Data_NAT[c(1:10),], format = "markdown",
+             caption= "Prediction table for NAT")
+```
+
+## Calculate the predicted values
+```{r GLM_Predicted}
+Chimp_GLM_Data_NAT_pred_1 <- cbind(Chimp_GLM_Data_NAT, 
+                                   predict(Best, newdata = Chimp_GLM_Data_NAT, 
+                                           type = "link",se = TRUE))
+
+Chimp_GLM_Data_AHA_pred_1 <- cbind(Chimp_GLM_Data_AHA, 
+                                   predict(Best, newdata = Chimp_GLM_Data_AHA, 
+                                           type = "link",se = TRUE))
+
+Chimp_GLM_Data_NPG_pred_1 <- cbind(Chimp_GLM_Data_NPG, 
+                                   predict(Best, newdata = Chimp_GLM_Data_NPG, 
+                                           type = "link",se = TRUE))
+
+Chimp_GLM_Data_NPV_pred_1 <- cbind(Chimp_GLM_Data_NPV, 
+                                   predict(Best, newdata = Chimp_GLM_Data_NPV, 
+                                           type = "link",se = TRUE))
+
+```
+
+
+## Predicted values and confidence limits into probabilities
+```{r GLM_Predicted_CI}
+Chimp_GLM_Data_NAT_pred <- within(Chimp_GLM_Data_NAT_pred_1, {
+  PredictedProb <- plogis(fit)
+  LL <- plogis(fit - (1.96 * se.fit))
+  UL <- plogis(fit + (1.96 * se.fit))
+})
+
+Chimp_GLM_Data_AHA_pred <- within(Chimp_GLM_Data_AHA_pred_1, {
+  PredictedProb <- plogis(fit)
+  LL <- plogis(fit - (1.96 * se.fit))
+  UL <- plogis(fit + (1.96 * se.fit))
+})
+
+Chimp_GLM_Data_NPG_pred <- within(Chimp_GLM_Data_NPG_pred_1, {
+  PredictedProb <- plogis(fit)
+  LL <- plogis(fit - (1.96 * se.fit))
+  UL <- plogis(fit + (1.96 * se.fit))
+})
+
+Chimp_GLM_Data_NPV_pred <- within(Chimp_GLM_Data_NPV_pred_1, {
+  PredictedProb <- plogis(fit)
+  LL <- plogis(fit - (1.96 * se.fit))
+  UL <- plogis(fit + (1.96 * se.fit))
+})
+
+```
+
+## Plotting the GLM results
+The codes below will create the plot of the predicted probabilities of chimpanzee
+nest presence in response to the variables (`NAT`, `AHA`, `NNV` and `NPV`) and in
+relation to the different habitat types (`OSF`, `RIP`, `SW` and `YSF`). The 4
+plots produced will be arranged into one, and the final plot will be saved into
+different file formats (`tif`, `pdf` and `eps`).
+```{r GLM_Plotting, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, fig.cap = "Variation of the probability of chimpanzee nesting site selection in relation to the scores of the variables with significant effects in the logistic regression. OSF old secondary forest YSF young secondary forest SW swamp RIP riparian forest"}
+Chimp_GLM_Data_NAT_pred$probability="Probability"
+## Plot the results without interaction
+Chimp_GLM_NAT_gg_wint=ggplot(Chimp_GLM_Data_NAT_pred, aes(x = NAT, y = PredictedProb)) + 
+  #geom_ribbon(aes(ymin = LL,ymax = UL), alpha = 0.2) + 
+  geom_line(aes(colour=VEG, linetype=VEG),size = 1)+theme_bw()+
+  labs(y = "Predicted probability", x="Number of all tree stems")+
+  labs(fill = "Habitat",color="Habitat")+theme(legend.position = "none")+ # Expand y range
+  scale_colour_manual(values = c("#1B9E77", "#D95F02", "#E6AB02", "#666666", "#7570B3","#F8766D", 
+                                 "#A6761D","#a6d854", 
+                                 "#00BF7D","#E7298A"))
+
+Chimp_GLM_AHA_gg_wint=ggplot(Chimp_GLM_Data_AHA_pred, aes(x = AHA, y = PredictedProb)) + 
+  #geom_ribbon(aes(ymin = LL,ymax = UL), alpha = 0.2) + 
+  geom_line(aes(colour = VEG, linetype=VEG),size = 1)+
+  theme_bw()+theme(legend.position = c(0.76, 0.65))+
+    theme(#legend.key.height= unit(2, 'cm'),
+    legend.key.width= unit(1.5, 'cm'))+
+  labs(y = "Predicted probability", x="Average height of all trees")+
+  labs(fill = "Vegetation type",color="Vegetation type",linetype="Vegetation type")+ # Expand y range
+  scale_colour_manual(values = c("#1B9E77", "#D95F02", "#E6AB02", "#666666", "#7570B3","#F8766D", 
+                                 "#A6761D","#a6d854", 
+                                 "#00BF7D","#E7298A"))
+
+Chimp_GLM_NPG_gg_wint=ggplot(Chimp_GLM_Data_NPG_pred, aes(x = NPG, y = PredictedProb)) + 
+  #geom_ribbon(aes(ymin = LL,ymax = UL), alpha = 0.2) + 
+  geom_line(aes(colour = VEG, linetype=VEG),size = 1)+theme_bw()+
+  labs(y = "Predicted probability", x="Globally preferred tree species")+
+  labs(fill = "VEG",color="VEG",linetype="VEG")+theme(legend.position = "none")+ # Expand y range
+  scale_colour_manual(values = c("#1B9E77", "#D95F02", "#E6AB02", "#666666", "#7570B3","#F8766D", 
+                                 "#A6761D","#a6d854", 
+                                 "#00BF7D","#E7298A"))
+
+Chimp_GLM_NPV_gg_wint=ggplot(Chimp_GLM_Data_NPV_pred, aes(x = NPV, y = PredictedProb)) + 
+  #geom_ribbon(aes(ymin = LL,ymax = UL), alpha = 0.2) +
+  labs(y = "Predicted probability", x="Preferred trees per vegetation type")+
+  geom_line(aes(colour = VEG, linetype=VEG),size = 1)+theme_bw()+
+  labs(fill = "VEG",color="VEG",linetype="VEG")+theme(legend.position = "none")+
+  scale_colour_manual(values = c("#1B9E77", "#D95F02", "#E6AB02", "#666666", "#7570B3","#F8766D", 
+                                 "#A6761D","#a6d854", 
+                                 "#00BF7D","#E7298A"))
+###################################################
+## Arranging the 4 plots into 1
+Chimp_GLM_gg_arrange_wint <- ggarrange(Chimp_GLM_NPV_gg_wint,
+                                       Chimp_GLM_NPG_gg_wint,
+                                       Chimp_GLM_AHA_gg_wint,
+                                       Chimp_GLM_NAT_gg_wint,
+                                       heights = c(1,1,1,1),labels = c("(a)", "(b)", "(c)", "(d)"),
+                                       ncol = 2, nrow = 2,
+                                       font.label = list(size = 9, color = "black", 
+                                                         face = "bold",family = NULL))
+
+## Saving the plot into different file formats
+setwd("C:/Harvard_Dataverse/Results")
+## Plots for clusters
+tiff(file = "Chimp_GLM_gg_arrange_wint.tif", width = 17.5, height = 13, units = "cm", pointsize = 10,
+     bg = "white", res = 300)
+Chimp_GLM_gg_arrange_wint
+dev.off()
+
+
+HAb_dir1=setwd("C:/Harvard_Dataverse/Results")
+
+ggsave("Chimp_GLM_gg_arrange_wint5.pdf",Chimp_GLM_gg_arrange_wint,  path = HAb_dir1,
+       scale = 1, width = 17.5, height = 13, units = "cm",
+       dpi = 600)
+
+ggsave("Chimp_GLM_gg_arrange_wint5.eps",Chimp_GLM_gg_arrange_wint,  path = HAb_dir1,
+       scale = 1, width = 17.5, height = 13, units = "cm",
+       dpi = 600)
+
+
+```
+
+
+
+```{r plot1, fig.cap="Variation of the probability of chimpanzee nesting site selection in relation to the scores of the variables with significant effects in the logistic regression. OSF old secondary forest, YSF young secondary forest, SW swamp, RIP riparian forest.", echo=FALSE}
+Chimp_GLM_gg_arrange_wint
+```
+
+# Tree DBH preference for chimpanzee nesting
+## Preparing the data
+Lets recall the dataframe created in section of data importation (`Botany_all_types_trees`) and the list of sleeping tree species (`Nesting_species_list`).
+```{r DBH_preference1}
+options(scipen = 1, digits = 2) #set to two decimal 
+library(adehabitatHS)
+
+DBH_Scenarios=Botany_all_types_trees
+
+## S1_AT_NP_AT_SP: All trees in nesting plots vs all trees in systematic plots
+S1_AT_NP_AT_SP1=DBH_Scenarios[,c("DBH_Tree_class70","Plot_Type","NAT")]
+S1_AT_NP_AT_SP=data.frame(acast(S1_AT_NP_AT_SP1, DBH_Tree_class70  ~ Plot_Type , sum))
+
+## S2 = S2_NTS_NP_NTS_SP: Nesting tree species in nesting plots vs nesting tree species in systematic plots
+Nesting_tree_species=Nesting_species_list
+Nesting_tree_species$SpeciesUsed=1
+S2_NTS_NP_NTS_SP1=merge(x=DBH_Scenarios , 
+                        y=Nesting_tree_species, by="Species", all.x=TRUE)
+S2_NTS_NP_NTS_SP1[is.na(S2_NTS_NP_NTS_SP1)]=0
+S2_NTS_NP_NTS_SP2=S2_NTS_NP_NTS_SP1[S2_NTS_NP_NTS_SP1$SpeciesUsed==1,c("Plot_Type","DBH_Tree_class70","SpeciesUsed")]
+S2_NTS_NP_NTS_SP=data.frame(acast(S2_NTS_NP_NTS_SP2, DBH_Tree_class70  ~ Plot_Type , sum))
+
+## S3 = S3_TU_NB_AT_NP: Trees used for nest building vs all trees available in nesting plots
+S3_TU_NB_AT_NP1=DBH_Scenarios[DBH_Scenarios$Plot_Type=="Sleeping",c("Chimp_Used_Tree","DBH_Tree_class70")]
+S3_TU_NB_AT_NP1$Usage=ifelse(S3_TU_NB_AT_NP1$Chimp_Used_Tree=="No","Other","Used")
+S3_TU_NB_AT_NP2=S3_TU_NB_AT_NP1[,c("DBH_Tree_class70", "Usage")];S3_TU_NB_AT_NP2$Num=1
+S3_TU_NB_AT_NP=data.frame(acast(S3_TU_NB_AT_NP2, DBH_Tree_class70  ~ Usage , sum))
+
+## S4 = S4_UT_TA_NTS_NP: Used trees vs trees available of nesting tree species in nesting plots
+S4_UT_TA_NTS_NP1=merge(x=DBH_Scenarios , 
+                        y=Nesting_tree_species, by="Species", all.x=TRUE)
+S4_UT_TA_NTS_NP1[is.na(S4_UT_TA_NTS_NP1)]=0
+S4_UT_TA_NTS_NP2=S4_UT_TA_NTS_NP1[S4_UT_TA_NTS_NP1$Plot_Type=="Sleeping",]
+
+S4_UT_TA_NTS_NP2$Usage=ifelse(S4_UT_TA_NTS_NP2$Chimp_Used_Tree=="Yes","Used","Other")
+S4_UT_TA_NTS_NP3=S4_UT_TA_NTS_NP2[S4_UT_TA_NTS_NP2$SpeciesUsed==1,c("DBH_Tree_class70", "Usage")]
+S4_UT_TA_NTS_NP3$Num=1
+S4_UT_TA_NTS_NP=data.frame(acast(S4_UT_TA_NTS_NP3, DBH_Tree_class70  ~ Usage , sum))
+
+```
+
+
+
+```{r DBH_preference3}
+## Arranging the data
+## S1_AT_NP_AT_SP: All trees in nesting plots vs all trees in systematic plots
+S1_AT_NP_AT_SP_Global=S1_AT_NP_AT_SP;S1_AT_NP_AT_SP_Global$Classe_DBH70=rownames(S1_AT_NP_AT_SP_Global);
+S1_AT_NP_AT_SP_Global_Use=S1_AT_NP_AT_SP_Global$Sleeping;
+S1_AT_NP_AT_SP_Global_avail=S1_AT_NP_AT_SP_Global$Systematic;
+names(S1_AT_NP_AT_SP_Global_Use)=S1_AT_NP_AT_SP_Global$Classe_DBH70;
+names(S1_AT_NP_AT_SP_Global_avail)=S1_AT_NP_AT_SP_Global$Classe_DBH70
+
+## S3 = S3_TU_NB_AT_NP: Trees used for nest building vs all trees available in nesting plots
+S3_TU_NB_AT_NP_Global=S3_TU_NB_AT_NP;S3_TU_NB_AT_NP_Global$Classe_DBH70=rownames(S3_TU_NB_AT_NP_Global);
+S3_TU_NB_AT_NP_Global_Use=S3_TU_NB_AT_NP_Global$Used;
+S3_TU_NB_AT_NP_Global_avail=S3_TU_NB_AT_NP_Global$Other;
+names(S3_TU_NB_AT_NP_Global_Use)=S3_TU_NB_AT_NP_Global$Classe_DBH70;
+names(S3_TU_NB_AT_NP_Global_avail)=S3_TU_NB_AT_NP_Global$Classe_DBH70
+
+## S2 = S2_NTS_NP_NTS_SP: Nesting tree species in nesting plots vs nesting tree species in systematic plots
+S2_NTS_NP_NTS_SP_Global=S2_NTS_NP_NTS_SP;S2_NTS_NP_NTS_SP_Global$Classe_DBH70=rownames(S2_NTS_NP_NTS_SP_Global);
+S2_NTS_NP_NTS_SP_Global_Use=S2_NTS_NP_NTS_SP_Global$Sleeping;
+S2_NTS_NP_NTS_SP_Global_avail=S2_NTS_NP_NTS_SP_Global$Systematic;
+names(S2_NTS_NP_NTS_SP_Global_Use)=S2_NTS_NP_NTS_SP_Global$Classe_DBH70;
+names(S2_NTS_NP_NTS_SP_Global_avail)=S2_NTS_NP_NTS_SP_Global$Classe_DBH70
+
+## S4 = S4_UT_TA_NTS_NP: Used trees vs trees available of nesting tree species in nesting plots
+S4_UT_TA_NTS_NP_Global=S4_UT_TA_NTS_NP;S4_UT_TA_NTS_NP_Global$Classe_DBH70=rownames(S4_UT_TA_NTS_NP_Global);
+S4_UT_TA_NTS_NP_Global_Use=S4_UT_TA_NTS_NP_Global$Used;
+S4_UT_TA_NTS_NP_Global_avail=S4_UT_TA_NTS_NP_Global$Other;
+names(S4_UT_TA_NTS_NP_Global_Use)=S4_UT_TA_NTS_NP_Global$Classe_DBH70;
+names(S4_UT_TA_NTS_NP_Global_avail)=S4_UT_TA_NTS_NP_Global$Classe_DBH70
+```
+
+
+```{r DBHpreference31}
+## Showing an example
+knitr::kable(S4_UT_TA_NTS_NP_Global, format = "markdown",
+             caption="DBH distribution for senario 4")
+
+```
+
+## Calculating the DBH preference with the function `widesI` from the package `adehabitatHS`
+```{r DBH_preference4}
+options(scipen = 1, digits = 2) #set to two decimal 
+## S1_AT_NP_AT_SP: All trees in nesting plots vs all trees in systematic plots
+
+wi_S1_AT_NP_AT_SP_Glob <- widesI(S1_AT_NP_AT_SP_Global_Use,S1_AT_NP_AT_SP_Global_avail,alpha = 0.05); wi_S1_AT_NP_AT_SP_Glob_df=cbind(data.frame(wi_S1_AT_NP_AT_SP_Glob$wi), data.frame(wi_S1_AT_NP_AT_SP_Glob$se.wi*2), data.frame(wi_S1_AT_NP_AT_SP_Glob$chisquwi)); colnames(wi_S1_AT_NP_AT_SP_Glob_df)=c("wi", "se.wix2", "testwi","p"); wi_S1_AT_NP_AT_SP_Glob_df$DBH=rownames(wi_S1_AT_NP_AT_SP_Glob_df); wi_S1_AT_NP_AT_SP_Glob_df$Animal="Chimpanzee"
+wi_S1_AT_NP_AT_SP_Glob_df$upper=wi_S1_AT_NP_AT_SP_Glob_df$wi+wi_S1_AT_NP_AT_SP_Glob_df$se.wix2;wi_S1_AT_NP_AT_SP_Glob_df$lower=wi_S1_AT_NP_AT_SP_Glob_df$wi-wi_S1_AT_NP_AT_SP_Glob_df$se.wix2
+wi_S1_AT_NP_AT_SP_Glob_df$Scenario="S1_AT_NP_AT_SP";wi_S1_AT_NP_AT_SP_Glob_df$Habitat="Global";wi_S1_AT_NP_AT_SP_Glob_df$Selection=ifelse(wi_S1_AT_NP_AT_SP_Glob_df$upper>1 & wi_S1_AT_NP_AT_SP_Glob_df$lower>1,"Selected",ifelse(!wi_S1_AT_NP_AT_SP_Glob_df$upper>1 & !wi_S1_AT_NP_AT_SP_Glob_df$lower>1,"Avoided","Common"))
+
+## S3 = S3_TU_NB_AT_NP: Trees used for nest building vs all trees available in nesting plots
+
+wi_S3_TU_NB_AT_NP_Glob <- widesI(S3_TU_NB_AT_NP_Global_Use,S3_TU_NB_AT_NP_Global_avail,alpha = 0.05); wi_S3_TU_NB_AT_NP_Glob_df=cbind(data.frame(wi_S3_TU_NB_AT_NP_Glob$wi), data.frame(wi_S3_TU_NB_AT_NP_Glob$se.wi*2), data.frame(wi_S3_TU_NB_AT_NP_Glob$chisquwi)); colnames(wi_S3_TU_NB_AT_NP_Glob_df)=c("wi", "se.wix2", "testwi","p"); wi_S3_TU_NB_AT_NP_Glob_df$DBH=rownames(wi_S3_TU_NB_AT_NP_Glob_df); wi_S3_TU_NB_AT_NP_Glob_df$Animal="Chimpanzee"
+wi_S3_TU_NB_AT_NP_Glob_df$upper=wi_S3_TU_NB_AT_NP_Glob_df$wi+wi_S3_TU_NB_AT_NP_Glob_df$se.wix2;wi_S3_TU_NB_AT_NP_Glob_df$lower=wi_S3_TU_NB_AT_NP_Glob_df$wi-wi_S3_TU_NB_AT_NP_Glob_df$se.wix2
+wi_S3_TU_NB_AT_NP_Glob_df$Scenario="S3_TU_NB_AT_NP";wi_S3_TU_NB_AT_NP_Glob_df$Habitat="Global";wi_S3_TU_NB_AT_NP_Glob_df$Selection=ifelse(wi_S3_TU_NB_AT_NP_Glob_df$upper>1 & wi_S3_TU_NB_AT_NP_Glob_df$lower>1,"Selected",ifelse(!wi_S3_TU_NB_AT_NP_Glob_df$upper>1 & !wi_S3_TU_NB_AT_NP_Glob_df$lower>1,"Avoided","Common"))
+
+## S2 = S2_NTS_NP_NTS_SP: Nesting tree species in nesting plots vs nesting tree species in systematic plots
+
+wi_S2_NTS_NP_NTS_SPGlob <- widesI(S2_NTS_NP_NTS_SP_Global_Use,S2_NTS_NP_NTS_SP_Global_avail,alpha = 0.05); wi_S2_NTS_NP_NTS_SPGlob_df=cbind(data.frame(wi_S2_NTS_NP_NTS_SPGlob$wi), data.frame(wi_S2_NTS_NP_NTS_SPGlob$se.wi*2), data.frame(wi_S2_NTS_NP_NTS_SPGlob$chisquwi)); colnames(wi_S2_NTS_NP_NTS_SPGlob_df)=c("wi", "se.wix2", "testwi","p"); wi_S2_NTS_NP_NTS_SPGlob_df$DBH=rownames(wi_S2_NTS_NP_NTS_SPGlob_df); wi_S2_NTS_NP_NTS_SPGlob_df$Animal="Chimpanzee"
+wi_S2_NTS_NP_NTS_SPGlob_df$upper=wi_S2_NTS_NP_NTS_SPGlob_df$wi+wi_S2_NTS_NP_NTS_SPGlob_df$se.wix2;wi_S2_NTS_NP_NTS_SPGlob_df$lower=wi_S2_NTS_NP_NTS_SPGlob_df$wi-wi_S2_NTS_NP_NTS_SPGlob_df$se.wix2
+wi_S2_NTS_NP_NTS_SPGlob_df$Scenario="S2_NTS_NP_NTS_SP";wi_S2_NTS_NP_NTS_SPGlob_df$Habitat="Global";wi_S2_NTS_NP_NTS_SPGlob_df$Selection=ifelse(wi_S2_NTS_NP_NTS_SPGlob_df$upper>1 & wi_S2_NTS_NP_NTS_SPGlob_df$lower>1,"Selected",ifelse(!wi_S2_NTS_NP_NTS_SPGlob_df$upper>1 & !wi_S2_NTS_NP_NTS_SPGlob_df$lower>1,"Avoided","Common"))
+
+## S4 = S4_UT_TA_NTS_NP: Used trees vs trees available of nesting tree species in nesting plots
+
+wi_S4_UT_TA_NTS_NPGlob <- widesI(S4_UT_TA_NTS_NP_Global_Use,S4_UT_TA_NTS_NP_Global_avail,alpha = 0.05); wi_S4_UT_TA_NTS_NPGlob_df=cbind(data.frame(wi_S4_UT_TA_NTS_NPGlob$wi), data.frame(wi_S4_UT_TA_NTS_NPGlob$se.wi*2), data.frame(wi_S4_UT_TA_NTS_NPGlob$chisquwi)); colnames(wi_S4_UT_TA_NTS_NPGlob_df)=c("wi", "se.wix2", "testwi","p"); wi_S4_UT_TA_NTS_NPGlob_df$DBH=rownames(wi_S4_UT_TA_NTS_NPGlob_df); wi_S4_UT_TA_NTS_NPGlob_df$Animal="Chimpanzee"
+wi_S4_UT_TA_NTS_NPGlob_df$upper=wi_S4_UT_TA_NTS_NPGlob_df$wi+wi_S4_UT_TA_NTS_NPGlob_df$se.wix2;wi_S4_UT_TA_NTS_NPGlob_df$lower=wi_S4_UT_TA_NTS_NPGlob_df$wi-wi_S4_UT_TA_NTS_NPGlob_df$se.wix2
+wi_S4_UT_TA_NTS_NPGlob_df$Scenario="S4_UT_TA_NTS_NP";wi_S4_UT_TA_NTS_NPGlob_df$Habitat="Global";wi_S4_UT_TA_NTS_NPGlob_df$Selection=ifelse(wi_S4_UT_TA_NTS_NPGlob_df$upper>1 & wi_S4_UT_TA_NTS_NPGlob_df$lower>1,"Selected",ifelse(!wi_S4_UT_TA_NTS_NPGlob_df$upper>1 & !wi_S4_UT_TA_NTS_NPGlob_df$lower>1,"Avoided","Common"))
+```
+
+
+```{r DBHpreference41}
+## Showing an example
+knitr::kable(wi_S4_UT_TA_NTS_NPGlob_df, format = "markdown",
+             caption="DBH selection in Scenario 4")
+
+
+```
+
+
+## Plotting the result
+```{r fig:2, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="DBH representation in different scenarios of chimpanzee nesting and nesting site selection. Scenario 1: All trees in nesting plots vs all trees in systematic plots, Scenario 2: Nesting tree species in nesting plots vs nesting tree species in systematic plots, Scenario 3: Trees used for nest building vs all trees available in nesting plots, Scenario 4: trees used for nest building vs trees available of nesting tree species in nesting plots"}
+## Preparing the data
+wi_DBH_ALL_Global=rbind(wi_S1_AT_NP_AT_SP_Glob_df, wi_S4_UT_TA_NTS_NPGlob_df, wi_S2_NTS_NP_NTS_SPGlob_df,
+                        wi_S3_TU_NB_AT_NP_Glob_df)
+
+wi_DBH_ALL_Global$Scenario2=wi_DBH_ALL_Global$Scenario
+wi_DBH_ALL_Global$Selection2=wi_DBH_ALL_Global$Selection
+t2.rect1_DBH <- data.frame (xmin=3.5, xmax=4.5, ymin=1, ymax=3.5)
+t2.rect2_DBH <- data.frame (xmin=0.5, xmax=1.5, ymin=0, ymax=0.85)
+wi_DBH_ALL_Global$Scenario<-ifelse(wi_DBH_ALL_Global$Scenario2=="S1_AT_NP_AT_SP", "Scenario 1", 
+                                   ifelse(wi_DBH_ALL_Global$Scenario2=="S4_UT_TA_NTS_NP", "Scenario 4",
+                                          ifelse(wi_DBH_ALL_Global$Scenario2=="S2_NTS_NP_NTS_SP", "Scenario 2",
+                                                 ifelse(wi_DBH_ALL_Global$Scenario2=="S3_TU_NB_AT_NP", "Scenario 3", NA))))
+
+wi_DBH_ALL_Global$Selection<-ifelse(wi_DBH_ALL_Global$Selection2=="Common", "Neutral", 
+                                    ifelse(wi_DBH_ALL_Global$Selection2=="Selected", "Selected",
+                                           ifelse(wi_DBH_ALL_Global$Selection2=="Avoided", "Avoided", NA)))
+
+
+## Plots for DBH selection
+pd <- position_dodge(0.5)
+
+
+Plot_wi_DBH_ALL_Global <- ggplot(wi_DBH_ALL_Global, aes(x=DBH, y=wi, colour=Scenario, group=Scenario)) + 
+  geom_errorbar(aes(ymin=lower, ymax=upper),size=.6, width=.6, position=pd) +
+  geom_line(position=pd, size=0.6) +
+  geom_rect(data=t2.rect1_DBH, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), fill="gray20", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=t2.rect2_DBH, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), fill="gray20", alpha=0.1, inherit.aes = FALSE)+
+  geom_point(position=pd, size=1.5) + # 21 is filled circle
+    scale_colour_hue(name="Scenario",    # Legend label, use darker colors
+                   l=50)  +
+  xlab("Classes of diameter at breast height (cm)")+ geom_point(aes(shape=Selection), size=2) +
+  scale_shape_manual(values=c(6, 8, 17))+
+  ylab("Selection ratio (+/- CI)") +
+  scale_colour_hue(name="Scenario",    # Legend label, use darker colors
+                   l=50)  +
+  expand_limits(y=-1) + # Expand y range
+  scale_colour_manual(values = c("#1B9E77", "#D95F02", "#E6AB02", "#666666", "#7570B3","#F8766D", 
+                                 "#A6761D","#a6d854", 
+                                 "#00BF7D","#E7298A"))+
+  geom_hline(aes(yintercept=1),size=0.6, colour="#7570B3", linetype="solid") + 
+  theme(strip.text.x = element_text(size=8, face="plain"),
+        strip.text.y = element_text(size=8, face="plain"))+
+  theme(plot.title = element_text(face = "plain", size=9))+ 
+  theme_light()+
+  theme(legend.text = element_text(size = 8), 
+        legend.title = element_text(size = 9), 
+        #legend.position = "right", legend.direction = "vertical",
+        legend.position = c(.01, .99),
+        legend.justification = c("left", "top"),
+        legend.box.just = "left",
+        legend.margin = margin(6, 6, 6, 6))+ 
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1), 
+        axis.title = element_text(size = 9,face = "bold"), 
+        axis.text = element_text(size = 8, face = "bold"), axis.text.x = element_text(size = 8), 
+        legend.text = element_text(size = 8), 
+        legend.title = element_text(size = 9, 
+                                    face = "bold"), legend.background = element_rect(size = 1.2))+ 
+  theme(strip.text.x = element_text(size=8, face="bold"),
+        strip.text.y = element_text(size=8, face="bold"), plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1), 
+        axis.title = element_text(size = 9,face = "bold"), 
+        axis.text = element_text(size = 8, face = "plain", colour = "black"), 
+        axis.text.x = element_text(size = 10), 
+        legend.text = element_text(size = 8), 
+        legend.title = element_text(size = 8,
+                                    face = "bold"), legend.background = element_rect(size = 1))+
+  theme(#legend.key.height= unit(2, 'cm'),
+    legend.key.width= unit(1.5, 'cm'))
+
+## Saving the plot in different file formats (tif, pdf and eps)
+setwd("C:/Harvard_Dataverse/Results")
+tiff(file = "Plot_wi_DBH_ALL_Global.tif", width = 17.5, height = 13, units = "cm", pointsize = 10,
+     bg = "white", res = 300)
+Plot_wi_DBH_ALL_Global
+dev.off()
+
+HAb_dir=setwd("C:/Harvard_Dataverse/Results")
+
+ggsave("Plot_wi_DBH_ALL_Global.pdf",Plot_wi_DBH_ALL_Global,  path = HAb_dir,
+       scale = 1, width = 17.5, height = 13, units = "cm",
+       dpi = 600)
+
+## Displaying the graph
+
+```
+
+
+```{r plot2, fig.cap="DBH representation in different scenarios of chimpanzee nesting and nesting site selection. Scenario 1: All trees in nesting plots vs all trees in systematic plots, Scenario 2: Nesting tree species in nesting plots vs nesting tree species in systematic plots, Scenario 3: Trees used for nest building vs all trees available in nesting plots, Scenario 4: trees used for nest building vs trees available of nesting tree species in nesting plots", echo=FALSE}
+Plot_wi_DBH_ALL_Global
+```
+
+# Comparison of the means of NAT between habitats
+
+```{r wilcoxtest}
+wilcoxtest_data=Chimp_GLM_Data
+wilcoxtest_data$Type=ifelse(wilcoxtest_data$SSP==1,"Sleeping plot","Systematic plot")
+
+
+
+
+Chimp_VEG <- list(c("OSF","RIP"), c("OSF","SW"),c("OSF","YSF"),
+                   c("RIP", "SW"), c("RIP","YSF"), c("SW","YSF")) 
+## Comparison of MAT
+
+Box_Chimp_NAT <- ggviolin(wilcoxtest_data,x ="VEG", y = "NAT",fill = "VEG",
+                              palette = c("#00AFBB","#00AFBB","#00AFBB","#00AFBB","#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Number of stems", x="Vegetation type") +
+  facet_grid( ~ Type, scales = 'free_y')+
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 55)+
+  stat_compare_means(comparisons = Chimp_VEG, label.y = c(40,45,50,30,38,34), label = "p.signif")
+
+Box_Chimp_NPV <- ggviolin(wilcoxtest_data,x ="VEG", y = "NPV",fill = "VEG",
+                              palette = c("#00AFBB","#00AFBB","#00AFBB","#00AFBB","#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Number of stems", x="Vegetation type") +
+  facet_grid( ~ Type, scales = 'free_y')+
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 25)+
+  stat_compare_means(comparisons = Chimp_VEG, label.y = c(17.5,20,22.5,10,15,12), label = "p.signif")
+
+
+Box_Chimp_NPG <- ggviolin(wilcoxtest_data,x ="VEG", y = "NPG",fill = "VEG",
+                              palette = c("#00AFBB","#00AFBB","#00AFBB","#00AFBB","#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Number of stems", x="Vegetation type") +
+  facet_grid( ~ Type, scales = 'free_y')+
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 25)+
+  stat_compare_means(comparisons = Chimp_VEG, label.y = c(17.5,20,22.5,10,15,12), label = "p.signif")
+
+Nest_Survey_tree2=Nest_Survey[Nest_Survey$T_L_R_H=="Tree"&Nest_Survey$Nest_height>0,]
+
+Box_Chimp_AHA <- ggviolin(wilcoxtest_data,x ="VEG", y = "AHA",fill = "VEG",
+                              palette = c("#00AFBB","#00AFBB","#00AFBB","#00AFBB","#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Number of stems", x="Vegetation type") +
+  facet_grid( ~ Type, scales = 'free_y')+
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 50)+
+  stat_compare_means(comparisons = Chimp_VEG, label.y = c(40,44,48,30,38,34), label = "p.signif")
+
+Nest_Survey_tree2=Nest_Survey[Nest_Survey$T_L_R_H=="Tree"&Nest_Survey$Nest_height>0,]
+
+
+
+Box_Chimp_Nest_height <- ggviolin(Nest_Survey_tree2,x ="Vegetation_Type", 
+                                  y = "Nest_height",fill = "Vegetation_Type",
+                              palette = c("#00AFBB","#00AFBB","#00AFBB","#00AFBB","#00AFBB", "#E7B800", "#FC4E07", 
+                                          "#E7B800", "#00AFBB", "#E7B800"),
+                              add = "boxplot", add.params = list(fill = "white"), 
+                              line.color = "gray")+labs(y = "Nest height", x="Vegetation type")+
+  theme_bw()+theme(legend.position = "none")+ylim(NA, 60)+
+  stat_compare_means(comparisons = Chimp_VEG, label.y = c(27.5,30,32.5,20,25,22), label = "p.signif")
+
+setwd("C:/Harvard_Dataverse/Results")
+## Plots for clusters
+tiff(file = "Box_Chimp_NAT.tif", width = 17.5, height = 13, units = "cm", pointsize = 10,
+     bg = "white", res = 300)
+Box_Chimp_NAT
+dev.off()
+
+HAb_dir=setwd("C:/Harvard_Dataverse/Results")
+
+ggsave("Box_Chimp_NAT.pdf",Box_Chimp_NAT,  path = HAb_dir,
+       scale = 1, width = 17.5, height = 13, units = "cm",
+       dpi = 600)
+
+ggsave("Box_Chimp_NAT.eps",Box_Chimp_NAT,  path = HAb_dir,
+       scale = 1, width = 17.5, height = 13, units = "cm",
+       dpi = 600)
+
+```
+
+
+```{r wilcoxtest1, fig.cap="Comparisons of the mean number of all trees between vegetation types", echo=FALSE}
+Box_Chimp_NAT
+```
+
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
